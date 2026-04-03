@@ -50,6 +50,14 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+    /* Fallback for older browsers */
+    word-wrap: break-word;
+  }
+  .clip-parallax {
+    clip-path: inset(0);
+  }
+  .clip-footer {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
   }
 }
 
@@ -84,6 +92,14 @@
 }
 
 /* Hide scrollbar for testimonials carousel */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none; /* IE and Edge */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;

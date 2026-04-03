@@ -41,8 +41,7 @@ export function EventsSection() {
     <section 
       id="events" 
       ref={container} 
-      className="relative py-20 lg:py-30 overflow-hidden"
-      style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
+      className="relative py-20 lg:py-30 overflow-hidden clip-parallax"
     >
       <div className='fixed top-[-10vh] left-0 h-[120vh] w-full z-0 pointer-events-none'>
         <motion.div style={{ y }} className='relative w-full h-full'>

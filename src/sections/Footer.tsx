@@ -35,153 +35,112 @@ export function Footer() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle newsletter signup
     console.log('Newsletter signup:', email);
     setEmail('');
   };
 
   return (
-    <footer className="bg-dark text-white pt-16 lg:pt-20 pb-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 pb-12 border-b border-dark-border">
-          {/* Contact Info */}
-          <div className="lg:col-span-1">
-            <a href="mailto:info@example.com" className="text-white text-lg font-medium hover:text-primary transition-colors block mb-4">
-              info@example.com
-            </a>
-            <p className="text-text-muted text-sm leading-relaxed mb-4">
-              1901 Thornridge Cir. Shiloh,<br />
-              Hawaii 81063
-            </p>
-            <a href="tel:+9075550101" className="text-text-muted text-sm hover:text-white transition-colors block mb-6">
-              +(907) 555-0101
-            </a>
-            
-            {/* Social Links */}
-            <div className="flex items-center gap-4">
-              <motion.a 
-                href="#twitter" 
-                whileHover={{ scale: 1.1 }}
-                className="text-text-muted hover:text-white transition-colors"
-                aria-label="Twitter"
-              >
-                <TwitterIcon />
-              </motion.a>
-              <motion.a 
-                href="#youtube" 
-                whileHover={{ scale: 1.1 }}
-                className="text-text-muted hover:text-white transition-colors"
-                aria-label="YouTube"
-              >
-                <YouTubeIcon />
-              </motion.a>
-              <motion.a 
-                href="#facebook" 
-                whileHover={{ scale: 1.1 }}
-                className="text-text-muted hover:text-white transition-colors"
-                aria-label="Facebook"
-              >
-                <FacebookIcon />
-              </motion.a>
-              <motion.a 
-                href="#instagram" 
-                whileHover={{ scale: 1.1 }}
-                className="text-text-muted hover:text-white transition-colors"
-                aria-label="Instagram"
-              >
-                <InstagramIcon />
-              </motion.a>
+    <div 
+      className='relative h-[1100px] lg:h-[640px] clip-footer'
+    >
+      <div className='relative h-[calc(100vh+1100px)] lg:h-[calc(100vh+640px)] -top-[100vh]'>
+        <div className='h-[1100px] lg:h-[640px] sticky top-[calc(100vh-1100px)] lg:top-[calc(100vh-640px)]'>
+          <footer className="bg-dark text-white pt-12 lg:pt-24 pb-8 lg:pb-10 h-full flex flex-col justify-end gap-10 lg:gap-12">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+              {/* Main Footer Content */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 pb-10 border-b border-dark-border">
+                {/* Contact Info */}
+                <div className="lg:col-span-1">
+                  <a href="mailto:summit@actos.london" className="text-white text-lg font-medium hover:text-primary transition-colors block mb-4">
+                    summit@actos.london
+                  </a>
+                  <p className="text-text-muted text-sm leading-relaxed mb-4">
+                    Level 24, The Shard,<br />
+                    London SE1 9SG
+                  </p>
+                  <a href="tel:+442079460123" className="text-text-muted text-sm hover:text-white transition-colors block mb-6">
+                    +44 20 7946 0123
+                  </a>
+                  
+                  {/* Social Links */}
+                  <div className="flex items-center gap-4">
+                    <motion.a href="#twitter" whileHover={{ scale: 1.1 }} className="text-text-muted hover:text-white transition-colors" title="Twitter"><TwitterIcon /></motion.a>
+                    <motion.a href="#youtube" whileHover={{ scale: 1.1 }} className="text-text-muted hover:text-white transition-colors" title="YouTube"><YouTubeIcon /></motion.a>
+                    <motion.a href="#facebook" whileHover={{ scale: 1.1 }} className="text-text-muted hover:text-white transition-colors" title="Facebook"><FacebookIcon /></motion.a>
+                    <motion.a href="#instagram" whileHover={{ scale: 1.1 }} className="text-text-muted hover:text-white transition-colors" title="Instagram"><InstagramIcon /></motion.a>
+                  </div>
+                </div>
+
+                {/* Links Column 1 */}
+                <div>
+                  <h4 className="text-white font-medium mb-4">&copy; 2024 Actos.</h4>
+                  <ul className="space-y-3">
+                    {footerLinks.column1.map((link) => (
+                      <li key={link.label}><a href={link.href} className="text-text-muted text-sm hover:text-white transition-colors">{link.label}</a></li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Links Column 2 */}
+                <div>
+                  <ul className="space-y-3 mt-0 lg:mt-8">
+                    {footerLinks.column2.map((link) => (
+                      <li key={link.label}><a href={link.href} className="text-text-muted text-sm hover:text-white transition-colors">{link.label}</a></li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Links Column 3 */}
+                <div>
+                  <ul className="space-y-3 mt-0 lg:mt-8">
+                    {footerLinks.column3.map((link) => (
+                      <li key={link.label}><a href={link.href} className="text-text-muted text-sm hover:text-white transition-colors">{link.label}</a></li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* Newsletter */}
+              <div className="py-8 border-b border-dark-border">
+                <div className="max-w-xl">
+                  <h4 className="text-white font-medium text-lg mb-4 italic">The Circle Newsletter</h4>
+                  <p className="text-text-muted text-sm mb-6">
+                    Join an elite community of founders and directors. Stay informed on exclusive networking events.
+                  </p>
+                  <form onSubmit={handleSubmit} className="relative">
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Enter your professional email"
+                      className="w-full bg-transparent border-b border-dark-border py-4 pr-12 text-white placeholder:text-text-muted focus:outline-none focus:border-primary transition-colors text-lg"
+                    />
+                    <button 
+                      type="submit" 
+                      className="absolute right-0 top-1/2 -translate-y-1/2 text-primary hover:text-white transition-colors"
+                      aria-label="Subscribe"
+                      title="Subscribe to newsletter"
+                    >
+                      <ArrowRight className="w-6 h-6" />
+                    </button>
+                  </form>
+                </div>
+              </div>
+
+              {/* Bottom Bar */}
+              <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl font-extralight tracking-tighter text-white">ACTOS</span>
+                  <span className="text-[10px] tracking-[0.4em] uppercase text-primary font-medium">London</span>
+                </div>
+                <p className="text-text-muted text-[10px] lg:text-xs uppercase tracking-widest font-light">
+                  &copy; 2024 Actos London Summit. All Rights Reserved.
+                </p>
+              </div>
             </div>
-          </div>
-
-          {/* Links Column 1 */}
-          <div>
-            <h4 className="text-white font-medium mb-4">&copy; 2024 Actos.</h4>
-            <ul className="space-y-3">
-              {footerLinks.column1.map((link) => (
-                <li key={link.label}>
-                  <a 
-                    href={link.href} 
-                    className="text-text-muted text-sm hover:text-white transition-colors"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Links Column 2 */}
-          <div>
-            <ul className="space-y-3 mt-0 lg:mt-8">
-              {footerLinks.column2.map((link) => (
-                <li key={link.label}>
-                  <a 
-                    href={link.href} 
-                    className="text-text-muted text-sm hover:text-white transition-colors"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Links Column 3 */}
-          <div>
-            <ul className="space-y-3 mt-0 lg:mt-8">
-              {footerLinks.column3.map((link) => (
-                <li key={link.label}>
-                  <a 
-                    href={link.href} 
-                    className="text-text-muted text-sm hover:text-white transition-colors"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* Newsletter */}
-        <div className="py-10 border-b border-dark-border">
-          <div className="max-w-xl">
-            <h4 className="text-white font-medium text-lg mb-4">Subscribe Now</h4>
-            <form onSubmit={handleSubmit} className="relative">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email address"
-                className="w-full bg-transparent border-b border-dark-border py-3 pr-12 text-white placeholder:text-text-muted focus:outline-none focus:border-primary transition-colors"
-              />
-              <button
-                type="submit"
-                className="absolute right-0 top-1/2 -translate-y-1/2 text-text-muted hover:text-white transition-colors"
-                aria-label="Subscribe"
-              >
-                <ArrowRight className="w-5 h-5" />
-              </button>
-            </form>
-            <p className="text-text-muted text-sm mt-4">
-              It's easy to join our community! Stay informed & inspired. Enter your email below to join our community
-            </p>
-          </div>
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <a href="/" className="text-2xl font-bold text-white">
-            Actos
-          </a>
-          <p className="text-text-muted text-sm">
-            Designed by <a href="#onmix" className="hover:text-white transition-colors">Onmix</a>. 
-            Powered by <a href="#webflow" className="hover:text-white transition-colors">Webflow</a>.
-          </p>
+          </footer>
         </div>
       </div>
-    </footer>
+    </div>
   );
 }
