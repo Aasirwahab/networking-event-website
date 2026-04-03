@@ -85,10 +85,16 @@ export function AboutSection() {
           </div>
 
           {/* Right Column */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-3 space-y-6">
             <ScrollReveal delay={0.3}>
+              <p className="text-text-secondary text-base leading-relaxed">
+                Our dedicated team brings passion and precision to every event, building lasting connections across boundaries.
+              </p>
+            </ScrollReveal>
+            
+            <ScrollReveal delay={0.4}>
               <motion.div
-                className="overflow-hidden rounded-xl h-[300px] lg:h-full"
+                className="overflow-hidden rounded-xl h-[400px] lg:h-[500px]"
                 whileHover="hover"
               >
                 <motion.div
@@ -99,8 +105,8 @@ export function AboutSection() {
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <Image
-                    src="/images/about-3.jpg"
-                    alt="Speaker"
+                    src="/images/gallery-2.png"
+                    alt="Premium London networking event"
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 25vw"
