@@ -4,6 +4,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { useLenisScroll, getScroller } from '@/contexts/LenisContext';
 
@@ -22,6 +23,7 @@ const DEFAULT_POSITIONS = [
 export interface ImagesFlowProps {
   introTitle: string;
   introSubtitle?: string;
+  introImage?: string;
   flowText?: string;
   outroTitle: string;
   outroSubtitle?: string;
@@ -32,6 +34,7 @@ export interface ImagesFlowProps {
 const ImagesFlow: React.FC<ImagesFlowProps> = ({
   introTitle,
   introSubtitle,
+  introImage,
   flowText = 'Every moment holds a universe waiting to be discovered',
   outroTitle,
   outroSubtitle,
@@ -39,7 +42,15 @@ const ImagesFlow: React.FC<ImagesFlowProps> = ({
   className,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const introRef = useRef<HTMLDivElement>(null);
   const flowRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: introRef,
+    offset: ['start start', 'end start']
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
   const lenisContext = useLenisScroll();
   const scroller = getScroller(lenisContext);
@@ -153,7 +164,27 @@ const ImagesFlow: React.FC<ImagesFlowProps> = ({
   return (
     <main ref={containerRef} className={cn('w-full overflow-x-hidden', className)}>
       {/* Intro */}
-      <section className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#0B0B0F]">
+      <section 
+        ref={introRef}
+        className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden"
+      >
+        {introImage && (
+          <motion.div 
+            style={{ y }} 
+            className="absolute inset-0 z-0"
+          >
+            <Image
+              src={introImage}
+              alt="Intro background"
+              fill
+              priority
+              className="object-cover"
+              sizes="100vw"
+            />
+            {/* Overlay to ensure text readability */}
+            <div className="absolute inset-0 bg-black/60" />
+          </motion.div>
+        )}
         <div className="pointer-events-none absolute left-1/2 top-1/2 z-[100] -translate-x-1/2 -translate-y-1/2 text-center">
           <h1
             className="mb-4 bg-gradient-to-br from-white to-white/60 bg-clip-text font-extralight uppercase tracking-[0.3em] text-transparent text-[clamp(2rem,8vw,6rem)]"

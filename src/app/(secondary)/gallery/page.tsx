@@ -26,6 +26,7 @@ export default function GalleryPage() {
         <ImagesFlow 
           introTitle="London Summit"
           introSubtitle="A cinematic look at the future of networking."
+          introImage="/images/london/1.png"
           flowText={'Every connection holds a universe\nwaiting to be explored.'}
           outroTitle="Join the Circle"
           outroSubtitle="The journey of high-level networking stays with you."
