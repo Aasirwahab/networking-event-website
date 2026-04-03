@@ -1,11 +1,20 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import Image from 'next/image';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { events } from '@/data/content';
 
 export function EventsSection() {
+  const container = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ["start end", 'end start']
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -29,8 +38,28 @@ export function EventsSection() {
   };
 
   return (
-    <section id="events" className="py-20 lg:py-30 bg-dark">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section 
+      id="events" 
+      ref={container} 
+      className="relative py-20 lg:py-30 overflow-hidden"
+      style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
+    >
+      <div className='fixed top-[-10vh] left-0 h-[120vh] w-full z-0 pointer-events-none'>
+        <motion.div style={{ y }} className='relative w-full h-full'>
+          <Image 
+            src="/images/hero-concert.jpg" 
+            fill 
+            alt="Events background image" 
+            className="object-cover" 
+            sizes="100vw" 
+            quality={90} 
+          />
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-black/60" />
+        </motion.div>
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <ScrollReveal className="text-center mb-12">
           <span className="text-text-muted text-xs font-medium tracking-[0.2em] uppercase mb-4 block">
