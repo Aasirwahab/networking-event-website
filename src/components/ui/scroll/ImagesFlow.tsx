@@ -93,10 +93,16 @@ const ImagesFlow: React.FC<ImagesFlowProps> = ({
 
     imgElements.forEach((el, i) => gsap.set(el, initPos[i]));
 
+    const maxTotalDelay = 0.6;
+    const delayStep = Math.min(0.03, maxTotalDelay / Math.max(1, images.length));
+    const lastImgDelay = (images.length - 1) * delayStep;
+    const progressMultiplier = 1 / (1 - lastImgDelay);
+    const endScreens = progressMultiplier / 0.4;
+
     const st = ScrollTrigger.create({
       trigger: flow,
       start: 'top top',
-      end: `+=${screenHeight * 10}px`,
+      end: `+=${screenHeight * endScreens}px`,
       pin: true,
       pinSpacing: true,
       scrub: 1,
@@ -105,21 +111,26 @@ const ImagesFlow: React.FC<ImagesFlowProps> = ({
         const progress = self.progress;
 
         imgElements.forEach((eachImage, index) => {
-          const imgDelay = index * 0.03;
-          const imgProgress = Math.max(0, (progress - imgDelay) * 4);
+          const imgDelay = index * delayStep;
+          const imgProgress = Math.max(0, (progress - imgDelay) * progressMultiplier);
 
           const start = initPos[index];
           const end = finalPos[index];
 
-          let x = gsap.utils.interpolate(start.x, end.x, imgProgress);
-          let y = gsap.utils.interpolate(start.y, end.y, imgProgress);
-          let z = gsap.utils.interpolate(start.z, end.z, imgProgress);
-          const scale = gsap.utils.interpolate(start.scale, end.scale, imgProgress);
+          let currentProgress = imgProgress;
+          if (index === images.length - 1) {
+            currentProgress = Math.min(1, imgProgress);
+          }
+
+          let x = gsap.utils.interpolate(start.x, end.x, currentProgress);
+          let y = gsap.utils.interpolate(start.y, end.y, currentProgress);
+          let z = gsap.utils.interpolate(start.z, end.z, currentProgress);
+          const scale = gsap.utils.interpolate(start.scale, end.scale, currentProgress);
 
           if (index === images.length - 1) {
             x = 0;
             y = 0;
-            z = z * 0.4;
+            z = gsap.utils.interpolate(start.z, 0, currentProgress);
           }
 
           gsap.set(eachImage, {

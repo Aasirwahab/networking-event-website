@@ -20,7 +20,7 @@ const londonImages = [
 
 export default function GalleryPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-slate-950">
       <Navbar />
       <main>
         <ImagesFlow 
