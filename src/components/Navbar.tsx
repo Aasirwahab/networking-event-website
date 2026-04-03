@@ -1,13 +1,16 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useScrollPosition } from '@/hooks/useScrollPosition';
 import { MenuOverlay } from './MenuOverlay';
+import { usePageTransition } from './TransitionProvider';
 
 export function Navbar() {
   const { scrolled } = useScrollPosition();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { navigateTo } = usePageTransition();
 
   return (
     <>
@@ -26,9 +29,17 @@ export function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center justify-between h-[72px]">
             {/* Logo */}
-            <a href="/" className={`text-2xl font-bold transition-colors ${mobileMenuOpen ? 'text-white' : 'text-slate-900'}`}>
+            <Link 
+              href="/" 
+              onClick={(e) => {
+                e.preventDefault();
+                setMobileMenuOpen(false);
+                navigateTo('/');
+              }} 
+              className={`text-2xl font-bold transition-colors ${mobileMenuOpen ? 'text-white' : 'text-slate-900'}`}
+            >
               Actos
-            </a>
+            </Link>
 
             {/* Right Side - Only Menu */}
             <div className="flex items-center">
@@ -46,8 +57,7 @@ export function Navbar() {
       </motion.header>
 
       {/* Full Screen Menu Overlay */}
-      <MenuOverlay isOpen={mobileMenuOpen} />
+      <MenuOverlay isOpen={mobileMenuOpen} onLinkClick={() => setMobileMenuOpen(false)} />
     </>
   );
 }
-

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import TransitionProvider from "@/components/TransitionProvider";
+import { LenisProvider } from "@/contexts/LenisContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -27,7 +29,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
-      <body>{children}</body>
+      <body className="antialiased">
+        <LenisProvider>
+          <TransitionProvider>
+            {children}
+          </TransitionProvider>
+        </LenisProvider>
+      </body>
     </html>
   );
 }

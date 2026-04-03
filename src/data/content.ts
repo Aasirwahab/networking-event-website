@@ -132,30 +132,78 @@ export const testimonials: Testimonial[] = [
 ];
 
 export const navLinks = [
-  { label: 'About us', href: '#about' },
-  { label: 'Events', href: '#events' },
-  { label: 'Speakers', href: '#speakers' },
-  { label: 'Blogs', href: '#blogs' },
-  { label: 'Tickets', href: '#tickets' },
+  { label: 'About us', href: '/about' },
+  { label: 'Events', href: '/events' },
+  { label: 'Speakers', href: '/speakers' },
+  { label: 'Gallery', href: '/gallery' },
 ];
 
 export const footerLinks = {
   column1: [
-    { label: 'About us', href: '#about' },
-    { label: 'Events', href: '#events' },
-    { label: 'Speakers', href: '#speakers' },
-    { label: 'Pricing', href: '#pricing' },
+    { label: 'About us', href: '/about' },
+    { label: 'Events', href: '/events' },
+    { label: 'Speakers', href: '/speakers' },
+    { label: 'Gallery', href: '/gallery' },
   ],
   column2: [
-    { label: 'Gallery', href: '#gallery' },
-    { label: 'FAQ', href: '#faq' },
-    { label: 'Contact us', href: '#contact' },
-    { label: 'Blogs', href: '#blogs' },
+    { label: 'FAQ', href: '/faq' },
+    { label: 'Contact us', href: '/contact' },
+    { label: 'Licensing', href: '/licensing' },
   ],
   column3: [
-    { label: 'Licensing', href: '#licensing' },
-    { label: 'Privacy Policy', href: '#privacy' },
-    { label: 'Style Guide', href: '#styleguide' },
-    { label: 'Changelog', href: '#changelog' },
+    { label: 'Privacy Policy', href: '/privacy-policy' },
+    { label: 'Style Guide', href: '/styleguide' },
+    { label: 'Changelog', href: '/changelog' },
   ],
 };
+
+export const galleryImages = [
+  {
+    id: '1',
+    src: '/images/gallery-1.png',
+    title: 'Future Tech Summit',
+    category: 'Conference',
+    width: 800,
+    height: 1000,
+  },
+  {
+    id: '2',
+    src: '/images/gallery-2.png',
+    title: 'Rooftop Networking',
+    category: 'Networking',
+    width: 800,
+    height: 600,
+  },
+  {
+    id: '3',
+    src: '/images/gallery-3.png',
+    title: 'Keynote Excellence',
+    category: 'Keynote',
+    width: 800,
+    height: 800,
+  },
+  {
+    id: '4',
+    src: '/images/gallery-4.png',
+    title: 'Interactive Workshop',
+    category: 'Workshop',
+    width: 800,
+    height: 1100,
+  },
+  {
+    id: '5',
+    src: '/images/gallery-5.png',
+    title: 'Gala Celebration',
+    category: 'Gala',
+    width: 800,
+    height: 600,
+  },
+  {
+    id: '6',
+    src: '/images/gallery-6.png',
+    title: 'Outdoor Music Fest',
+    category: 'Festival',
+    width: 800,
+    height: 900,
+  },
+];
