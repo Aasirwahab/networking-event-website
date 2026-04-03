@@ -21,8 +21,8 @@ export default function HomePage() {
         <HeroSection />
         <BenefitsSection />
         <AboutSection />
-        <AgendaSection />
         <EventsSection />
+        <AgendaSection />
         <VenueSection />
         <StatsSection />
         <SponsorsSection />
