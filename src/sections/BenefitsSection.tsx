@@ -33,7 +33,7 @@ export function BenefitsSection() {
         <ScrollReveal>
           <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-24">
             <h2 className="text-3xl lg:text-5xl font-light tracking-tight text-dark mb-6">
-              Why the World's Leaders <br />
+              Why the World&apos;s Leaders <br />
               <span className="font-medium italic">Choose Actos</span>
             </h2>
             <p className="text-text-secondary text-lg">

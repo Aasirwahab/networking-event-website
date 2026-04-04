@@ -18,12 +18,12 @@ export function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-500 ease-in-out ${
+        className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-500 ease-[cubic-bezier(0.16_1_0.3_1)] ${
           mobileMenuOpen
-            ? 'bg-transparent text-white pt-6'
+            ? 'bg-transparent text-white pt-8'
             : scrolled 
-              ? 'bg-white/70 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.05)] border-b border-white/20 py-3' 
-              : 'bg-transparent py-6'
+              ? 'bg-black/20 backdrop-blur-xl border-b border-white/10 py-4 shadow-[0_10px_50px_rgba(0,0,0,0.2)]' 
+              : 'bg-transparent py-8'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
@@ -38,14 +38,10 @@ export function Navbar() {
               }} 
               className={`group flex items-center gap-2 transition-transform duration-300 hover:scale-[1.02]`}
             >
-              <span className={`text-2xl font-black tracking-tighter uppercase transition-colors duration-300 ${
-                mobileMenuOpen || !scrolled ? 'text-white' : 'text-slate-900'
-              }`}>
+              <span className={`text-2xl font-black tracking-tighter uppercase transition-all duration-500 text-white`}>
                 Actos
               </span>
-              <span className={`text-[10px] tracking-[0.4em] uppercase font-bold transition-colors duration-300 ${
-                mobileMenuOpen || !scrolled ? 'text-primary' : 'text-primary'
-              }`}>
+              <span className="text-[10px] tracking-[0.4em] uppercase font-bold text-primary">
                 London
               </span>
             </Link>
@@ -57,18 +53,18 @@ export function Navbar() {
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-label="Toggle Menu"
               >
-                <span className={`h-[1px] transition-all duration-500 ease-[0.16,1,0.3,1] ${
+                <span className={`h-[1px] transition-all duration-500 ease-[cubic-bezier(0.16_1_0.3_1)] ${
                   mobileMenuOpen 
                     ? 'w-8 bg-white translate-y-[6px] rotate-45' 
-                    : `w-8 group-hover:w-10 ${scrolled ? 'bg-slate-900' : 'bg-white shadow-sm'}`
+                    : `w-8 group-hover:w-10 bg-white shadow-xl`
                 }`}></span>
-                <span className={`h-[1px] transition-all duration-500 ease-[0.16,1,0.3,1] ${
+                <span className={`h-[1px] transition-all duration-500 ease-[cubic-bezier(0.16_1_0.3_1)] ${
                   mobileMenuOpen 
                     ? 'w-8 bg-white -translate-y-[0px] -rotate-45' 
-                    : `w-5 group-hover:w-10 ${scrolled ? 'bg-slate-900' : 'bg-white shadow-sm'}`
+                    : `w-5 group-hover:w-10 bg-white shadow-xl`
                 }`}></span>
                 {!mobileMenuOpen && (
-                   <span className={`text-[9px] uppercase tracking-[0.3em] font-bold mt-1 transition-colors ${scrolled ? 'text-slate-500' : 'text-white/60'}`}>
+                   <span className={`text-[9px] uppercase tracking-[0.3em] font-bold mt-1 transition-all duration-500 text-white/70 group-hover:text-white`}>
                      Menu
                    </span>
                 )}

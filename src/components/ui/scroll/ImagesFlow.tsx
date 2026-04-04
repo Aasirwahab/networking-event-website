@@ -6,7 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import { useLenisScroll, getScroller } from '@/contexts/LenisContext';
+import { useLenisScroll } from '@/contexts/LenisContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -53,7 +53,6 @@ const ImagesFlow: React.FC<ImagesFlowProps> = ({
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
   const lenisContext = useLenisScroll();
-  const scroller = getScroller(lenisContext);
   const [dimensions, setDimensions] = useState({ width: 1200, height: 800 });
 
   useEffect(() => {
@@ -117,7 +116,7 @@ const ImagesFlow: React.FC<ImagesFlowProps> = ({
       pin: true,
       pinSpacing: true,
       scrub: 1,
-      scroller: scroller || undefined,
+      scroller: undefined,
       onUpdate: (self) => {
         const progress = self.progress;
 
@@ -159,7 +158,7 @@ const ImagesFlow: React.FC<ImagesFlowProps> = ({
     return () => {
       st.kill();
     };
-  }, [images, lenisContext.isReady, scroller, dimensions]);
+  }, [images, lenisContext.isReady, dimensions]);
 
   return (
     <main ref={containerRef} className={cn('w-full overflow-x-hidden', className)}>

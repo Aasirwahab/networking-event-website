@@ -7,6 +7,28 @@ import { ArrowRight } from 'lucide-react';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { events } from '@/data/content';
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+    },
+  },
+};
+
 export function EventsSection() {
   const container = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
@@ -14,28 +36,6 @@ export function EventsSection() {
     offset: ["start end", 'end start']
   });
   const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
-      },
-    },
-  };
 
   return (
     <section 
@@ -50,8 +50,7 @@ export function EventsSection() {
             fill 
             alt="Events background image" 
             className="object-cover" 
-            sizes="100vw" 
-            quality={90} 
+            sizes="100vw"
           />
           {/* Dark Overlay */}
           <div className="absolute inset-0 bg-black/60" />

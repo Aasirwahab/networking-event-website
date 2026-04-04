@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { footerLinks } from '@/data/content';
 
@@ -9,18 +8,6 @@ import { footerLinks } from '@/data/content';
 const TwitterIcon = () => (
   <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-  </svg>
-);
-
-const YouTubeIcon = () => (
-  <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
-    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-  </svg>
-);
-
-const FacebookIcon = () => (
-  <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
-    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
   </svg>
 );
 
@@ -37,10 +24,6 @@ export function Footer() {
     e.preventDefault();
     console.log('Newsletter signup:', email);
     setEmail('');
-  };
-  const variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
   };
 
   return (
@@ -101,8 +84,8 @@ export function Footer() {
                         London SE1 9SG
                       </p>
                       <div className="flex items-center gap-6">
-                        <motion.a href="#twitter" whileHover={{ scale: 1.2, color: "#2563EB" }} className="text-white/40 hover:text-white transition-colors" title="Twitter"><TwitterIcon /></motion.a>
-                        <motion.a href="#linkedin" whileHover={{ scale: 1.2, color: "#2563EB" }} className="text-white/40 hover:text-white transition-colors" title="Instagram"><InstagramIcon /></motion.a>
+                        <a href="#twitter" className="text-white/40 hover:text-primary hover:scale-125 transition-all duration-300 inline-block" title="Twitter"><TwitterIcon /></a>
+                        <a href="#linkedin" className="text-white/40 hover:text-primary hover:scale-125 transition-all duration-300 inline-block" title="Instagram"><InstagramIcon /></a>
                       </div>
                     </div>
 
@@ -138,7 +121,7 @@ export function Footer() {
                       <p className="text-white/40 text-xs uppercase tracking-widest font-bold mb-6">Experience</p>
                       <div className="group cursor-pointer">
                         <p className="text-white/30 text-xs font-light leading-relaxed group-hover:text-white/50 transition-colors">
-                          Transforming the digital landscape for the next generation of founders. Actos London is more than an event; it's a movement.
+                          Transforming the digital landscape for the next generation of founders. Actos London is more than an event; it&apos;s a movement.
                         </p>
                       </div>
                     </div>

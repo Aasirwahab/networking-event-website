@@ -1,10 +1,8 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import SplitType from "split-type";
 import { navLinks } from "@/data/content";
 import { usePageTransition } from "./TransitionProvider";
 
@@ -18,73 +16,73 @@ export const MenuOverlay = ({ isOpen, onLinkClick }: MenuOverlayProps) => {
   const timeline = useRef<gsap.core.Timeline | null>(null);
   const { navigateTo } = usePageTransition();
 
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    if (onLinkClick) onLinkClick(); // Close the menu overlay
+  const handleLinkClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+      e.preventDefault();
+      if (onLinkClick) onLinkClick();
+      navigateTo(href);
+    },
+    [onLinkClick, navigateTo]
+  );
 
-    // The TransitionProvider's navigateTo handles the animation out and then pushes the route.
-    navigateTo(href);
-  };
+  // Build timeline on mount
+  useEffect(() => {
+    const el = container.current;
+    if (!el) return;
 
-  useGSAP(() => {
-    timeline.current = gsap.timeline({ paused: true });
+    const bgs = el.querySelectorAll(".nav-bg");
+    const items = el.querySelector(".nav-items");
+    const links = el.querySelectorAll(".nav-link-reveal");
 
-    timeline.current.to(".nav-bg", {
+    const tl = gsap.timeline({ paused: true });
+
+    tl.to(bgs, {
       scaleY: 1,
-      duration: 0.75,
-      stagger: 0.1,
+      duration: 0.6,
+      stagger: 0.08,
       ease: "power3.inOut",
+      force3D: true,
     });
 
-    timeline.current.to(
-      ".nav-items",
+    tl.to(
+      items,
       {
-        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-        duration: 0.75,
-        ease: "power3.inOut",
+        opacity: 1,
+        duration: 0.4,
+        ease: "power2.out",
       },
-      "-=0.6"
+      "-=0.3"
     );
 
-    // Split text for reveal animation
-    const links = container.current?.querySelectorAll(".nav-items a");
-    if (links) {
-      links.forEach((link) => {
-        new SplitType(link as HTMLElement, {
-          types: "lines",
-          lineClass: "line-inner",
-        });
-      });
-    }
+    tl.fromTo(
+      links,
+      { y: "100%", opacity: 0 },
+      {
+        y: "0%",
+        opacity: 1,
+        duration: 0.5,
+        stagger: 0.03,
+        ease: "power3.out",
+        force3D: true,
+      },
+      "-=0.2"
+    );
+
+    timeline.current = tl;
 
     return () => {
-      timeline.current?.kill();
+      tl.kill();
     };
-  }, { scope: container });
+  }, []);
 
+  // Play/reverse on isOpen change
   useEffect(() => {
     if (!timeline.current) return;
 
     if (isOpen) {
-      timeline.current.play();
-      gsap.fromTo(
-        ".line-inner",
-        { y: "110%" },
-        {
-          y: "0%",
-          duration: 0.8,
-          stagger: 0.02,
-          ease: "power4.out",
-          delay: 0.8,
-        }
-      );
+      timeline.current.timeScale(1).play();
     } else {
-      timeline.current.reverse();
-      gsap.to(".line-inner", {
-        y: "110%",
-        duration: 0.4,
-        ease: "power4.in",
-      });
+      timeline.current.timeScale(1.4).reverse();
     }
   }, [isOpen]);
 
@@ -96,23 +94,34 @@ export const MenuOverlay = ({ isOpen, onLinkClick }: MenuOverlayProps) => {
       <div className="nav-bg"></div>
       <div className="nav-bg"></div>
       <div className="nav-bg"></div>
-      <div className="nav-bg"></div>
 
       <div className="nav-items">
         {/* Left column: socials + legal */}
         <div className="nav-items-col">
           <div className="nav-socials">
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a>
+            {[
+              { href: "https://twitter.com", label: "X (Twitter)" },
+              { href: "https://linkedin.com", label: "LinkedIn" },
+              { href: "https://instagram.com", label: "Instagram" },
+              { href: "https://youtube.com", label: "YouTube" },
+            ].map((social) => (
+              <a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer">
+                <span className="nav-link-reveal inline-block">{social.label}</span>
+              </a>
+            ))}
           </div>
           <div className="nav-bottom">
             <div className="nav-legal">
-              <Link href="/privacy-policy" onClick={(e) => handleLinkClick(e, "/privacy-policy")}>Privacy Policy</Link>
-              <Link href="/licensing" onClick={(e) => handleLinkClick(e, "/licensing")}>Licensing</Link>
-              <Link href="/styleguide" onClick={(e) => handleLinkClick(e, "/styleguide")}>Style Guide</Link>
-              <Link href="/contact" onClick={(e) => handleLinkClick(e, "/contact")}>Contact us</Link>
+              {[
+                { href: "/privacy-policy", label: "Privacy Policy" },
+                { href: "/licensing", label: "Licensing" },
+                { href: "/styleguide", label: "Style Guide" },
+                { href: "/contact", label: "Contact us" },
+              ].map((link) => (
+                <Link key={link.label} href={link.href} onClick={(e) => handleLinkClick(e, link.href)}>
+                  <span className="nav-link-reveal inline-block">{link.label}</span>
+                </Link>
+              ))}
             </div>
           </div>
         </div>
@@ -120,17 +129,23 @@ export const MenuOverlay = ({ isOpen, onLinkClick }: MenuOverlayProps) => {
         {/* Right column: primary + secondary nav */}
         <div className="nav-items-col">
           <div className="nav-primary-links font-bold">
-            <Link href="/" onClick={(e) => handleLinkClick(e, "/")}>Home</Link>
+            <Link href="/" onClick={(e) => handleLinkClick(e, "/")}>
+              <span className="nav-link-reveal inline-block">Home</span>
+            </Link>
             {navLinks.map((link) => (
               <Link key={link.label} href={link.href} onClick={(e) => handleLinkClick(e, link.href)}>
-                {link.label}
+                <span className="nav-link-reveal inline-block">{link.label}</span>
               </Link>
             ))}
           </div>
 
           <div className="nav-secondary-links">
-            <Link href="/faq" onClick={(e) => handleLinkClick(e, "/faq")}>FAQ</Link>
-            <Link href="/changelog" onClick={(e) => handleLinkClick(e, "/changelog")}>Changelog</Link>
+            <Link href="/faq" onClick={(e) => handleLinkClick(e, "/faq")}>
+              <span className="nav-link-reveal inline-block">FAQ</span>
+            </Link>
+            <Link href="/changelog" onClick={(e) => handleLinkClick(e, "/changelog")}>
+              <span className="nav-link-reveal inline-block">Changelog</span>
+            </Link>
           </div>
         </div>
       </div>

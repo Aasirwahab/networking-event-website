@@ -27,7 +27,6 @@ export function VenueSection() {
           fill
           className="object-cover"
           sizes="100vw"
-          priority
         />
         {/* Luxury Dark Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-dark/40 to-dark/80" />

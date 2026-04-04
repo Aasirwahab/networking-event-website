@@ -2,7 +2,6 @@
 
 import { useRef } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { testimonials } from '@/data/content';
@@ -39,19 +38,10 @@ export function TestimonialsSection() {
             ref={scrollRef}
             className="flex gap-6 overflow-x-auto hide-scrollbar snap-x snap-mandatory pb-4"
           >
-            {testimonials.map((testimonial, index) => (
-              <motion.div
+            {testimonials.map((testimonial) => (
+              <div
                 key={testimonial.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ 
-                  duration: 0.5, 
-                  delay: index * 0.1,
-                  ease: [0.22, 1, 0.36, 1] 
-                }}
-                whileHover={{ y: -4, boxShadow: '0 8px 30px rgba(0,0,0,0.12)' }}
-                className="flex-shrink-0 w-[350px] snap-start bg-white rounded-xl p-6 border border-border shadow-card transition-all duration-300"
+                className="flex-shrink-0 w-[350px] snap-start bg-white rounded-xl p-6 border border-border shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)]"
               >
                 {/* Header */}
                 <div className="flex items-center gap-3 mb-4">
@@ -75,7 +65,7 @@ export function TestimonialsSection() {
                   <p className="text-text-primary text-sm font-medium">{testimonial.author}</p>
                   <p className="text-text-muted text-xs">{testimonial.location}</p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
 

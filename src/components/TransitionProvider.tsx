@@ -5,6 +5,7 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useMemo,
   useRef,
   ReactNode,
 } from "react";
@@ -66,8 +67,10 @@ export default function TransitionProvider({
     [router, pathname]
   );
 
+  const contextValue = useMemo(() => ({ navigateTo }), [navigateTo]);
+
   return (
-    <TransitionContext.Provider value={{ navigateTo }}>
+    <TransitionContext.Provider value={contextValue}>
       {children}
       <div className="w-screen h-screen fixed inset-0 z-[9999] flex pointer-events-none">
         {Array.from({ length: column }).map((_, idx) => (
