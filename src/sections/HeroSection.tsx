@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { FloatingCard } from '@/components/FloatingCard';
+import { InfiniteMarquee } from '@/components/InfiniteMarquee';
 
 export function HeroSection() {
   const containerVariants = {
@@ -30,7 +31,7 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-end pb-16 pt-[72px]">
+    <section className="relative min-h-screen flex items-center pb-16 pt-[72px]">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
@@ -76,17 +77,20 @@ export function HeroSection() {
           <motion.div variants={itemVariants}>
             <a
               href="#tickets"
-              className="group inline-flex items-center gap-2 bg-white text-text-primary px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+              className="group inline-flex items-center gap-3 bg-white text-dark px-10 py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[10px] sm:text-xs transition-all duration-300 hover:bg-primary hover:text-white hover:scale-[1.03] hover:shadow-[0_20px_40px_rgba(37,99,235,0.2)]"
             >
               Get Tickets
-              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+              <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
             </a>
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Floating Card */}
-      <FloatingCard />
+      {/* Infinite Marquee Section */}
+      <div className="absolute bottom-0 left-0 w-full z-20">
+        <InfiniteMarquee />
+      </div>
+
     </section>
   );
 }
