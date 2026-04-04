@@ -15,20 +15,20 @@ export function Navbar() {
   return (
     <>
       <motion.header
-        initial={{ y: -20, opacity: 0 }}
+        initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-500 ease-in-out ${
           mobileMenuOpen
-            ? 'bg-transparent text-white'
+            ? 'bg-transparent text-white pt-6'
             : scrolled 
-              ? 'bg-white/95 backdrop-blur-md shadow-nav text-slate-900' 
-              : 'bg-white text-slate-900'
+              ? 'bg-white/70 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.05)] border-b border-white/20 py-3' 
+              : 'bg-transparent py-6'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center justify-between h-[72px]">
-            {/* Logo */}
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <nav className="flex items-center justify-between">
+            {/* Logo: Premium Branding */}
             <Link 
               href="/" 
               onClick={(e) => {
@@ -36,20 +36,42 @@ export function Navbar() {
                 setMobileMenuOpen(false);
                 navigateTo('/');
               }} 
-              className={`text-2xl font-bold transition-colors ${mobileMenuOpen ? 'text-white' : 'text-slate-900'}`}
+              className={`group flex items-center gap-2 transition-transform duration-300 hover:scale-[1.02]`}
             >
-              Actos
+              <span className={`text-2xl font-black tracking-tighter uppercase transition-colors duration-300 ${
+                mobileMenuOpen || !scrolled ? 'text-white' : 'text-slate-900'
+              }`}>
+                Actos
+              </span>
+              <span className={`text-[10px] tracking-[0.4em] uppercase font-bold transition-colors duration-300 ${
+                mobileMenuOpen || !scrolled ? 'text-primary' : 'text-primary'
+              }`}>
+                London
+              </span>
             </Link>
 
-            {/* Right Side - Only Menu */}
-            <div className="flex items-center">
+            {/* Right Side: Elite Menu Toggler */}
+            <div className="flex items-center gap-8">
               <button 
-                className={`nav-toggler flex flex-col justify-center items-center gap-[6px] p-2 cursor-pointer bg-transparent border-none group ${mobileMenuOpen ? 'open' : ''}`}
+                className={`flex flex-col justify-center items-end gap-[5px] p-2 cursor-pointer bg-transparent border-none group outline-none`}
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-label="Toggle Menu"
               >
-                <span className={`w-8 h-[2px] transition-all duration-400 ease-in-out ${mobileMenuOpen ? 'bg-white translate-y-[4px] rotate-45 scale-x-90' : 'bg-current'}`}></span>
-                <span className={`w-8 h-[2px] transition-all duration-400 ease-in-out ${mobileMenuOpen ? 'bg-white -translate-y-[4px] -rotate-45 scale-x-90' : 'bg-current'}`}></span>
+                <span className={`h-[1px] transition-all duration-500 ease-[0.16,1,0.3,1] ${
+                  mobileMenuOpen 
+                    ? 'w-8 bg-white translate-y-[6px] rotate-45' 
+                    : `w-8 group-hover:w-10 ${scrolled ? 'bg-slate-900' : 'bg-white shadow-sm'}`
+                }`}></span>
+                <span className={`h-[1px] transition-all duration-500 ease-[0.16,1,0.3,1] ${
+                  mobileMenuOpen 
+                    ? 'w-8 bg-white -translate-y-[0px] -rotate-45' 
+                    : `w-5 group-hover:w-10 ${scrolled ? 'bg-slate-900' : 'bg-white shadow-sm'}`
+                }`}></span>
+                {!mobileMenuOpen && (
+                   <span className={`text-[9px] uppercase tracking-[0.3em] font-bold mt-1 transition-colors ${scrolled ? 'text-slate-500' : 'text-white/60'}`}>
+                     Menu
+                   </span>
+                )}
               </button>
             </div>
           </nav>

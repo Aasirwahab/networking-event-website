@@ -38,109 +38,127 @@ export function Footer() {
     console.log('Newsletter signup:', email);
     setEmail('');
   };
+  const variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  };
 
   return (
     <div 
-      className='relative h-[1100px] lg:h-[640px] clip-footer'
+        className='relative h-[1100px] lg:h-[800px]'
+        style={{clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)"}}
     >
-      <div className='relative h-[calc(100vh+1100px)] lg:h-[calc(100vh+640px)] -top-[100vh]'>
-        <div className='h-[1100px] lg:h-[640px] sticky top-[calc(100vh-1100px)] lg:top-[calc(100vh-640px)]'>
-          <footer className="bg-dark text-white pt-12 lg:pt-24 pb-8 lg:pb-10 h-full flex flex-col justify-end gap-10 lg:gap-12">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-              {/* Main Footer Content */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 pb-10 border-b border-dark-border">
-                {/* Contact Info */}
-                <div className="lg:col-span-1">
-                  <a href="mailto:summit@actos.london" className="text-white text-lg font-medium hover:text-primary transition-colors block mb-4">
-                    summit@actos.london
-                  </a>
-                  <p className="text-text-muted text-sm leading-relaxed mb-4">
-                    Level 24, The Shard,<br />
-                    London SE1 9SG
-                  </p>
-                  <a href="tel:+442079460123" className="text-text-muted text-sm hover:text-white transition-colors block mb-6">
-                    +44 20 7946 0123
-                  </a>
+        <div className='relative h-[calc(100vh+1100px)] lg:h-[calc(100vh+800px)] -top-[100vh]'>
+            <div className='h-[1100px] lg:h-[800px] sticky top-[calc(100vh-1100px)] lg:top-[calc(100vh-800px)]'>
+              <footer className="bg-[#050505] text-white pt-16 lg:pt-20 pb-8 h-full flex flex-col justify-between relative overflow-hidden">
+                
+                {/* Massive Brand Watermark */}
+                <div className="absolute -bottom-10 lg:-bottom-20 left-1/2 -translate-x-1/2 select-none pointer-events-none w-full text-center">
+                  <h2 className="text-[25vw] font-black tracking-tighter text-white/[0.03] leading-none uppercase">
+                    ACTOS
+                  </h2>
+                </div>
+
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
                   
-                  {/* Social Links */}
-                  <div className="flex items-center gap-4">
-                    <motion.a href="#twitter" whileHover={{ scale: 1.1 }} className="text-text-muted hover:text-white transition-colors" title="Twitter"><TwitterIcon /></motion.a>
-                    <motion.a href="#youtube" whileHover={{ scale: 1.1 }} className="text-text-muted hover:text-white transition-colors" title="YouTube"><YouTubeIcon /></motion.a>
-                    <motion.a href="#facebook" whileHover={{ scale: 1.1 }} className="text-text-muted hover:text-white transition-colors" title="Facebook"><FacebookIcon /></motion.a>
-                    <motion.a href="#instagram" whileHover={{ scale: 1.1 }} className="text-text-muted hover:text-white transition-colors" title="Instagram"><InstagramIcon /></motion.a>
+                  {/* Top Tier: Newsletter Hero */}
+                  <div className="mb-16 lg:mb-20">
+                    <div className="max-w-2xl">
+                      <span className="text-primary text-xs uppercase tracking-[0.3em] font-medium mb-4 block underline underline-offset-8 decoration-primary/30">Intelligence</span>
+                      <h3 className="text-3xl lg:text-4xl font-extralight italic mb-8 max-w-lg leading-tight">
+                        Join an elite community of founders, directors, and strategic visionaries.
+                      </h3>
+                      <form onSubmit={handleSubmit} className="relative group max-w-md">
+                        <input
+                          type="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          placeholder="Newsletter@Acts.London"
+                          className="w-full bg-transparent border-b border-white/10 py-6 pr-12 text-white placeholder:text-white/20 focus:outline-none focus:border-primary transition-all text-xl font-extralight group-hover:border-white/30"
+                        />
+                        <button 
+                          type="submit" 
+                          className="absolute right-0 top-1/2 -translate-y-1/2 text-primary hover:text-white transition-all transform hover:scale-110"
+                          aria-label="Subscribe"
+                          title="Subscribe to newsletter"
+                        >
+                          <ArrowRight className="w-8 h-8" />
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+
+                  {/* Middle Tier: Expansive Link Grid */}
+                  <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 lg:gap-8 pb-12 border-b border-white/[0.05]">
+                    {/* Branding & Contact */}
+                    <div className="col-span-2 lg:col-span-1">
+                      <p className="text-white/40 text-xs uppercase tracking-widest font-bold mb-6">Connect</p>
+                      <a href="mailto:summit@actos.london" className="text-white text-md font-medium hover:text-primary transition-colors block mb-2 underline underline-offset-4 decoration-primary/20">
+                        summit@actos.london
+                      </a>
+                      <p className="text-white/30 text-sm leading-relaxed mb-6 font-light">
+                        Level 24, The Shard,<br />
+                        London SE1 9SG
+                      </p>
+                      <div className="flex items-center gap-6">
+                        <motion.a href="#twitter" whileHover={{ scale: 1.2, color: "#2563EB" }} className="text-white/40 hover:text-white transition-colors" title="Twitter"><TwitterIcon /></motion.a>
+                        <motion.a href="#linkedin" whileHover={{ scale: 1.2, color: "#2563EB" }} className="text-white/40 hover:text-white transition-colors" title="Instagram"><InstagramIcon /></motion.a>
+                      </div>
+                    </div>
+
+                    {/* Columns */}
+                    <div>
+                      <p className="text-white/40 text-xs uppercase tracking-widest font-bold mb-6">Navigation</p>
+                      <ul className="space-y-4">
+                        {footerLinks.column1.map((link) => (
+                          <li key={link.label}><a href={link.href} className="text-white/60 text-sm hover:text-white transition-all transform hover:translate-x-1 inline-block font-light">{link.label}</a></li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div>
+                      <p className="text-white/40 text-xs uppercase tracking-widest font-bold mb-6">Directory</p>
+                      <ul className="space-y-4">
+                        {footerLinks.column2.map((link) => (
+                          <li key={link.label}><a href={link.href} className="text-white/60 text-sm hover:text-white transition-all transform hover:translate-x-1 inline-block font-light">{link.label}</a></li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div>
+                      <p className="text-white/40 text-xs uppercase tracking-widest font-bold mb-6">Information</p>
+                      <ul className="space-y-4">
+                        {footerLinks.column3.map((link) => (
+                          <li key={link.label}><a href={link.href} className="text-white/60 text-sm hover:text-white transition-all transform hover:translate-x-1 inline-block font-light">{link.label}</a></li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="hidden lg:block">
+                      <p className="text-white/40 text-xs uppercase tracking-widest font-bold mb-6">Experience</p>
+                      <div className="group cursor-pointer">
+                        <p className="text-white/30 text-xs font-light leading-relaxed group-hover:text-white/50 transition-colors">
+                          Transforming the digital landscape for the next generation of founders. Actos London is more than an event; it's a movement.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Bottom Bar */}
+                  <div className="pt-10 flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div className="flex items-center gap-3">
+                      <span className="text-3xl font-extralight tracking-tighter text-white">ACTOS</span>
+                      <div className="h-4 w-[1px] bg-white/20 mx-1" />
+                      <span className="text-[10px] tracking-[0.6em] uppercase text-primary font-bold">LONDON</span>
+                    </div>
+                    <p className="text-white/20 text-[10px] lg:text-[11px] uppercase tracking-[0.2em] font-light">
+                      &copy; {new Date().getFullYear()} Acts Network London. All Rights Reserved. Proper Reveal Implementation.
+                    </p>
                   </div>
                 </div>
-
-                {/* Links Column 1 */}
-                <div>
-                  <h4 className="text-white font-medium mb-4">&copy; 2024 Actos.</h4>
-                  <ul className="space-y-3">
-                    {footerLinks.column1.map((link) => (
-                      <li key={link.label}><a href={link.href} className="text-text-muted text-sm hover:text-white transition-colors">{link.label}</a></li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Links Column 2 */}
-                <div>
-                  <ul className="space-y-3 mt-0 lg:mt-8">
-                    {footerLinks.column2.map((link) => (
-                      <li key={link.label}><a href={link.href} className="text-text-muted text-sm hover:text-white transition-colors">{link.label}</a></li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Links Column 3 */}
-                <div>
-                  <ul className="space-y-3 mt-0 lg:mt-8">
-                    {footerLinks.column3.map((link) => (
-                      <li key={link.label}><a href={link.href} className="text-text-muted text-sm hover:text-white transition-colors">{link.label}</a></li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              {/* Newsletter */}
-              <div className="py-8 border-b border-dark-border">
-                <div className="max-w-xl">
-                  <h4 className="text-white font-medium text-lg mb-4 italic">The Circle Newsletter</h4>
-                  <p className="text-text-muted text-sm mb-6">
-                    Join an elite community of founders and directors. Stay informed on exclusive networking events.
-                  </p>
-                  <form onSubmit={handleSubmit} className="relative">
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Enter your professional email"
-                      className="w-full bg-transparent border-b border-dark-border py-4 pr-12 text-white placeholder:text-text-muted focus:outline-none focus:border-primary transition-colors text-lg"
-                    />
-                    <button 
-                      type="submit" 
-                      className="absolute right-0 top-1/2 -translate-y-1/2 text-primary hover:text-white transition-colors"
-                      aria-label="Subscribe"
-                      title="Subscribe to newsletter"
-                    >
-                      <ArrowRight className="w-6 h-6" />
-                    </button>
-                  </form>
-                </div>
-              </div>
-
-              {/* Bottom Bar */}
-              <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl font-extralight tracking-tighter text-white">ACTOS</span>
-                  <span className="text-[10px] tracking-[0.4em] uppercase text-primary font-medium">London</span>
-                </div>
-                <p className="text-text-muted text-[10px] lg:text-xs uppercase tracking-widest font-light">
-                  &copy; 2024 Actos London Summit. All Rights Reserved.
-                </p>
-              </div>
+              </footer>
             </div>
-          </footer>
         </div>
-      </div>
     </div>
   );
 }
