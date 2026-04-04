@@ -36,12 +36,12 @@ export function Navbar() {
                 setMobileMenuOpen(false);
                 navigateTo('/');
               }} 
-              className={`group flex items-center gap-2 transition-transform duration-300 hover:scale-[1.02]`}
+              className={`group flex items-center gap-1.5 transition-transform duration-300 hover:scale-[1.02]`}
             >
               <span className={`text-2xl font-black tracking-tighter uppercase transition-all duration-500 text-white`}>
-                Actos
+                Networx
               </span>
-              <span className="text-[10px] tracking-[0.4em] uppercase font-bold text-primary">
+              <span className="text-[10px] tracking-[0.6em] uppercase font-bold text-primary ml-1">
                 London
               </span>
             </Link>

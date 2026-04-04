@@ -27,18 +27,13 @@ export function Footer() {
   };
 
   return (
-    <div 
-        className='relative h-[1100px] lg:h-[800px]'
-        style={{clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)"}}
-    >
-        <div className='relative h-[calc(100vh+1100px)] lg:h-[calc(100vh+800px)] -top-[100vh]'>
-            <div className='h-[1100px] lg:h-[800px] sticky top-[calc(100vh-1100px)] lg:top-[calc(100vh-800px)]'>
-              <footer className="bg-[#050505] text-white pt-16 lg:pt-20 pb-8 h-full flex flex-col justify-between relative overflow-hidden">
+    <div>
+              <footer className="bg-[#050505] text-white pt-16 lg:pt-20 pb-8 flex flex-col justify-between relative overflow-hidden">
                 
                 {/* Massive Brand Watermark */}
                 <div className="absolute -bottom-10 lg:-bottom-20 left-1/2 -translate-x-1/2 select-none pointer-events-none w-full text-center">
                   <h2 className="text-[25vw] font-black tracking-tighter text-white/[0.03] leading-none uppercase">
-                    ACTOS
+                    NETWORX
                   </h2>
                 </div>
 
@@ -80,8 +75,8 @@ export function Footer() {
                         summit@actos.london
                       </a>
                       <p className="text-white/30 text-sm leading-relaxed mb-6 font-light">
-                        Level 24, The Shard,<br />
-                        London SE1 9SG
+                        London SW15 3SR,<br />
+                        United Kingdom
                       </p>
                       <div className="flex items-center gap-6">
                         <a href="#twitter" className="text-white/40 hover:text-primary hover:scale-125 transition-all duration-300 inline-block" title="Twitter"><TwitterIcon /></a>
@@ -121,7 +116,7 @@ export function Footer() {
                       <p className="text-white/40 text-xs uppercase tracking-widest font-bold mb-6">Experience</p>
                       <div className="group cursor-pointer">
                         <p className="text-white/30 text-xs font-light leading-relaxed group-hover:text-white/50 transition-colors">
-                          Transforming the digital landscape for the next generation of founders. Actos London is more than an event; it&apos;s a movement.
+                          Transforming the digital landscape for the next generation of founders. Networx London is more than an event; it&apos;s a movement.
                         </p>
                       </div>
                     </div>
@@ -129,19 +124,17 @@ export function Footer() {
 
                   {/* Bottom Bar */}
                   <div className="pt-10 flex flex-col md:flex-row items-center justify-between gap-6">
-                    <div className="flex items-center gap-3">
-                      <span className="text-3xl font-extralight tracking-tighter text-white">ACTOS</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-3xl font-extralight tracking-tighter text-white">NETWORX</span>
                       <div className="h-4 w-[1px] bg-white/20 mx-1" />
                       <span className="text-[10px] tracking-[0.6em] uppercase text-primary font-bold">LONDON</span>
                     </div>
                     <p className="text-white/20 text-[10px] lg:text-[11px] uppercase tracking-[0.2em] font-light">
-                      &copy; {new Date().getFullYear()} Acts Network London. All Rights Reserved. Proper Reveal Implementation.
+                      &copy; {new Date().getFullYear()} Networx London. All Rights Reserved. Human Networking Made Simple.
                     </p>
                   </div>
                 </div>
               </footer>
-            </div>
-        </div>
     </div>
   );
 }

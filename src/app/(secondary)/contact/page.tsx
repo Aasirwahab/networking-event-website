@@ -1,25 +1,19 @@
 import { Metadata } from 'next';
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/sections/Footer";
-import { PageHeader } from "@/components/PageHeader";
+import { ContactForm } from "@/sections/ContactForm";
 
 export const metadata: Metadata = {
-  title: 'Contact Us | Actos',
-  description: 'Get in touch with the Actos team for support, partnerships, and inquiries.',
+  title: 'Contact Us | Networx London',
+  description: 'Get in touch with the Networx London team for partnerships, speaking inquiries, and event reservations.',
 };
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#050505] text-white">
       <Navbar />
       <main>
-        <PageHeader 
-          title="Contact Us" 
-          description="Have questions? Our team is here to help you with ticketing, sponsorship opportunities, or any event inquiries."
-        />
-        <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
-          <p className="text-xl text-gray-500">Contact form and information coming soon.</p>
-        </section>
+        <ContactForm />
       </main>
       <Footer />
     </div>

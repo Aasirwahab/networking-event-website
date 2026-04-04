@@ -14,12 +14,12 @@ import { CTASection } from "@/sections/CTASection";
 const AboutSection = dynamic(() => import("@/sections/AboutSection").then(m => ({ default: m.AboutSection })), { ssr: true });
 const EventsSection = dynamic(() => import("@/sections/EventsSection").then(m => ({ default: m.EventsSection })), { ssr: true });
 const VenueSection = dynamic(() => import("@/sections/VenueSection").then(m => ({ default: m.VenueSection })), { ssr: true });
-const SponsorsSection = dynamic(() => import("@/sections/SponsorsSection").then(m => ({ default: m.SponsorsSection })), { ssr: true });
+const NetworxStories = dynamic(() => import("@/sections/NetworxStories").then(m => ({ default: m.NetworxStories })), { ssr: true });
 const SpeakersSection = dynamic(() => import("@/sections/SpeakersSection").then(m => ({ default: m.SpeakersSection })), { ssr: true });
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#050505]">
       <Navbar />
       <main>
         <HeroSection />
@@ -29,7 +29,7 @@ export default function HomePage() {
         <AgendaSection />
         <VenueSection />
         <StatsSection />
-        <SponsorsSection />
+        <NetworxStories />
         <SpeakersSection />
         <TestimonialsSection />
         <CTASection />

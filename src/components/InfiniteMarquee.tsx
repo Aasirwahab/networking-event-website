@@ -12,7 +12,7 @@ export function InfiniteMarquee() {
   const duplicatedBrands = [...brands, ...brands, ...brands];
 
   return (
-    <div className="w-full overflow-hidden py-8 select-none relative group">
+    <div className="w-full overflow-hidden pt-4 pb-0 select-none relative group">
       {/* Premium Integrated Look - No Background */}
       
       {/* Decorative Gradient Overlays for Fade-In/Out effect */}

@@ -3,34 +3,23 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/sections/Footer";
 import ImagesFlow from "@/components/ui/scroll/ImagesFlow";
-
-const londonImages = [
-  '/images/london/1.png',
-  '/images/london/2.png',
-  '/images/london/3.png',
-  '/images/london/4.png',
-  '/images/london/5.png',
-  '/images/london/6.png',
-  '/images/london/7.png',
-  '/images/london/8.png',
-  '/images/london/9.png',
-  '/images/london/10.png',
-  '/images/london/11.png',
-];
+import { galleryImages } from "@/data/content";
 
 export default function GalleryPage() {
+  const images = galleryImages.map(img => img.src);
+  
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen bg-[#050505]">
       <Navbar />
       <main>
         <ImagesFlow 
-          introTitle="London Summit"
-          introSubtitle="A cinematic look at the future of networking."
-          introImage="/images/london/1.png"
-          flowText={'Every connection holds a universe\nwaiting to be explored.'}
-          outroTitle="Join the Circle"
-          outroSubtitle="The journey of high-level networking stays with you."
-          images={londonImages}
+          introTitle="Networx London"
+          introSubtitle="A cinematic look at the humans behind the elite London network."
+          introImage="/images/networx_hero_breakfast.png"
+          flowText={'Where breakfast meets vision.\nMeaningful conversations, recorded forever.'}
+          outroTitle="The Connection"
+          outroSubtitle="The journey of high-level networking stays with you long after the morning."
+          images={images}
         />
       </main>
       <Footer />

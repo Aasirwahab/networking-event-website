@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { InfiniteMarquee } from '@/components/InfiniteMarquee';
@@ -31,63 +32,74 @@ const itemVariants = {
 export function HeroSection() {
 
   return (
-    <section className="relative min-h-screen flex items-center pb-16 pt-[72px]">
+    <section className="relative min-h-screen flex flex-col pt-[72px] overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/hero-bg.jpg"
-          alt="Hero background"
+          src="/images/networx_hero_breakfast.png"
+          alt="Premium London Networking Breakfast"
           fill
           priority
-          className="object-cover object-center"
+          className="object-cover object-center scale-[1.05]"
           sizes="100vw"
         />
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/40" />
+        {/* Dark Cinematic Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-[#050505]" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div className="flex-1 flex items-center relative z-10 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
           className="max-w-2xl"
         >
-          {/* Date */}
-          <motion.div variants={itemVariants} className="flex items-center gap-2 mb-2">
-            <span className="text-white/90 text-sm font-medium">20-30th</span>
-            <span className="text-white/60 text-sm">of December</span>
+          {/* Tag */}
+          <motion.div variants={itemVariants} className="flex items-center gap-3 mb-4">
+            <span className="text-primary text-xs font-bold tracking-[0.4em] uppercase">Human • Relaxed • Genuinely Enjoyable</span>
           </motion.div>
-
-          {/* Location */}
-          <motion.p variants={itemVariants} className="text-white/80 text-sm mb-6">
-            New Jersey, USA
-          </motion.p>
 
           {/* Heading */}
           <motion.h1 
             variants={itemVariants}
-            className="text-4xl sm:text-5xl lg:text-hero font-semibold text-white leading-tight mb-8"
+            className="text-5xl sm:text-7xl lg:text-[100px] font-black text-white tracking-tighter leading-[0.9] mb-8"
           >
-            Innovating Event Experiences for Global Connections
+            THE FOUNDERS <br />
+            <span className="text-primary italic font-light">BREAKFAST.</span>
           </motion.h1>
 
-          {/* CTA Button */}
-          <motion.div variants={itemVariants}>
-            <a
-              href="#tickets"
-              className="group inline-flex items-center gap-3 bg-white text-dark px-10 py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[10px] sm:text-xs transition-all duration-300 hover:bg-primary hover:text-white hover:scale-[1.03] hover:shadow-[0_20px_40px_rgba(37,99,235,0.2)]"
+          {/* Description */}
+          <motion.p 
+            variants={itemVariants}
+            className="text-lg sm:text-xl text-white/60 max-w-lg mb-10 font-light leading-relaxed"
+          >
+            Fostering meaningful conversations rather than formal pitches. Join an elite mix of London founders, investors, and professionals.
+          </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
+            <Link
+              href="/events"
+              className="group inline-flex items-center gap-3 bg-primary text-white px-10 py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[10px] sm:text-xs transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_20px_40px_rgba(197,160,89,0.3)]"
             >
-              Get Tickets
+              Reserve a Seat
               <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </a>
+            </Link>
+            <Link
+              href="/about"
+              className="group inline-flex items-center gap-3 bg-white/5 backdrop-blur-md border border-white/10 text-white px-10 py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[10px] sm:text-xs transition-all duration-300 hover:bg-white/10"
+            >
+              Our Philosophy
+            </Link>
           </motion.div>
         </motion.div>
       </div>
+    </div>
 
-      {/* Infinite Marquee Section */}
-      <div className="absolute bottom-0 left-0 w-full z-20">
+      {/* Infinite Marquee Section at the bottom */}
+      <div className="relative z-20 pb-2">
         <InfiniteMarquee />
       </div>
 
