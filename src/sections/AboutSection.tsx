@@ -14,7 +14,7 @@ export function AboutSection() {
           <div className="lg:col-span-4 space-y-6">
             <ScrollReveal delay={0}>
               <p className="text-text-secondary text-base lg:text-lg leading-relaxed">
-                We handle every detail of event planning, ensuring a smooth and stress-free experience.
+                We bring together a diverse mix of London professionals for relaxed, meaningful networking over breakfast.
               </p>
             </ScrollReveal>
             
@@ -69,7 +69,7 @@ export function AboutSection() {
             
             <ScrollReveal delay={0.2}>
               <p className="text-text-secondary text-base leading-relaxed">
-                Actos is leading global event management company dedicated to delivering exceptional events, from intimate gatherings to grand conferences.
+                Networx London makes networking human, relaxed, and genuinely enjoyable. We focus on fostering meaningful conversations rather than formal pitches.
               </p>
             </ScrollReveal>
             
@@ -88,7 +88,7 @@ export function AboutSection() {
           <div className="lg:col-span-3 space-y-6">
             <ScrollReveal delay={0.3}>
               <p className="text-text-secondary text-base leading-relaxed">
-                Our dedicated team brings passion and precision to every event, building lasting connections across boundaries.
+                A welcoming and dynamic space to connect, share ideas, and build lasting relationships over a great breakfast.
               </p>
             </ScrollReveal>
             

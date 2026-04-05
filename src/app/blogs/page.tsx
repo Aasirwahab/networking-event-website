@@ -4,11 +4,11 @@ import { Footer } from "@/sections/Footer";
 import { PageHeader } from "@/components/PageHeader";
 
 export const metadata: Metadata = {
-  title: 'Blogs | Actos - Global Networking Event',
-  description: 'Read the latest insights, news, and stories from the Actos community.',
+  title: 'Insights | Networx London',
+  description: 'Read the latest insights, news, and stories from the Networx London community.',
   openGraph: {
-    title: 'Blogs | Actos',
-    description: 'Read the latest insights, news, and stories from the Actos community.',
+    title: 'Insights | Networx London',
+    description: 'Read the latest insights, news, and stories from the Networx London community.',
   },
 };
 

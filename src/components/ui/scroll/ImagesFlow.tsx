@@ -53,28 +53,17 @@ const ImagesFlow: React.FC<ImagesFlowProps> = ({
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
   const lenisContext = useLenisScroll();
-  const [dimensions, setDimensions] = useState({ width: 1200, height: 800 });
-
-  useEffect(() => {
-    const update = () =>
-      setDimensions({
-        width: typeof window !== 'undefined' ? window.innerWidth : 1200,
-        height: typeof window !== 'undefined' ? window.innerHeight : 800,
-      });
-    update();
-    window.addEventListener('resize', update);
-    return () => window.removeEventListener('resize', update);
-  }, []);
+  const [isAnimationReady, setIsAnimationReady] = useState(false);
 
   useEffect(() => {
     const flow = flowRef.current;
     const imgElements = imageRefs.current.filter(Boolean);
     if (!flow || imgElements.length === 0 || !lenisContext.isReady) return;
 
-    const isMobile = dimensions.width < 800;
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+    const isMobile = screenWidth < 800;
     const spread = isMobile ? 1.5 : 0.7;
-    const screenHeight = dimensions.height;
-    const screenWidth = dimensions.width;
 
     const positions = DEFAULT_POSITIONS.slice(0, Math.max(images.length, DEFAULT_POSITIONS.length));
     while (positions.length < images.length) {
@@ -91,6 +80,7 @@ const ImagesFlow: React.FC<ImagesFlowProps> = ({
       y: 0,
       z: -1000,
       scale: 0,
+      opacity: 1,
     }));
     const finalPos = images.map((_, i) => ({
       xPercent: -50,
@@ -101,7 +91,9 @@ const ImagesFlow: React.FC<ImagesFlowProps> = ({
       scale: 1,
     }));
 
+    // Set initial hidden state
     imgElements.forEach((el, i) => gsap.set(el, initPos[i]));
+    setIsAnimationReady(true);
 
     const maxTotalDelay = 0.6;
     const delayStep = Math.min(0.03, maxTotalDelay / Math.max(1, images.length));
@@ -116,7 +108,6 @@ const ImagesFlow: React.FC<ImagesFlowProps> = ({
       pin: true,
       pinSpacing: true,
       scrub: 1,
-      scroller: undefined,
       onUpdate: (self) => {
         const progress = self.progress;
 
@@ -132,44 +123,50 @@ const ImagesFlow: React.FC<ImagesFlowProps> = ({
             currentProgress = Math.min(1, imgProgress);
           }
 
-          let x = gsap.utils.interpolate(start.x, end.x, currentProgress);
-          let y = gsap.utils.interpolate(start.y, end.y, currentProgress);
-          let z = gsap.utils.interpolate(start.z, end.z, currentProgress);
+          let interpX = gsap.utils.interpolate(start.x, end.x, currentProgress);
+          let interpY = gsap.utils.interpolate(start.y, end.y, currentProgress);
+          let interpZ = gsap.utils.interpolate(start.z, end.z, currentProgress);
           const scale = gsap.utils.interpolate(start.scale, end.scale, currentProgress);
 
           if (index === images.length - 1) {
-            x = 0;
-            y = 0;
-            z = gsap.utils.interpolate(start.z, 0, currentProgress);
+            interpX = 0;
+            interpY = 0;
+            interpZ = gsap.utils.interpolate(start.z, 0, currentProgress);
           }
 
           gsap.set(eachImage, {
             xPercent: -50,
             yPercent: -50,
-            x,
-            y,
-            z,
+            x: interpX,
+            y: interpY,
+            z: interpZ,
             scale,
           });
         });
       },
     });
 
+    // Refresh after a frame to ensure layout is calculated
+    requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+    });
+
     return () => {
       st.kill();
+      setIsAnimationReady(false);
     };
-  }, [images, lenisContext.isReady, dimensions]);
+  }, [images, lenisContext.isReady]);
 
   return (
     <main ref={containerRef} className={cn('w-full overflow-x-hidden', className)}>
       {/* Intro */}
-      <section 
+      <section
         ref={introRef}
         className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden"
       >
         {introImage && (
-          <motion.div 
-            style={{ y }} 
+          <motion.div
+            style={{ y }}
             className="absolute inset-0 z-0"
           >
             <Image
@@ -221,6 +218,7 @@ const ImagesFlow: React.FC<ImagesFlowProps> = ({
               ref={(el) => {
                 if (el) imageRefs.current[index] = el;
               }}
+              style={{ opacity: isAnimationReady ? 1 : 0 }}
               className={cn(
                 'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 [transform-style:preserve-3d]',
                 index === images.length - 1

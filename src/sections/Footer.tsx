@@ -44,14 +44,14 @@ export function Footer() {
                     <div className="max-w-2xl">
                       <span className="text-primary text-xs uppercase tracking-[0.3em] font-medium mb-4 block underline underline-offset-8 decoration-primary/30">Intelligence</span>
                       <h3 className="text-3xl lg:text-4xl font-extralight italic mb-8 max-w-lg leading-tight">
-                        Join an elite community of founders, directors, and strategic visionaries.
+                        Stay connected with London&apos;s most welcoming networking community.
                       </h3>
                       <form onSubmit={handleSubmit} className="relative group max-w-md">
                         <input
                           type="email"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          placeholder="Newsletter@Acts.London"
+                          placeholder="your@email.com"
                           className="w-full bg-transparent border-b border-white/10 py-6 pr-12 text-white placeholder:text-white/20 focus:outline-none focus:border-primary transition-all text-xl font-extralight group-hover:border-white/30"
                         />
                         <button 
@@ -71,8 +71,8 @@ export function Footer() {
                     {/* Branding & Contact */}
                     <div className="col-span-2 lg:col-span-1">
                       <p className="text-white/40 text-xs uppercase tracking-widest font-bold mb-6">Connect</p>
-                      <a href="mailto:summit@actos.london" className="text-white text-md font-medium hover:text-primary transition-colors block mb-2 underline underline-offset-4 decoration-primary/20">
-                        summit@actos.london
+                      <a href="mailto:hello@networxlondon.com" className="text-white text-md font-medium hover:text-primary transition-colors block mb-2 underline underline-offset-4 decoration-primary/20">
+                        hello@networxlondon.com
                       </a>
                       <p className="text-white/30 text-sm leading-relaxed mb-6 font-light">
                         London SW15 3SR,<br />
@@ -116,7 +116,7 @@ export function Footer() {
                       <p className="text-white/40 text-xs uppercase tracking-widest font-bold mb-6">Experience</p>
                       <div className="group cursor-pointer">
                         <p className="text-white/30 text-xs font-light leading-relaxed group-hover:text-white/50 transition-colors">
-                          Transforming the digital landscape for the next generation of founders. Networx London is more than an event; it&apos;s a movement.
+                          Making networking human, relaxed, and genuinely enjoyable. Networx London brings people together over great breakfasts.
                         </p>
                       </div>
                     </div>

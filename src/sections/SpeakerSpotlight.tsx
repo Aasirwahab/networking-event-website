@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ScrollReveal } from '@/components/ScrollReveal';
-import { speakers } from '@/data/content';
+import { communityMembers } from '@/data/content';
 import Image from 'next/image';
 import { Linkedin, Twitter, MessageSquare, Mic2 } from 'lucide-react';
 
@@ -11,19 +11,19 @@ export function SpeakerSpotlight() {
     <section className="py-24 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal className="mb-20">
-           <span className="text-primary text-xs font-bold tracking-[0.4em] uppercase block mb-4 underline underline-offset-8">The Visionaries</span>
+           <span className="text-primary text-xs font-bold tracking-[0.4em] uppercase block mb-4 underline underline-offset-8">The People</span>
            <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-none mb-8">
-             VOICES OF <br />
-             <span className="text-white/20">LONDON.</span>
+             FACES OF <br />
+             <span className="text-white/20">NETWORX.</span>
            </h2>
            <p className="text-white/30 text-lg font-light leading-relaxed max-w-2xl">
-             We bring together the most influential minds in London's tech, finance, and creative landscapes to share raw, unscripted insights.
+             A diverse mix of professionals from across London who come together each month for genuine conversations and real connections.
            </p>
         </ScrollReveal>
 
         {/* Cinematic Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {speakers.slice(0, 2).map((speaker, index) => (
+          {communityMembers.slice(0, 2).map((speaker, index) => (
             <motion.div 
               key={speaker.id}
               initial={{ opacity: 0, scale: 0.95 }}
@@ -45,7 +45,7 @@ export function SpeakerSpotlight() {
               <div className="absolute bottom-10 left-10 right-10">
                  <div className="flex items-center gap-2 mb-4">
                     <span className="px-3 py-1 bg-primary/20 backdrop-blur-md rounded-full text-[9px] font-black uppercase text-primary tracking-widest border border-primary/20">
-                       Keynote Speaker
+                       Community Member
                     </span>
                  </div>
                  
@@ -73,7 +73,7 @@ export function SpeakerSpotlight() {
 
         {/* Secondary Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
-          {speakers.slice(2).map((speaker, index) => (
+          {communityMembers.slice(2).map((speaker, index) => (
             <motion.div 
                key={speaker.id}
                initial={{ opacity: 0, y: 20 }}

@@ -6,23 +6,23 @@ import { ScrollReveal } from '@/components/ScrollReveal';
 const milestones = [
   {
     year: "2025",
-    title: "The Genesis",
-    description: "Networx London was founded with the mission to bring the human element back to networking, starting with our first breakfast summit at The Shard."
+    title: "The Beginning",
+    description: "Networx London was founded with a simple mission: make networking human, relaxed, and genuinely enjoyable. Our first breakfast brought together a small group of London professionals."
   },
   {
-    year: "2026",
-    title: "1,000 Connections",
-    description: "Successfully facilitated over 1,000 meaningful connections within the first year, establishing a reputation for high-value and genuine networking."
+    year: "2025",
+    title: "Growing Community",
+    description: "Word spread quickly. Directors, founders, investors, and entrepreneurs started joining our monthly breakfasts, drawn by the relaxed format and real conversations."
   },
   {
-    year: "2027",
-    title: "Global Hub expansion",
-    description: "Expanded our reach across London's elite hubs, from the creative districts of Southwark to the financial powerhouses of Canary Wharf."
+    year: "2025",
+    title: "Building Momentum",
+    description: "Our community grew to include professionals from over 50 different industries, all connected by a shared belief that networking should be enjoyable."
   },
   {
-    year: "2028",
-    title: "The Future",
-    description: "We are committed to scaling our philosophy, ensuring that as we grow, every interaction remains as personal and meaningful as it was at the start."
+    year: "NOW",
+    title: "What's Next",
+    description: "We're focused on growing our community while keeping every interaction as personal and meaningful as it was at our very first breakfast."
   }
 ];
 

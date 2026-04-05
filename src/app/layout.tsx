@@ -11,13 +11,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Actos - Innovating Event Experiences for Global Connections",
+  title: "Networx London - Human Networking Over Great Breakfasts",
   description:
-    "Actos is a leading global event management company dedicated to delivering exceptional events, from intimate gatherings to grand conferences.",
+    "Networx London makes networking human, relaxed, and genuinely enjoyable. Join a diverse mix of directors, CEOs, entrepreneurs, founders, and professionals.",
   openGraph: {
-    title: "Actos - Innovating Event Experiences for Global Connections",
+    title: "Networx London - Human Networking Over Great Breakfasts",
     description:
-      "Actos is a leading global event management company dedicated to delivering exceptional events.",
+      "Networx London makes networking human, relaxed, and genuinely enjoyable.",
     type: "website",
   },
 };

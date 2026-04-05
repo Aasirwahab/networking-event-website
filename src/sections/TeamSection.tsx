@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import Image from 'next/image';
-import { speakers } from '@/data/content';
+import { communityMembers } from '@/data/content';
 import { Linkedin, Twitter, ExternalLink } from 'lucide-react';
 
 export function TeamSection() {
@@ -12,19 +12,19 @@ export function TeamSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <ScrollReveal className="text-center mb-20">
-           <span className="text-primary text-xs font-bold tracking-[0.4em] uppercase block mb-4 underline underline-offset-8">The Core Collective</span>
+           <span className="text-primary text-xs font-bold tracking-[0.4em] uppercase block mb-4 underline underline-offset-8">Our Community</span>
            <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-none mb-8">
-             MEET YOUR <br />
-             <span className="text-white/20">HOSTS.</span>
+             WHO <br />
+             <span className="text-white/20">ATTENDS.</span>
            </h2>
            <p className="text-white/30 text-lg font-light leading-relaxed max-w-2xl mx-auto">
-             A diverse group of London entrepreneurs, visionaries, and connectors dedicated to making networking high-end and human.
+             A diverse mix of company directors, CEOs, entrepreneurs, founders, startups, small business owners, investors, and working professionals.
            </p>
         </ScrollReveal>
 
         {/* Team Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {speakers.map((member, index) => (
+          {communityMembers.map((member, index) => (
             <motion.div 
               key={member.id}
               initial={{ opacity: 0, y: 30 }}
@@ -63,7 +63,7 @@ export function TeamSection() {
         {/* Recruitment CTA */}
         <ScrollReveal delay={0.4} className="mt-20 text-center">
           <div className="inline-flex items-center gap-4 px-8 py-5 bg-white/5 border border-white/10 rounded-3xl hover:bg-white/10 transition-colors cursor-pointer group">
-             <span className="text-white font-black text-xs uppercase tracking-widest leading-none">JOIN OUR NETWORK AS A CURATOR</span>
+             <span className="text-white font-black text-xs uppercase tracking-widest leading-none">JOIN OUR NEXT BREAKFAST</span>
              <ExternalLink className="w-4 h-4 text-primary group-hover:scale-125 transition-transform" />
           </div>
         </ScrollReveal>

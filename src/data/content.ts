@@ -6,29 +6,29 @@ export const logo = {
   suffix: 'LONDON',
 };
 
-export const speakers: Speaker[] = [
+export const communityMembers: Speaker[] = [
   {
     id: '1',
-    name: 'Alexander Sterling',
-    role: 'CEO & Founder',
+    name: 'Company Directors',
+    role: 'Strategic Leaders',
     image: '/images/speaker-1.jpg',
   },
   {
     id: '2',
-    name: 'Darlene Robertson',
-    role: 'Chief AI Scientist',
+    name: 'Startup Founders',
+    role: 'Building the Future',
     image: '/images/speaker-2.jpg',
   },
   {
     id: '3',
-    name: 'James Harrington',
-    role: 'Founding Partner',
+    name: 'Investors & VCs',
+    role: 'Fuelling Growth',
     image: '/images/speaker-3.jpg',
   },
   {
     id: '4',
-    name: 'Leslie Alexander',
-    role: 'Creative Director',
+    name: 'Entrepreneurs',
+    role: 'Making It Happen',
     image: '/images/speaker-4.jpg',
   },
 ];
@@ -36,34 +36,35 @@ export const speakers: Speaker[] = [
 export const events: Event[] = [
   {
     id: '1',
-    date: 'Monthly, 08:30',
-    location: 'The Shard, London SE1',
-    title: 'The Founders Breakfast: High-Stakes Connections',
-    category: 'Breakfast Summit',
+    date: 'Monthly, 08:00',
+    location: 'London SW15',
+    title: 'Networx Breakfast: Connect Over Coffee',
+    category: 'Breakfast Networking',
+    description: 'Our signature monthly breakfast bringing together founders, CEOs, and professionals for meaningful conversations over great food.',
   },
   {
     id: '2',
-    date: 'Fortnightly, 09:00',
-    location: 'Mayfair, London W1J',
-    title: 'Angel Investors Roundtable & Coffee',
-    category: 'Roundtable',
-    description: 'An intimate morning session focused on fostering meaningful conversations between investors and rising entrepreneurs.',
+    date: 'Monthly, 08:00',
+    location: 'London SW15',
+    title: 'Founders & Investors Morning',
+    category: 'Breakfast Networking',
+    description: 'A relaxed morning session where entrepreneurs and investors connect naturally — no formal pitches, just real conversations.',
   },
   {
     id: '3',
-    date: 'Quarterly, 18:30',
-    location: 'Canary Wharf, London E14',
-    title: 'Evening Synergy: Beyond the Formal Pitch',
-    category: 'Evening Mixer',
-    description: 'A relaxed evening mixer where formal pitches are traded for genuine connections and shared ideas.',
+    date: 'Monthly, 08:00',
+    location: 'London SW15',
+    title: 'Small Business Owners Breakfast',
+    category: 'Breakfast Networking',
+    description: 'A welcoming space for small business owners to share ideas, explore new ventures, and grow their professional network.',
   },
   {
     id: '4',
-    date: 'Monthly, 08:30',
-    location: 'Southwark, London SE1',
-    title: 'Creative Minds Breakfast Club',
-    category: 'Networking',
-    description: 'Grow your professional network over a great breakfast in a welcoming and dynamic space built for builders.',
+    date: 'Monthly, 08:00',
+    location: 'London SW15',
+    title: 'Professionals Networking Breakfast',
+    category: 'Breakfast Networking',
+    description: 'Whether you are scaling a business or simply growing your network, join us for a dynamic and genuinely enjoyable morning.',
   },
 ];
 
@@ -71,22 +72,22 @@ export const stats: Stat[] = [
   {
     value: 2025,
     suffix: '',
-    label: 'Founded to make networking human and relaxed.',
-  },
-  {
-    value: 98,
-    suffix: '%',
-    label: 'Meaningful connections made per event.',
+    label: 'Founded in London to make networking human.',
   },
   {
     value: 50,
     suffix: '+',
-    label: 'Diverse industries represented monthly',
+    label: 'Diverse industries represented at our events.',
   },
   {
-    value: 10,
+    value: 100,
+    suffix: '+',
+    label: 'Professionals connected through our breakfasts.',
+  },
+  {
+    value: 1,
     suffix: '',
-    label: 'Elite hubs for breakfast summits across London',
+    label: 'Simple goal: genuine connections over great food.',
   },
 ];
 
@@ -139,7 +140,7 @@ export const testimonials: Testimonial[] = [
 export const navLinks = [
   { label: 'About us', href: '/about' },
   { label: 'Events', href: '/events' },
-  { label: 'Speakers', href: '/speakers' },
+  { label: 'Community', href: '/community' },
   { label: 'Gallery', href: '/gallery' },
 ];
 
@@ -147,7 +148,7 @@ export const footerLinks = {
   column1: [
     { label: 'About us', href: '/about' },
     { label: 'Events', href: '/events' },
-    { label: 'Speakers', href: '/speakers' },
+    { label: 'Community', href: '/community' },
     { label: 'Gallery', href: '/gallery' },
   ],
   column2: [
@@ -168,37 +169,37 @@ export const networxStories = [
     id: '1',
     videoUrl: '/videos/story-1.mp4',
     thumbnail: '/images/networx_story_shard.png',
-    title: 'Sunrise Summit at The Shard',
-    category: 'Breakfast Club',
+    title: 'Morning Connections That Matter',
+    category: 'Breakfast Networking',
     brand: 'Networx',
-    location: 'London Bridge',
+    location: 'London SW15',
   },
   {
     id: '2',
     videoUrl: '/videos/story-2.mp4',
     thumbnail: '/images/networx_story_mayfair.png',
-    title: 'Founders Circle: Scaling Fast',
-    category: 'Mastermind',
-    brand: 'VC Insights',
-    location: 'Mayfair',
+    title: 'Founders Meeting Over Coffee',
+    category: 'Community',
+    brand: 'Networx',
+    location: 'London SW15',
   },
   {
     id: '3',
     videoUrl: '/videos/story-3.mp4',
     thumbnail: '/images/stories/story-3.jpg',
-    title: 'Connecting Over Coffee',
+    title: 'Real Conversations, Real Results',
     category: 'Human Networking',
     brand: 'Networx',
-    location: 'Southwark',
+    location: 'London SW15',
   },
   {
     id: '4',
     videoUrl: '/videos/story-4.mp4',
     thumbnail: '/images/stories/story-4.jpg',
-    title: 'The Future of London Tech',
-    category: 'Panel Highlights',
+    title: 'Building Lasting Relationships',
+    category: 'Networking',
     brand: 'Networx',
-    location: 'Canary Wharf',
+    location: 'London SW15',
   },
 ];
 

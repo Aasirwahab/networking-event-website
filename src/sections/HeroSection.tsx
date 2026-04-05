@@ -59,7 +59,7 @@ export function HeroSection() {
             {/* Tagline */}
             <motion.div variants={itemVariants} className="mb-3">
               <span className="text-primary text-[11px] sm:text-[13px] font-medium tracking-[0.2em] uppercase">
-                Where Relationships Outperform Pitches.
+                Networking Made Human, Relaxed & Enjoyable.
               </span>
             </motion.div>
 
@@ -77,7 +77,7 @@ export function HeroSection() {
               variants={itemVariants}
               className="text-[14px] sm:text-[15px] text-white/60 max-w-md mb-8 font-light leading-[1.7]"
             >
-              Fostering meaningful conversations rather than formal pitches. Join an elite mix of London founders, investors, and professionals.
+              Bringing together directors, CEOs, entrepreneurs, founders, investors, and professionals over a great breakfast to spark valuable connections.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -86,7 +86,7 @@ export function HeroSection() {
                 href="/events"
                 className="group inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full font-semibold uppercase tracking-[0.15em] text-[11px] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_12px_30px_rgba(197,160,89,0.3)]"
               >
-                Reserve a Seat
+                Join a Breakfast
                 <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
               </Link>
               <Link

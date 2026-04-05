@@ -102,7 +102,7 @@ export function NetworxStories() {
           </div>
           <div className="hidden md:block text-right">
             <p className="text-white/40 text-sm max-w-[200px] font-light leading-relaxed">
-              Scroll through the high-stakes highlights of our morning networking.
+              Scroll through highlights from our breakfast networking events.
             </p>
           </div>
         </div>

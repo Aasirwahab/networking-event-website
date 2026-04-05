@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { ScrollReveal } from '@/components/ScrollReveal';
-import { speakers } from '@/data/content';
+import { communityMembers } from '@/data/content';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -35,10 +35,10 @@ export function SpeakersSection() {
         {/* Header */}
         <ScrollReveal className="text-center mb-12">
           <span className="text-text-primary text-xs font-medium tracking-[0.2em] uppercase mb-4 block underline underline-offset-4">
-            TEAM ACTOS
+            OUR COMMUNITY
           </span>
           <h2 className="text-3xl lg:text-section font-semibold text-text-primary">
-            Our Speakers
+            Who Attends
           </h2>
         </ScrollReveal>
 
@@ -50,7 +50,7 @@ export function SpeakersSection() {
           viewport={{ once: true, margin: "-100px" }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
         >
-          {speakers.map((speaker) => (
+          {communityMembers.map((speaker) => (
             <motion.div
               key={speaker.id}
               variants={itemVariants}

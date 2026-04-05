@@ -4,8 +4,8 @@ import { Footer } from "@/sections/Footer";
 import { PageHeader } from "@/components/PageHeader";
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Actos',
-  description: 'Learn how your data and privacy are protected and managed by Actos.',
+  title: 'Privacy Policy | Networx London',
+  description: 'Learn how your data and privacy are protected and managed by Networx London.',
 };
 
 export default function PrivacyPolicyPage() {

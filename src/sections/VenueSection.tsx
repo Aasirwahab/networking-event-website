@@ -36,14 +36,14 @@ export function VenueSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <ScrollReveal>
           <span className="text-primary font-medium tracking-[0.3em] uppercase mb-6 block text-sm lg:text-base">
-            Elite London Venue
+            London, SW15
           </span>
           <h2 className="text-4xl lg:text-7xl font-light tracking-tight text-white mb-8">
-            Experience the Summit <br />
-            <span className="font-medium italic">Sky-High Above London</span>
+            Where London <br />
+            <span className="font-medium italic">Professionals Connect</span>
           </h2>
           <p className="text-white/80 text-lg lg:text-2xl max-w-2xl mx-auto font-light leading-relaxed">
-            Hosted at the iconic **Level 24, The Shard**, our summit provides 360° views of the City’s financial district while you build strategic partnerships.
+            Our breakfast networking events take place at carefully selected venues across London, designed for comfortable conversation and genuine connection.
           </p>
         </ScrollReveal>
       </div>

@@ -26,7 +26,7 @@ export function ContactForm() {
               <span className="text-white/20">CONNECT.</span>
             </h1>
             <p className="text-white/40 text-lg font-light leading-relaxed mb-16 max-w-md">
-              Whether you're interested in attending a summit, becoming a speaker, or partnering with us — we'd love to hear from you.
+              Whether you want to attend a breakfast, partner with us, or just learn more — we'd love to hear from you.
             </p>
             
             <div className="space-y-8">
@@ -77,9 +77,9 @@ export function ContactForm() {
               <label className="text-[10px] font-black uppercase tracking-widest text-white/20 ml-2">Interest</label>
               <select title="Select your interest" className="w-full bg-white/[0.03] border border-white/10 rounded-2xl py-4 px-6 text-white/50 text-sm focus:outline-none focus:border-primary transition-colors appearance-none">
                 <option value="">Select your interest</option>
-                <option value="attend">Attend a Summit</option>
-                <option value="speak">Become a Speaker</option>
+                <option value="attend">Attend a Breakfast</option>
                 <option value="partner">Partnership Inquiry</option>
+                <option value="membership">Membership Info</option>
                 <option value="other">Other</option>
               </select>
             </div>

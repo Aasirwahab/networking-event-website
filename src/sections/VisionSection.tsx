@@ -17,8 +17,8 @@ const values = [
   },
   {
     icon: Zap,
-    title: "High Stakes",
-    description: "Relaxed doesn't mean low-energy. We bring together the elite of London to spark billion-dollar ideas."
+    title: "Valuable Connections",
+    description: "Relaxed doesn't mean low-value. We bring together a diverse mix of London's most driven professionals."
   }
 ];
 
@@ -71,13 +71,13 @@ export function VisionSection() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               <div className="absolute bottom-8 left-8 right-8 p-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl">
                 <p className="text-white text-sm italic font-light leading-relaxed">
-                  "The most valuable professional relationships I've ever built started with a simple 'How's your morning going?' rather than a elevator pitch."
+                  "The most valuable professional relationships start with a simple 'How's your morning going?' rather than an elevator pitch."
                 </p>
                 <div className="mt-4 flex items-center gap-3">
                   <div className="w-8 h-8 rounded-full bg-primary" />
                   <div>
-                    <p className="text-white text-[10px] font-bold uppercase tracking-widest">Alexander Sterling</p>
-                    <p className="text-white/40 text-[9px] uppercase tracking-widest leading-none">Founder, Networx London</p>
+                    <p className="text-white text-[10px] font-bold uppercase tracking-widest">Networx London</p>
+                    <p className="text-white/40 text-[9px] uppercase tracking-widest leading-none">Our Philosophy</p>
                   </div>
                 </div>
               </div>

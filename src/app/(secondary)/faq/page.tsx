@@ -4,8 +4,8 @@ import { Footer } from "@/sections/Footer";
 import { PageHeader } from "@/components/PageHeader";
 
 export const metadata: Metadata = {
-  title: 'FAQ | Actos',
-  description: 'Frequently asked questions about Actos networking events.',
+  title: 'FAQ | Networx London',
+  description: 'Frequently asked questions about Networx London breakfast networking events.',
 };
 
 export default function FAQPage() {

@@ -6,23 +6,23 @@ import { ScrollReveal } from '@/components/ScrollReveal';
 const benefits = [
   {
     icon: Users,
-    title: 'Elite Networking',
-    description: 'Connect with over 200+ C-suite executives, founders, and industry pioneers in an exclusive setting.'
+    title: 'Diverse Community',
+    description: 'Meet company directors, CEOs, entrepreneurs, founders, startups, small business owners, investors, and working professionals.'
   },
   {
     icon: Target,
-    title: 'Strategic Insights',
-    description: 'Gain a competitive edge with high-level briefings on market trends and future-proof business strategies.'
+    title: 'Meaningful Conversations',
+    description: 'No formal pitches or awkward introductions. Just genuine, relaxed conversations that lead to real connections.'
   },
   {
     icon: TrendingUp,
-    title: 'Growth Opportunities',
-    description: 'Unlock exclusive partnerships and early-stage investment opportunities within the London ecosystem.'
+    title: 'Grow Your Network',
+    description: 'Whether scaling a business, exploring new ventures, or simply expanding your professional circle — this is your space.'
   },
   {
     icon: ShieldCheck,
-    title: 'VIP Experience',
-    description: 'Enjoy premium hospitality, private meeting lounges, and a dedicated concierge for a seamless experience.'
+    title: 'Great Breakfast Included',
+    description: 'Connect over quality food in a welcoming and dynamic setting. Networking should be enjoyable, not a chore.'
   }
 ];
 
@@ -33,11 +33,11 @@ export function BenefitsSection() {
         <ScrollReveal>
           <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-24">
             <h2 className="text-3xl lg:text-5xl font-light tracking-tight text-dark mb-6">
-              Why the World&apos;s Leaders <br />
-              <span className="font-medium italic">Choose Actos</span>
+              Why Professionals <br />
+              <span className="font-medium italic">Choose Networx</span>
             </h2>
             <p className="text-text-secondary text-lg">
-              We curate more than just events; we facilitate the high-impact connections that define the future of business.
+              We make networking human, relaxed, and genuinely enjoyable — fostering meaningful connections over great food.
             </p>
           </div>
         </ScrollReveal>

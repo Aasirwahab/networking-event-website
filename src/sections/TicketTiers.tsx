@@ -6,24 +6,24 @@ import { Check, ArrowRight } from 'lucide-react';
 
 const tiers = [
   {
-    name: "Day Pass",
-    price: "£149",
-    description: "Perfect for exploring the Networx ecosystem for a single breakfast summit.",
-    features: ["Single Morning Summit", "Gourmet Breakfast", "Access to Attendee List", "Standard Networking Hub"],
+    name: "Single Breakfast",
+    price: "£25",
+    description: "Try Networx London for a single breakfast event and see what we're all about.",
+    features: ["One Breakfast Event", "Full Breakfast Included", "Open Networking Session", "Attendee Introductions"],
     accent: false
   },
   {
-    name: "Founders Hub",
-    price: "£299",
-    description: "The choice for serious builders and investors seeking monthly consistency.",
-    features: ["Priority Table Seating", "Monthly Summit Access", "VIP Lounge Access", "1-on-1 Introductions", "Founders Dinner Invite"],
+    name: "Monthly Member",
+    price: "£20",
+    description: "For professionals who want to attend regularly and build lasting connections.",
+    features: ["Monthly Breakfast Access", "Full Breakfast Included", "Priority Seating", "Member Directory Access", "Exclusive Invitations"],
     accent: true
   },
   {
-    name: "Global Explorer",
-    price: "£599",
-    description: "Unlimited access to all our elite hubs across London and beyond.",
-    features: ["All Regional Summits", "Quarterly Evening Mixers", "Private Concierge", "Brand Spotlight Feature", "Global Partner Perks"],
+    name: "Annual Pass",
+    price: "£180",
+    description: "Best value for committed networkers. Join every breakfast for a full year.",
+    features: ["12 Breakfast Events", "Full Breakfast Included", "Priority Seating", "Member Directory Access", "Special Event Invites"],
     accent: false
   }
 ];
@@ -55,7 +55,7 @@ export function TicketTiers() {
             >
               {tier.accent && (
                  <div className="absolute top-8 right-8 px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-[9px] font-black uppercase text-white tracking-widest leading-none">
-                   Most Recommended
+                   Best Value
                  </div>
               )}
               
@@ -73,7 +73,7 @@ export function TicketTiers() {
                   {tier.price}
                 </span>
                 <span className={`text-xs font-bold uppercase tracking-widest ml-2 ${tier.accent ? 'text-white/60' : 'text-white/20'}`}>
-                  / Summit
+                  / month
                 </span>
               </div>
               

@@ -6,8 +6,8 @@ import { SpeakerSpotlight } from "@/sections/SpeakerSpotlight";
 import { SpeakerNomination } from "@/sections/SpeakerNomination";
 
 export const metadata: Metadata = {
-  title: 'Our Speakers | Networx London',
-  description: 'Meet the industry leaders, visionaries, and innovators who are actively shaping the future of global industries.',
+  title: 'Our Community | Networx London',
+  description: 'Meet the diverse mix of professionals who make Networx London a welcoming space for genuine connection.',
 };
 
 export default function SpeakersPage() {
@@ -17,11 +17,11 @@ export default function SpeakersPage() {
       <TransitionTemplate>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
           <Heading className="text-5xl md:text-8xl lg:text-[120px] font-black tracking-tighter leading-none mb-8">
-            VOICES OF <br />
-            <span className="text-primary italic font-light">VISION.</span>
+            OUR <br />
+            <span className="text-primary italic font-light">COMMUNITY.</span>
           </Heading>
           <SubHeading className="text-lg md:text-xl text-white/40 max-w-2xl mx-auto font-light leading-relaxed">
-            Meet the innovators and visionaries who share their unscripted stories and collective wisdom at Networx London.
+            Meet the diverse mix of directors, founders, entrepreneurs, and professionals who make our breakfasts genuinely special.
           </SubHeading>
         </div>
       </TransitionTemplate>

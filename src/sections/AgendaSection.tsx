@@ -4,29 +4,29 @@ import { ScrollReveal } from '@/components/ScrollReveal';
 
 const agenda = [
   {
-    time: '09:00 AM',
-    title: 'VIP Welcome & Networking',
-    description: 'An exclusive morning reception with artisanal coffee and high-level networking in the Sky Lounge.'
+    time: '08:00 AM',
+    title: 'Arrival & Welcome Coffee',
+    description: 'Arrive, grab a coffee, and settle in. Meet fellow attendees in a relaxed, no-pressure environment.'
+  },
+  {
+    time: '08:30 AM',
+    title: 'Breakfast & Open Networking',
+    description: 'Enjoy a quality breakfast while having genuine conversations with directors, founders, and professionals from across London.'
+  },
+  {
+    time: '09:15 AM',
+    title: 'Roundtable Introductions',
+    description: 'A guided session where everyone shares who they are and what they do — naturally and without formal pitches.'
+  },
+  {
+    time: '09:45 AM',
+    title: 'Free Networking & Connections',
+    description: 'The best part — open time to follow up on conversations, exchange details, and build real relationships.'
   },
   {
     time: '10:30 AM',
-    title: 'Keynote: The Future of Global Growth',
-    description: 'A visionary address from our lead speaker on navigating the complex landscape of 2024.'
-  },
-  {
-    time: '12:30 PM',
-    title: 'Executive Luncheon',
-    description: 'A curated 3-course dining experience designed for conversation and strategic partnership building.'
-  },
-  {
-    time: '02:30 PM',
-    title: 'Roundtable Strategic Sessions',
-    description: 'Intimate, focused groups diving deep into niche industry challenges and innovative solutions.'
-  },
-  {
-    time: '04:30 PM',
-    title: 'Rooftop Cocktail Reception',
-    description: 'Concluding the summit with sunset views of London, signature cocktails, and final connections.'
+    title: 'Wrap Up & Next Steps',
+    description: 'Close the morning with key takeaways, upcoming event dates, and plans to stay connected.'
   }
 ];
 
@@ -37,10 +37,10 @@ export function AgendaSection() {
         <ScrollReveal>
           <div className="text-center max-w-3xl mx-auto mb-20 lg:mb-32">
             <h2 className="text-3xl lg:text-5xl font-light tracking-tight mb-6">
-              A Day of <span className="font-medium italic">Strategic Value</span>
+              A Morning of <span className="font-medium italic">Real Connections</span>
             </h2>
             <p className="text-white/60 text-lg">
-              Every moment is curated to maximize your networking ROI and provide high-level insights.
+              Every breakfast is designed to be relaxed, enjoyable, and genuinely valuable for your network.
             </p>
           </div>
         </ScrollReveal>
