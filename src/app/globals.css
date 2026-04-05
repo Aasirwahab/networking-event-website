@@ -169,7 +169,7 @@ html.lenis body {
   background-color: #1e40af;
   opacity: 0;
   will-change: opacity;
-  pointer-events: auto;
+  pointer-events: inherit;
 }
 
 .nav-items-col:nth-child(1) {

@@ -1,10 +1,10 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { InfiniteMarquee } from '@/components/InfiniteMarquee';
+import { usePageTransition } from '@/components/TransitionProvider';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -30,6 +30,7 @@ const itemVariants = {
 };
 
 export function HeroSection() {
+  const { navigateTo } = usePageTransition();
 
   return (
     <section className="relative h-[100dvh] flex flex-col overflow-hidden">
@@ -82,19 +83,19 @@ export function HeroSection() {
 
             {/* CTA Buttons */}
             <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-3">
-              <Link
-                href="/events"
-                className="group inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full font-semibold uppercase tracking-[0.15em] text-[11px] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_12px_30px_rgba(197,160,89,0.3)]"
+              <button
+                onClick={() => navigateTo('/events')}
+                className="group inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full font-semibold uppercase tracking-[0.15em] text-[11px] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_12px_30px_rgba(197,160,89,0.3)] cursor-pointer"
               >
-                Join a Breakfast
+                Explore Events
                 <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
-              </Link>
-              <Link
-                href="/about"
-                className="group inline-flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/10 text-white px-6 py-3 rounded-full font-semibold uppercase tracking-[0.15em] text-[11px] transition-all duration-300 hover:bg-white/10"
+              </button>
+              <button
+                onClick={() => navigateTo('/about')}
+                className="group inline-flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/10 text-white px-6 py-3 rounded-full font-semibold uppercase tracking-[0.15em] text-[11px] transition-all duration-300 hover:bg-white/10 cursor-pointer"
               >
                 Our Philosophy
-              </Link>
+              </button>
             </motion.div>
           </motion.div>
         </div>
