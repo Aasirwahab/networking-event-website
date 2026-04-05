@@ -118,6 +118,19 @@ html.lenis body {
   display: none;
 }
 
+/* Infinite Marquee — seamless loop */
+.marquee-track {
+  --marquee-shift: -50%;
+  display: flex;
+  width: max-content;
+  animation: marquee-slide 25s linear infinite;
+}
+
+@keyframes marquee-slide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(var(--marquee-shift)); }
+}
+
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   *,

@@ -3,12 +3,10 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { useScrollPosition } from '@/hooks/useScrollPosition';
 import { MenuOverlay } from './MenuOverlay';
 import { usePageTransition } from './TransitionProvider';
 
 export function Navbar() {
-  const { scrolled } = useScrollPosition();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { navigateTo } = usePageTransition();
 
@@ -18,12 +16,10 @@ export function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-500 ease-[cubic-bezier(0.16_1_0.3_1)] ${
+        className={`top-0 left-0 right-0 z-[9999] transition-all duration-500 ease-[cubic-bezier(0.16_1_0.3_1)] ${
           mobileMenuOpen
-            ? 'bg-transparent text-white pt-8'
-            : scrolled 
-              ? 'bg-black/20 backdrop-blur-xl border-b border-white/10 py-4 shadow-[0_10px_50px_rgba(0,0,0,0.2)]' 
-              : 'bg-transparent py-8'
+            ? 'fixed bg-transparent text-white pt-8'
+            : 'absolute bg-transparent py-8'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
