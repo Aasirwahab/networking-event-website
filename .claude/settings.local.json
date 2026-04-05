@@ -5,7 +5,8 @@
       "Bash(npm run:*)",
       "Bash(npx next:*)",
       "Bash(tasklist)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "mcp__Claude_Preview__preview_start"
     ]
   }
 }

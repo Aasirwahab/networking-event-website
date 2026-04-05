@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
 
 const brands = [
   'Capsule', 'Epicurious', 'Lightbox',
@@ -14,17 +15,27 @@ export function InfiniteMarquee() {
     const track = trackRef.current;
     if (!track) return;
 
-    // Measure the first set (half the content) to know the loop point
     const firstSet = track.children[0] as HTMLElement;
     if (!firstSet) return;
 
-    const setWidth = firstSet.offsetWidth;
-    // Account for the gap between the two sets
-    const gap = 32; // gap-8 = 32px
-    const totalShift = setWidth + gap;
+    // Wait for layout to settle, then measure and animate
+    const frame = requestAnimationFrame(() => {
+      const setWidth = firstSet.offsetWidth;
+      const shift = setWidth + 32; // set width + gap (gap-8 = 32px)
 
-    // Set CSS custom property for the animation
-    track.style.setProperty('--marquee-shift', `-${totalShift}px`);
+      gsap.set(track, { x: 0 });
+      gsap.to(track, {
+        x: -shift,
+        duration: 25,
+        ease: 'none',
+        repeat: -1,
+      });
+    });
+
+    return () => {
+      cancelAnimationFrame(frame);
+      gsap.killTweensOf(track);
+    };
   }, []);
 
   const items = brands.map((brand, i) => (
@@ -46,7 +57,8 @@ export function InfiniteMarquee() {
 
       <div
         ref={trackRef}
-        className="marquee-track flex items-center gap-8"
+        className="flex items-center gap-8"
+        style={{ width: 'max-content' }}
       >
         <div className="flex items-center gap-8 shrink-0">{items}</div>
         <div className="flex items-center gap-8 shrink-0" aria-hidden="true">{items}</div>
