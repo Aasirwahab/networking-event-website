@@ -32,7 +32,7 @@ const itemVariants = {
 export function HeroSection() {
 
   return (
-    <section className="relative min-h-screen flex flex-col pt-[72px] overflow-hidden">
+    <section className="relative h-[100dvh] flex flex-col overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
@@ -48,58 +48,60 @@ export function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 flex items-center relative z-10 w-full">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="max-w-2xl"
-        >
-          {/* Tag */}
-          <motion.div variants={itemVariants} className="flex items-center gap-3 mb-4">
-            <span className="text-primary text-xs font-bold tracking-[0.4em] uppercase">Human • Relaxed • Genuinely Enjoyable</span>
-          </motion.div>
-
-          {/* Heading */}
-          <motion.h1 
-            variants={itemVariants}
-            className="text-5xl sm:text-7xl lg:text-[100px] font-black text-white tracking-tighter leading-[0.9] mb-8"
+      <div className="flex-1 flex items-start pt-[20vh] sm:pt-[25vh] relative z-10 w-full">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="max-w-3xl"
           >
-            THE FOUNDERS <br />
-            <span className="text-primary italic font-light">BREAKFAST.</span>
-          </motion.h1>
+            {/* Tagline */}
+            <motion.div variants={itemVariants} className="mb-3">
+              <span className="text-primary text-[11px] sm:text-[13px] font-medium tracking-[0.2em] uppercase">
+                Where Relationships Outperform Pitches.
+              </span>
+            </motion.div>
 
-          {/* Description */}
-          <motion.p 
-            variants={itemVariants}
-            className="text-lg sm:text-xl text-white/60 max-w-lg mb-10 font-light leading-relaxed"
-          >
-            Fostering meaningful conversations rather than formal pitches. Join an elite mix of London founders, investors, and professionals.
-          </motion.p>
+            {/* Heading */}
+            <motion.h1
+              variants={itemVariants}
+              className="text-[32px] sm:text-[44px] lg:text-[52px] font-bold text-white tracking-tight leading-[1.1] mb-5"
+            >
+              Come for the Network<br />
+              Stay for the People
+            </motion.h1>
 
-          {/* CTA Buttons */}
-          <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
-            <Link
-              href="/events"
-              className="group inline-flex items-center gap-3 bg-primary text-white px-10 py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[10px] sm:text-xs transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_20px_40px_rgba(197,160,89,0.3)]"
+            {/* Description */}
+            <motion.p
+              variants={itemVariants}
+              className="text-[14px] sm:text-[15px] text-white/60 max-w-md mb-8 font-light leading-[1.7]"
             >
-              Reserve a Seat
-              <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-            <Link
-              href="/about"
-              className="group inline-flex items-center gap-3 bg-white/5 backdrop-blur-md border border-white/10 text-white px-10 py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[10px] sm:text-xs transition-all duration-300 hover:bg-white/10"
-            >
-              Our Philosophy
-            </Link>
+              Fostering meaningful conversations rather than formal pitches. Join an elite mix of London founders, investors, and professionals.
+            </motion.p>
+
+            {/* CTA Buttons */}
+            <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-3">
+              <Link
+                href="/events"
+                className="group inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full font-semibold uppercase tracking-[0.15em] text-[11px] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_12px_30px_rgba(197,160,89,0.3)]"
+              >
+                Reserve a Seat
+                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
+              </Link>
+              <Link
+                href="/about"
+                className="group inline-flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/10 text-white px-6 py-3 rounded-full font-semibold uppercase tracking-[0.15em] text-[11px] transition-all duration-300 hover:bg-white/10"
+              >
+                Our Philosophy
+              </Link>
+            </motion.div>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
-    </div>
 
       {/* Infinite Marquee Section at the bottom */}
-      <div className="relative z-20 pb-2">
+      <div className="relative z-20 pb-6">
         <InfiniteMarquee />
       </div>
 
