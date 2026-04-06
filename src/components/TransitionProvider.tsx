@@ -7,12 +7,15 @@ import {
   useEffect,
   useMemo,
   useRef,
+  useState,
   ReactNode,
 } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import gsap from "gsap";
 
-const TransitionContext = createContext<{ navigateTo: (href: string) => void; }>({ navigateTo: () => {}});
+const TransitionContext = createContext<{
+  navigateTo: (href: string) => boolean;
+}>({ navigateTo: () => false });
 
 export const usePageTransition = () => useContext(TransitionContext);
 
@@ -26,17 +29,16 @@ export default function TransitionProvider({
   const router = useRouter();
   const pathname = usePathname();
   const colRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const isTransitioning = useRef(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  
+  const pendingHref = useRef<string | null>(null);
+  const coverDone = useRef(false);
+  const [revealReady, setRevealReady] = useState(false);
+
+  // Reveal columns (slide them off-screen to show the new page)
   useEffect(() => {
-    if (!isTransitioning.current) return;
-    
-    // Clear any previous transition safety timeout
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    if (!revealReady) return;
 
     const cols = colRefs.current;
-    gsap.set(cols, { y: "0%" }); // ensure we start from full coverage
+    gsap.set(cols, { y: "0%" });
 
     gsap.to(cols, {
       y: "-100%",
@@ -44,30 +46,32 @@ export default function TransitionProvider({
       ease: "power4.inOut",
       stagger: 0.05,
       onComplete: () => {
-        isTransitioning.current = false;
+        pendingHref.current = null;
+        coverDone.current = false;
+        setRevealReady(false);
       },
     });
-    
-    return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+  }, [revealReady]);
+
+  // When pathname changes, check if it matches our pending navigation
+  useEffect(() => {
+    if (!pendingHref.current || !coverDone.current) return;
+    if (pathname === pendingHref.current) {
+      // New page is rendered — trigger reveal on next frame
+      requestAnimationFrame(() => {
+        setRevealReady(true);
+      });
     }
   }, [pathname]);
 
   const navigateTo = useCallback(
     (href: string) => {
-      if (isTransitioning.current) return false;
+      if (pendingHref.current) return false;
       if (pathname === href) return false;
 
-      isTransitioning.current = true;
+      pendingHref.current = href;
+      coverDone.current = false;
       const cols = colRefs.current;
-      
-      // Set a safety timeout to reset state if navigation is interrupted
-      timeoutRef.current = setTimeout(() => {
-        if (isTransitioning.current) {
-          console.warn("Page transition timed out, resetting state.");
-          isTransitioning.current = false;
-        }
-      }, 3000);
 
       gsap.set(cols, { y: "100%" });
 
@@ -77,6 +81,7 @@ export default function TransitionProvider({
         ease: "power4.inOut",
         stagger: 0.05,
         onComplete: () => {
+          coverDone.current = true;
           router.push(href);
         },
       });
@@ -85,7 +90,10 @@ export default function TransitionProvider({
     [router, pathname]
   );
 
-  const contextValue = useMemo(() => ({ navigateTo: (href: string) => { navigateTo(href) } }), [navigateTo]);
+  const contextValue = useMemo(
+    () => ({ navigateTo: (href: string) => navigateTo(href) }),
+    [navigateTo]
+  );
 
   return (
     <TransitionContext.Provider value={contextValue}>

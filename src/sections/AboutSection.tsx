@@ -31,7 +31,7 @@ export function AboutSection() {
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <Image
-                    src="/images/about-1.jpg"
+                    src="/images/toWEBP/1773258581277.webp"
                     alt="Event networking"
                     fill
                     className="object-cover"
@@ -57,7 +57,7 @@ export function AboutSection() {
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <Image
-                    src="/images/about-2.jpg"
+                    src="/images/toWEBP/1774468095390.webp"
                     alt="Conference room"
                     fill
                     className="object-cover"
@@ -105,7 +105,7 @@ export function AboutSection() {
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <Image
-                    src="/images/gallery-2.png"
+                    src="/images/toWEBP/1774468101559.webp"
                     alt="Premium London networking event"
                     fill
                     className="object-cover"

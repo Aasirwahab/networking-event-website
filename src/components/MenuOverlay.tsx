@@ -19,8 +19,14 @@ export const MenuOverlay = ({ isOpen, onLinkClick }: MenuOverlayProps) => {
   const handleLinkClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
       e.preventDefault();
-      if (onLinkClick) onLinkClick();
-      navigateTo(href);
+      // Start the page transition first (covers the screen),
+      // then close the menu so the closing animation happens behind the cover
+      const didNavigate = navigateTo(href);
+      if (didNavigate && onLinkClick) {
+        setTimeout(() => onLinkClick(), 300);
+      } else if (onLinkClick) {
+        onLinkClick();
+      }
     },
     [onLinkClick, navigateTo]
   );

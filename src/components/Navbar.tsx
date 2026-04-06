@@ -32,8 +32,12 @@ export function Navbar() {
               href="/" 
               onClick={(e) => {
                 e.preventDefault();
-                setMobileMenuOpen(false);
-                navigateTo('/');
+                const didNavigate = navigateTo('/');
+                if (didNavigate) {
+                  setTimeout(() => setMobileMenuOpen(false), 300);
+                } else {
+                  setMobileMenuOpen(false);
+                }
               }} 
               className={`group flex items-center gap-1.5 transition-transform duration-300 hover:scale-[1.02]`}
             >
