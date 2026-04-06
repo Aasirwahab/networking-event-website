@@ -37,7 +37,7 @@ export function HeroSection() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/networx_hero_breakfast.png"
+          src="/images/toWEBP/1772655970617.webp"
           alt="Premium London Networking Breakfast"
           fill
           priority

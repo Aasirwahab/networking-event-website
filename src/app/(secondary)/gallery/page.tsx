@@ -15,7 +15,7 @@ export default function GalleryPage() {
         <ImagesFlow 
           introTitle="Networx London"
           introSubtitle="A look at the people and moments from our breakfast networking events."
-          introImage="/images/networx_hero_breakfast.png"
+          introImage="/images/toWEBP/1772655969089.webp"
           flowText={'Where breakfast meets vision.\nMeaningful conversations, recorded forever.'}
           outroTitle="The Connection"
           outroSubtitle="The connections you make over breakfast stay with you long after the morning."

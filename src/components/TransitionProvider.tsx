@@ -27,9 +27,13 @@ export default function TransitionProvider({
   const pathname = usePathname();
   const colRefs = useRef<(HTMLDivElement | null)[]>([]);
   const isTransitioning = useRef(false);
-
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  
   useEffect(() => {
     if (!isTransitioning.current) return;
+    
+    // Clear any previous transition safety timeout
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
 
     const cols = colRefs.current;
     gsap.set(cols, { y: "0%" }); // ensure we start from full coverage
@@ -43,15 +47,28 @@ export default function TransitionProvider({
         isTransitioning.current = false;
       },
     });
+    
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    }
   }, [pathname]);
 
   const navigateTo = useCallback(
     (href: string) => {
-      if (isTransitioning.current) return;
-      if (pathname === href) return;
+      if (isTransitioning.current) return false;
+      if (pathname === href) return false;
 
       isTransitioning.current = true;
       const cols = colRefs.current;
+      
+      // Set a safety timeout to reset state if navigation is interrupted
+      timeoutRef.current = setTimeout(() => {
+        if (isTransitioning.current) {
+          console.warn("Page transition timed out, resetting state.");
+          isTransitioning.current = false;
+        }
+      }, 3000);
+
       gsap.set(cols, { y: "100%" });
 
       gsap.to(cols, {
@@ -63,11 +80,12 @@ export default function TransitionProvider({
           router.push(href);
         },
       });
+      return true;
     },
     [router, pathname]
   );
 
-  const contextValue = useMemo(() => ({ navigateTo }), [navigateTo]);
+  const contextValue = useMemo(() => ({ navigateTo: (href: string) => { navigateTo(href) } }), [navigateTo]);
 
   return (
     <TransitionContext.Provider value={contextValue}>
