@@ -27,29 +27,37 @@ export const LenisProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    const lenisInstance = new Lenis({
-      duration: 1.0,
-      easing: (t) => 1 - Math.pow(1 - t, 4),
-      smoothWheel: true,
-      wheelMultiplier: 1.2,
-      touchMultiplier: 1.5,
-    });
+    let lenisInstance: Lenis | null = null;
+    let tickerCallback: ((time: number) => void) | null = null;
 
-    lenisRef.current = lenisInstance;
-    setLenis(lenisInstance);
-    setIsReady(true);
+    try {
+      lenisInstance = new Lenis({
+        duration: 1.0,
+        easing: (t) => 1 - Math.pow(1 - t, 4),
+        smoothWheel: true,
+        wheelMultiplier: 1.2,
+        touchMultiplier: 1.5,
+      });
 
-    lenisInstance.on('scroll', ScrollTrigger.update);
+      lenisRef.current = lenisInstance;
+      setLenis(lenisInstance);
+      setIsReady(true);
 
-    const tickerCallback = (time: number) => {
-      lenisInstance.raf(time * 1000);
-    };
-    gsap.ticker.add(tickerCallback);
-    gsap.ticker.lagSmoothing(0);
+      lenisInstance.on('scroll', ScrollTrigger.update);
+
+      tickerCallback = (time: number) => {
+        lenisInstance!.raf(time * 1000);
+      };
+      gsap.ticker.add(tickerCallback);
+      gsap.ticker.lagSmoothing(0);
+    } catch {
+      // Graceful fallback: site works without smooth scroll
+      setIsReady(true);
+    }
 
     return () => {
-      lenisInstance.destroy();
-      gsap.ticker.remove(tickerCallback);
+      if (lenisInstance) lenisInstance.destroy();
+      if (tickerCallback) gsap.ticker.remove(tickerCallback);
       setIsReady(false);
     };
   }, []);

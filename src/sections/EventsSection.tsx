@@ -46,7 +46,7 @@ export function EventsSection() {
       <div className='fixed top-[-10vh] left-0 h-[120vh] w-full z-0 pointer-events-none'>
         <motion.div style={{ y }} className='relative w-full h-full'>
           <Image 
-            src="/images/hero-concert.jpg" 
+            src="/images/london/11.png" 
             fill 
             alt="Events background image" 
             className="object-cover" 

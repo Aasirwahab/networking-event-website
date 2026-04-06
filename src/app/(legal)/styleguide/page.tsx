@@ -1,17 +1,23 @@
 import { Metadata } from 'next';
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/sections/Footer";
 import { PageHeader } from "@/components/PageHeader";
 
 export const metadata: Metadata = {
-  title: 'Style Guide | Networx London',
+  title: 'Style Guide',
   description: 'Brand assets, typography, and design principles defining the Networx London brand.',
+  openGraph: {
+    title: 'Style Guide',
+    description: 'Brand assets, typography, and design principles defining the Networx London brand.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Style Guide',
+    description: 'Brand assets, typography, and design principles defining the Networx London brand.',
+  },
 };
 
 export default function StyleGuidePage() {
   return (
     <div className="min-h-screen bg-white">
-      <Navbar />
       <main>
         <PageHeader 
           title="Style Guide" 
@@ -21,7 +27,6 @@ export default function StyleGuidePage() {
           <p className="text-xl text-gray-500">Style Guide overview coming soon.</p>
         </section>
       </main>
-      <Footer />
     </div>
   );
 }

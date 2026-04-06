@@ -1,17 +1,23 @@
 import { Metadata } from 'next';
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/sections/Footer";
 import { PageHeader } from "@/components/PageHeader";
 
 export const metadata: Metadata = {
-  title: 'FAQ | Networx London',
+  title: 'FAQ',
   description: 'Frequently asked questions about Networx London breakfast networking events.',
+  openGraph: {
+    title: 'FAQ',
+    description: 'Frequently asked questions about Networx London breakfast networking events.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'FAQ',
+    description: 'Frequently asked questions about Networx London breakfast networking events.',
+  },
 };
 
 export default function FAQPage() {
   return (
     <div className="min-h-screen bg-white">
-      <Navbar />
       <main>
         <PageHeader 
           title="Frequently Asked Questions" 
@@ -21,7 +27,6 @@ export default function FAQPage() {
           <p className="text-xl text-gray-500">FAQ content is coming soon.</p>
         </section>
       </main>
-      <Footer />
     </div>
   );
 }

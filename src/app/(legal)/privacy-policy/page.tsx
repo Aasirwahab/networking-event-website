@@ -1,17 +1,23 @@
 import { Metadata } from 'next';
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/sections/Footer";
 import { PageHeader } from "@/components/PageHeader";
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Networx London',
+  title: 'Privacy Policy',
   description: 'Learn how your data and privacy are protected and managed by Networx London.',
+  openGraph: {
+    title: 'Privacy Policy',
+    description: 'Learn how your data and privacy are protected and managed by Networx London.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Privacy Policy',
+    description: 'Learn how your data and privacy are protected and managed by Networx London.',
+  },
 };
 
 export default function PrivacyPolicyPage() {
   return (
     <div className="min-h-screen bg-white">
-      <Navbar />
       <main>
         <PageHeader 
           title="Privacy Policy" 
@@ -21,7 +27,6 @@ export default function PrivacyPolicyPage() {
           <p className="text-xl text-gray-500">Privacy Policy terms arriving soon.</p>
         </section>
       </main>
-      <Footer />
     </div>
   );
 }

@@ -46,7 +46,7 @@ export function HistorySection() {
           <div className="space-y-12 md:space-y-32">
             {milestones.map((m, i) => (
               <motion.div 
-                key={m.year}
+                key={m.title}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8 }}

@@ -1,20 +1,17 @@
 import { Metadata } from 'next';
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/sections/Footer";
 import TransitionTemplate, { Heading, SubHeading } from "@/components/TransitionTemplate";
 import { EventSchedule } from "@/sections/EventSchedule";
 import { TicketTiers } from "@/sections/TicketTiers";
 import { TestimonialsSection } from "@/sections/TestimonialsSection";
 
 export const metadata: Metadata = {
-  title: 'Our Events | Networx London',
+  title: 'Our Events',
   description: 'Join the next Networx London breakfast networking event. Great food, real conversations, and meaningful connections.',
 };
 
 export default function EventsPage() {
   return (
     <div className="min-h-screen bg-[#050505] text-white">
-      <Navbar />
       <TransitionTemplate>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
           <Heading className="text-5xl md:text-8xl lg:text-[120px] font-black tracking-tighter leading-none mb-8">
@@ -33,7 +30,6 @@ export default function EventsPage() {
         <TestimonialsSection />
       </main>
 
-      <Footer />
     </div>
   );
 }

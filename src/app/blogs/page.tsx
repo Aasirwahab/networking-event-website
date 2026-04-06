@@ -1,13 +1,16 @@
 import { Metadata } from 'next';
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/sections/Footer";
 import { PageHeader } from "@/components/PageHeader";
 
 export const metadata: Metadata = {
-  title: 'Insights | Networx London',
+  title: 'Insights',
   description: 'Read the latest insights, news, and stories from the Networx London community.',
   openGraph: {
-    title: 'Insights | Networx London',
+    title: 'Insights',
+    description: 'Read the latest insights, news, and stories from the Networx London community.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Insights',
     description: 'Read the latest insights, news, and stories from the Networx London community.',
   },
 };
@@ -15,7 +18,6 @@ export const metadata: Metadata = {
 export default function BlogsPage() {
   return (
     <div className="min-h-screen bg-white">
-      <Navbar />
       <main>
         <PageHeader 
           title="Insights & News" 
@@ -25,7 +27,6 @@ export default function BlogsPage() {
           <p className="text-xl text-gray-500">Blog content is coming soon. Stay tuned for our latest articles!</p>
         </section>
       </main>
-      <Footer />
     </div>
   );
 }

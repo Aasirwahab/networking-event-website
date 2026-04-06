@@ -137,6 +137,18 @@ export const testimonials: Testimonial[] = [
   },
 ];
 
+export const socialLinks = [
+  { href: 'https://twitter.com/networxlondon', label: 'X (Twitter)' },
+  { href: 'https://linkedin.com/company/networxlondon', label: 'LinkedIn' },
+  { href: 'https://instagram.com/networxlondon', label: 'Instagram' },
+  { href: 'https://youtube.com/@networxlondon', label: 'YouTube' },
+];
+
+export const contactInfo = {
+  email: 'hello@networxlondon.com',
+  address: 'London SW15 3SR, United Kingdom',
+};
+
 export const navLinks = [
   { label: 'About us', href: '/about' },
   { label: 'Events', href: '/events' },

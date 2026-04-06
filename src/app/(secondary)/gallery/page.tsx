@@ -1,7 +1,5 @@
 'use client';
 
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/sections/Footer";
 import ImagesFlow from "@/components/ui/scroll/ImagesFlow";
 import { galleryImages } from "@/data/content";
 
@@ -10,7 +8,6 @@ export default function GalleryPage() {
   
   return (
     <div className="min-h-screen bg-[#050505]">
-      <Navbar />
       <main>
         <ImagesFlow 
           introTitle="Networx London"
@@ -22,7 +19,6 @@ export default function GalleryPage() {
           images={images}
         />
       </main>
-      <Footer />
     </div>
   );
 }

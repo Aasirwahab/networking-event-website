@@ -1,17 +1,23 @@
 import { Metadata } from 'next';
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/sections/Footer";
 import { PageHeader } from "@/components/PageHeader";
 
 export const metadata: Metadata = {
-  title: 'Licensing | Networx London',
+  title: 'Licensing',
   description: 'Information regarding licensing, copyrights, and intellectual property for Networx London content.',
+  openGraph: {
+    title: 'Licensing',
+    description: 'Information regarding licensing, copyrights, and intellectual property for Networx London content.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Licensing',
+    description: 'Information regarding licensing, copyrights, and intellectual property for Networx London content.',
+  },
 };
 
 export default function LicensingPage() {
   return (
     <div className="min-h-screen bg-white">
-      <Navbar />
       <main>
         <PageHeader 
           title="Licensing" 
@@ -21,7 +27,6 @@ export default function LicensingPage() {
           <p className="text-xl text-gray-500">Licensing information coming soon.</p>
         </section>
       </main>
-      <Footer />
     </div>
   );
 }

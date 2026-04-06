@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
-import { footerLinks } from '@/data/content';
+import { footerLinks, socialLinks } from '@/data/content';
 
 // Social icons as SVG components
 const TwitterIcon = () => (
@@ -22,7 +22,6 @@ export function Footer() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Newsletter signup:', email);
     setEmail('');
   };
 
@@ -79,8 +78,8 @@ export function Footer() {
                         United Kingdom
                       </p>
                       <div className="flex items-center gap-6">
-                        <a href="#twitter" className="text-white/40 hover:text-primary hover:scale-125 transition-all duration-300 inline-block" title="Twitter"><TwitterIcon /></a>
-                        <a href="#linkedin" className="text-white/40 hover:text-primary hover:scale-125 transition-all duration-300 inline-block" title="Instagram"><InstagramIcon /></a>
+                        <a href={socialLinks[0].href} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-primary hover:scale-125 transition-all duration-300 inline-block" title={socialLinks[0].label}><TwitterIcon /></a>
+                        <a href={socialLinks[2].href} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-primary hover:scale-125 transition-all duration-300 inline-block" title={socialLinks[2].label}><InstagramIcon /></a>
                       </div>
                     </div>
 

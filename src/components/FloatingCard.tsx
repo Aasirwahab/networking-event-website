@@ -2,7 +2,8 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Phone, Mail } from 'lucide-react';
+import { Mail } from 'lucide-react';
+import { contactInfo } from '@/data/content';
 
 export function FloatingCard() {
   return (
@@ -43,19 +44,12 @@ export function FloatingCard() {
 
       {/* Contact Info */}
       <div className="space-y-2">
-        <a 
-          href="tel:+4805550103" 
-          className="flex items-center gap-2 text-sm text-text-muted hover:text-white transition-colors"
-        >
-          <Phone className="w-4 h-4" />
-          +(480) 555-0103
-        </a>
-        <a 
-          href="mailto:info@example.com" 
+        <a
+          href={`mailto:${contactInfo.email}`}
           className="flex items-center gap-2 text-sm text-text-muted hover:text-white transition-colors"
         >
           <Mail className="w-4 h-4" />
-          info@example.com
+          {contactInfo.email}
         </a>
       </div>
     </motion.div>

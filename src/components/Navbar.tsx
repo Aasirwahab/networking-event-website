@@ -51,10 +51,11 @@ export function Navbar() {
 
             {/* Right Side: Elite Menu Toggler */}
             <div className="flex items-center gap-8">
-              <button 
+              <button
                 className={`flex flex-col justify-center items-end gap-[5px] p-2 cursor-pointer bg-transparent border-none group outline-none`}
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                aria-label="Toggle Menu"
+                aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+                aria-expanded={mobileMenuOpen}
               >
                 <span style={customEase} className={`h-[1px] transition-all duration-500 ${
                   mobileMenuOpen

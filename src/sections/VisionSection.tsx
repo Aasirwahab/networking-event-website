@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { Utensils, Heart, Zap, Coffee } from 'lucide-react';
@@ -63,10 +64,12 @@ export function VisionSection() {
 
           <ScrollReveal delay={0.2} className="relative">
             <div className="aspect-[4/5] rounded-[40px] overflow-hidden border border-white/10 relative group">
-              <img 
-                src="/images/about-1.jpg" 
-                alt="Networking Philosophy" 
-                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+              <Image
+                src="/images/about-1.jpg"
+                alt="Networx London members having genuine conversations at a breakfast networking event"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover transition-transform duration-1000 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               <div className="absolute bottom-8 left-8 right-8 p-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl">

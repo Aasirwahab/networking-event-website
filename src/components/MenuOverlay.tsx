@@ -3,7 +3,7 @@
 import React, { useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 import gsap from "gsap";
-import { navLinks } from "@/data/content";
+import { navLinks, socialLinks } from "@/data/content";
 import { usePageTransition } from "./TransitionProvider";
 
 interface MenuOverlayProps {
@@ -101,16 +101,11 @@ export const MenuOverlay = ({ isOpen, onLinkClick }: MenuOverlayProps) => {
       <div className="nav-bg"></div>
       <div className="nav-bg"></div>
 
-      <div className="nav-items">
+      <nav className="nav-items" role="navigation" aria-label="Main navigation">
         {/* Left column: socials + legal */}
         <div className="nav-items-col">
           <div className="nav-socials">
-            {[
-              { href: "https://twitter.com", label: "X (Twitter)" },
-              { href: "https://linkedin.com", label: "LinkedIn" },
-              { href: "https://instagram.com", label: "Instagram" },
-              { href: "https://youtube.com", label: "YouTube" },
-            ].map((social) => (
+            {socialLinks.map((social) => (
               <a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer">
                 <span className="nav-link-reveal inline-block">{social.label}</span>
               </a>
@@ -154,7 +149,7 @@ export const MenuOverlay = ({ isOpen, onLinkClick }: MenuOverlayProps) => {
             </Link>
           </div>
         </div>
-      </div>
+      </nav>
     </div>
   );
 };
