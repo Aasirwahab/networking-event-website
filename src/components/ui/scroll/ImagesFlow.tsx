@@ -24,6 +24,7 @@ export interface ImagesFlowProps {
   introTitle: string;
   introSubtitle?: string;
   introImage?: string;
+  introImages?: string[];
   flowText?: string;
   outroTitle: string;
   outroSubtitle?: string;
@@ -31,10 +32,61 @@ export interface ImagesFlowProps {
   className?: string;
 }
 
+const IntroBackground = ({ images, y }: { images: string[], y: any }) => {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (images.length <= 1) return;
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % images.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [images.length]);
+
+  return (
+    <div className="absolute inset-0 z-0 h-full w-full overflow-hidden flex items-center justify-center">
+      {images.map((src, i) => (
+        <motion.div
+          key={src}
+          initial={{ opacity: 0 }}
+          animate={{ 
+            opacity: i === index ? 1 : 0,
+            zIndex: i === index ? 2 : 1
+          }}
+          transition={{ 
+            opacity: { duration: 2, ease: "easeInOut" }
+          }}
+          className="absolute inset-0 h-full w-full"
+        >
+          <motion.div 
+            style={{ y }} 
+            initial={{ scale: 1.15 }}
+            animate={{ scale: i === index ? 1 : 1.15 }}
+            transition={{ duration: 6, ease: "linear" }}
+            className="relative h-full w-full"
+          >
+            <Image
+              src={src}
+              alt={`Intro background ${i + 1}`}
+              fill
+              priority={i === 0}
+              className="object-cover"
+              sizes="100vw"
+            />
+          </motion.div>
+        </motion.div>
+      ))}
+      {/* Overlay to ensure text readability */}
+      <div className="absolute inset-0 bg-black/50 z-20" />
+    </div>
+  );
+};
+
 const ImagesFlow: React.FC<ImagesFlowProps> = ({
   introTitle,
   introSubtitle,
   introImage,
+  introImages,
   flowText = 'Every moment holds a universe waiting to be discovered',
   outroTitle,
   outroSubtitle,
@@ -164,7 +216,9 @@ const ImagesFlow: React.FC<ImagesFlowProps> = ({
         ref={introRef}
         className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden"
       >
-        {introImage && (
+        {introImages && introImages.length > 0 ? (
+          <IntroBackground images={introImages} y={y} />
+        ) : introImage ? (
           <motion.div
             style={{ y }}
             className="absolute inset-0 z-0"
@@ -180,7 +234,7 @@ const ImagesFlow: React.FC<ImagesFlowProps> = ({
             {/* Overlay to ensure text readability */}
             <div className="absolute inset-0 bg-black/60" />
           </motion.div>
-        )}
+        ) : null}
         <div className="pointer-events-none absolute left-1/2 top-1/2 z-[100] -translate-x-1/2 -translate-y-1/2 text-center">
           <h1
             className="mb-4 bg-gradient-to-br from-white to-white/60 bg-clip-text font-extralight uppercase tracking-[0.3em] text-transparent text-[clamp(2rem,8vw,6rem)]"
