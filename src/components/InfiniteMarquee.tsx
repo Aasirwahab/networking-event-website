@@ -57,8 +57,7 @@ export function InfiniteMarquee() {
 
       <div
         ref={trackRef}
-        className="flex items-center gap-8"
-        style={{ width: 'max-content' }}
+        className="flex items-center gap-8 w-max-content"
       >
         <div className="flex items-center gap-8 shrink-0">{items}</div>
         <div className="flex items-center gap-8 shrink-0" aria-hidden="true">{items}</div>

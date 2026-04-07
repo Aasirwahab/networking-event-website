@@ -64,9 +64,13 @@ html.lenis body {
 
 @layer utilities {
   .text-balance {
-    text-wrap: balance;
-    /* Fallback for older browsers */
     word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  @supports (text-wrap: balance) {
+    .text-balance {
+      text-wrap: balance;
+    }
   }
   .clip-parallax {
     clip-path: inset(0);
@@ -115,8 +119,13 @@ select option {
 /* Hide scrollbar utility */
 .hide-scrollbar,
 .no-scrollbar {
-  scrollbar-width: none;
   -ms-overflow-style: none;
+}
+@supports (scrollbar-width: none) {
+  .hide-scrollbar,
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
 }
 
 .hide-scrollbar::-webkit-scrollbar,
@@ -258,4 +267,33 @@ select option {
     font-size: 1.1rem;
     margin-bottom: 0;
   }
+}
+
+/* ── Utility classes (replace inline styles) ── */
+
+.ease-custom-out {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+.w-max-content {
+  width: max-content;
+}
+.aspect-9-16 {
+  aspect-ratio: 9 / 16;
+}
+.h-stories {
+  height: 680px;
+}
+.w-card-fan {
+  width: min(340px, 80vw);
+}
+.intro-img-hidden {
+  clip-path: inset(0% 0% 100% 0%);
+}
+.intro-radial-overlay {
+  background: radial-gradient(
+    ellipse 100% 88% at 50% 42%,
+    transparent 22%,
+    rgba(0, 0, 0, 0.6) 58%,
+    rgba(0, 0, 0, 0.82) 100%
+  );
 }

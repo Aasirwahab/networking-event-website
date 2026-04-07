@@ -125,7 +125,7 @@ export function ContactForm() {
                   id="firstName"
                   type="text"
                   placeholder="Alexander"
-                  aria-invalid={!!errors.firstName}
+                  {...{ 'aria-invalid': errors.firstName ? 'true' : 'false' }}
                   aria-describedby={errors.firstName ? 'firstName-error' : undefined}
                   className={inputClasses('firstName')}
                   {...register('firstName')}
@@ -140,7 +140,7 @@ export function ContactForm() {
                   id="lastName"
                   type="text"
                   placeholder="Sterling"
-                  aria-invalid={!!errors.lastName}
+                  {...{ 'aria-invalid': errors.lastName ? 'true' : 'false' }}
                   aria-describedby={errors.lastName ? 'lastName-error' : undefined}
                   className={inputClasses('lastName')}
                   {...register('lastName')}
@@ -157,7 +157,7 @@ export function ContactForm() {
                 id="email"
                 type="email"
                 placeholder="alex@example.com"
-                aria-invalid={!!errors.email}
+                {...{ 'aria-invalid': errors.email ? 'true' : 'false' }}
                 aria-describedby={errors.email ? 'email-error' : undefined}
                 className={inputClasses('email')}
                 {...register('email')}
@@ -171,7 +171,7 @@ export function ContactForm() {
               <label htmlFor="interest" className="text-[10px] font-black uppercase tracking-widest text-white/20 ml-2">Interest</label>
               <select
                 id="interest"
-                aria-invalid={!!errors.interest}
+                {...{ 'aria-invalid': errors.interest ? 'true' : 'false' }}
                 aria-describedby={errors.interest ? 'interest-error' : undefined}
                 className={`${inputClasses('interest')} ${!errors.interest ? 'text-white/50' : ''} appearance-none`}
                 {...register('interest')}
@@ -193,7 +193,7 @@ export function ContactForm() {
                 id="message"
                 rows={4}
                 placeholder="Tell us about yourself..."
-                aria-invalid={!!errors.message}
+                {...{ 'aria-invalid': errors.message ? 'true' : 'false' }}
                 aria-describedby={errors.message ? 'message-error' : undefined}
                 className={`${inputClasses('message')} resize-none`}
                 {...register('message')}

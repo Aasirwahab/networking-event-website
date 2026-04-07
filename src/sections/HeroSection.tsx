@@ -1,10 +1,10 @@
 'use client';
 
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { InfiniteMarquee } from '@/components/InfiniteMarquee';
 import { usePageTransition } from '@/components/TransitionProvider';
+import Intro, { INTRO_END_DELAY_SEC } from '@/components/Intro';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -12,7 +12,7 @@ const containerVariants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.1,
-      delayChildren: 0.2,
+      delayChildren: INTRO_END_DELAY_SEC,
     },
   },
 };
@@ -34,18 +34,9 @@ export function HeroSection() {
 
   return (
     <section className="relative h-[100dvh] flex flex-col overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <Image
-          src="/images/toWEBP/1772655970617.webp"
-          alt="Premium London Networking Breakfast"
-          fill
-          priority
-          className="object-cover object-center scale-[1.05]"
-          sizes="100vw"
-        />
-        {/* Dark Cinematic Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-[#050505]" />
+      {/* Intro sequence acting as the background */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <Intro />
       </div>
 
       {/* Content */}
@@ -102,9 +93,15 @@ export function HeroSection() {
       </div>
 
       {/* Infinite Marquee Section at the bottom */}
-      <div className="relative z-20 pb-6">
-        <InfiniteMarquee />
-      </div>
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.div variants={itemVariants} className="relative z-20 pb-6">
+          <InfiniteMarquee />
+        </motion.div>
+      </motion.div>
 
     </section>
   );

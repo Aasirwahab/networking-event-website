@@ -3,23 +3,28 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 import { MenuOverlay } from './MenuOverlay';
 import { usePageTransition } from './TransitionProvider';
+import { INTRO_END_DELAY_SEC } from './Intro';
 
-const customEase = { transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)' } as const;
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { navigateTo } = usePageTransition();
+  const pathname = usePathname();
+
+  // If we are on the homepage, delay the Navbar reveal until the Intro cinematic finishes
+  const shouldDelay = pathname === '/';
+  const delayAmount = shouldDelay ? INTRO_END_DELAY_SEC : 0;
 
   return (
     <>
       <motion.header
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        style={customEase}
-        className={`top-0 left-0 right-0 z-[9999] transition-all duration-500 ${
+        transition={{ duration: 0.8, delay: delayAmount, ease: [0.16, 1, 0.3, 1] }}
+        className={`top-0 left-0 right-0 z-[9999] ease-custom-out transition-all duration-500 ${
           mobileMenuOpen
             ? 'fixed bg-transparent text-white pt-8'
             : 'absolute bg-transparent py-8'
@@ -55,14 +60,14 @@ export function Navbar() {
                 className={`flex flex-col justify-center items-end gap-[5px] p-2 cursor-pointer bg-transparent border-none group outline-none`}
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-                aria-expanded={mobileMenuOpen}
+                {...{ 'aria-expanded': mobileMenuOpen ? 'true' : 'false' }}
               >
-                <span style={customEase} className={`h-[1px] transition-all duration-500 ${
+                <span className={`h-[1px] ease-custom-out transition-all duration-500 ${
                   mobileMenuOpen
                     ? 'w-8 bg-white translate-y-[6px] rotate-45'
                     : `w-8 group-hover:w-10 bg-white shadow-xl`
                 }`}></span>
-                <span style={customEase} className={`h-[1px] transition-all duration-500 ${
+                <span className={`h-[1px] ease-custom-out transition-all duration-500 ${
                   mobileMenuOpen
                     ? 'w-8 bg-white -translate-y-[0px] -rotate-45'
                     : `w-5 group-hover:w-10 bg-white shadow-xl`

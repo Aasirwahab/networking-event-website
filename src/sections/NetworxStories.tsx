@@ -36,8 +36,7 @@ function VideoCard({ story, isActive, showDragHint }: VideoCardProps) {
 
   return (
     <div
-      className="relative w-full rounded-[24px] overflow-hidden border border-white/10 bg-black"
-      style={{ aspectRatio: '9/16' }}
+      className="relative w-full rounded-[24px] overflow-hidden border border-white/10 bg-black aspect-9-16"
       onClick={togglePlay}
     >
       {/* Video */}
@@ -200,8 +199,7 @@ export function NetworxStories() {
 
         {/* Fan Card Stack */}
         <div
-          className="relative w-full flex items-center justify-center"
-          style={{ height: '680px' }}
+          className="relative w-full flex items-center justify-center h-stories"
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
         >
@@ -213,9 +211,8 @@ export function NetworxStories() {
             return (
               <motion.div
                 key={story.id}
-                className="absolute cursor-grab active:cursor-grabbing"
+                className="absolute cursor-grab active:cursor-grabbing w-card-fan"
                 style={{
-                  width: 'min(340px, 80vw)',
                   zIndex,
                   ...(isActive ? { rotate: dragRotate } : {}),
                 }}
