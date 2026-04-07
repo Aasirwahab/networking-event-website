@@ -2,6 +2,7 @@
 
 import { Users, TrendingUp, Target, ShieldCheck } from 'lucide-react';
 import { ScrollReveal } from '@/components/ScrollReveal';
+import { motion, useMotionTemplate, useMotionValue } from 'framer-motion';
 
 const benefits = [
   {
@@ -26,6 +27,57 @@ const benefits = [
   }
 ];
 
+function BenefitCard({ benefit, index }: { benefit: typeof benefits[0], index: number }) {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+    const { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ delay: index * 0.1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      onMouseMove={handleMouseMove}
+      whileHover={{ y: -8, scale: 1.02 }}
+      className="group relative p-8 rounded-3xl bg-gray-50 hover:bg-dark transition-colors duration-700 overflow-hidden border border-transparent hover:border-white/10"
+    >
+      {/* Hover Spotlight Glow */}
+      <motion.div
+        className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition duration-500 group-hover:opacity-100"
+        style={{
+          background: useMotionTemplate`
+            radial-gradient(
+              400px circle at ${mouseX}px ${mouseY}px,
+              rgba(197, 160, 89, 0.15),
+              transparent 80%
+            )
+          `,
+        }}
+      />
+      
+      <div className="relative z-10 flex flex-col h-full">
+        <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-8 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-500 ease-out">
+          <benefit.icon className="w-7 h-7 text-primary" />
+        </div>
+        
+        <h3 className="text-xl font-bold text-dark group-hover:text-white mb-4 transition-colors duration-500">
+          {benefit.title}
+        </h3>
+        
+        <p className="text-text-secondary group-hover:text-white/70 leading-relaxed transition-colors duration-500">
+          {benefit.description}
+        </p>
+      </div>
+    </motion.div>
+  );
+}
+
 export function BenefitsSection() {
   return (
     <section className="py-20 lg:py-32 bg-white">
@@ -44,19 +96,7 @@ export function BenefitsSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {benefits.map((benefit, index) => (
-            <ScrollReveal key={benefit.title} delay={index * 0.1}>
-              <div className="group p-8 rounded-2xl bg-gray-50 hover:bg-dark transition-all duration-500 hover:-translate-y-2">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
-                  <benefit.icon className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-medium text-dark group-hover:text-white mb-4 transition-colors">
-                  {benefit.title}
-                </h3>
-                <p className="text-text-secondary group-hover:text-white/70 leading-relaxed transition-colors">
-                  {benefit.description}
-                </p>
-              </div>
-            </ScrollReveal>
+            <BenefitCard key={benefit.title} benefit={benefit} index={index} />
           ))}
         </div>
       </div>

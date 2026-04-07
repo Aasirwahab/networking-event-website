@@ -45,7 +45,7 @@ export const AgendaCard = ({
           scale, 
           top: `calc(-5vh + ${index * 25}px)`
         }} 
-        className="relative flex flex-col h-[600px] w-full max-w-[1000px] rounded-3xl p-8 lg:p-12 origin-top border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden"
+        className="relative flex flex-col h-[600px] w-full max-w-[1000px] rounded-[40px] p-8 lg:p-12 origin-top border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.2)] overflow-hidden backdrop-blur-2xl"
       >
         <div className="flex h-full gap-8 lg:gap-12 flex-col lg:flex-row items-center">
           {/* Text Content */}

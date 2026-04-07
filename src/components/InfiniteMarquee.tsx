@@ -51,9 +51,7 @@ export function InfiniteMarquee() {
 
   return (
     <div className="w-full overflow-hidden py-4 select-none relative">
-      {/* Edge fades */}
-      <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-black/60 to-transparent z-10 pointer-events-none" />
-      <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-black/60 to-transparent z-10 pointer-events-none" />
+      {/* Edge fades removed for transparency */}
 
       <div
         ref={trackRef}

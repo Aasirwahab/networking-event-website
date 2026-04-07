@@ -23,54 +23,70 @@ export function AboutSection() {
               </div>
             </ScrollReveal>
             
-            <ScrollReveal delay={0.1}>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              variants={{
+                hidden: { clipPath: 'inset(100% 0 0 0)' },
+                visible: { 
+                  clipPath: 'inset(0% 0 0 0)', 
+                  transition: { duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.1 } 
+                }
+              }}
+              className="overflow-hidden rounded-xl"
+              whileHover="hover"
+            >
               <motion.div
-                className="overflow-hidden rounded-xl"
-                whileHover="hover"
+                className="relative w-full h-[400px] lg:h-[500px]"
+                variants={{
+                  hover: { scale: 1.03 }
+                }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               >
-                <motion.div
-                  className="relative w-full h-[400px] lg:h-[500px]"
-                  variants={{
-                    hover: { scale: 1.03 }
-                  }}
-                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <Image
-                    src="/images/toWEBP/1773258581277.webp"
-                    alt="Event networking"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 33vw"
-                  />
-                </motion.div>
+                <Image
+                  src="/images/toWEBP/1773258581277.webp"
+                  alt="Event networking"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 33vw"
+                />
               </motion.div>
-            </ScrollReveal>
+            </motion.div>
           </div>
 
           {/* Center Column */}
           <div className="lg:col-span-5 space-y-6">
-            <ScrollReveal delay={0.15}>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              variants={{
+                hidden: { clipPath: 'inset(0 100% 0 0)' },
+                visible: { 
+                  clipPath: 'inset(0% 0 0 0)', 
+                  transition: { duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.15 } 
+                }
+              }}
+              className="overflow-hidden rounded-xl"
+              whileHover="hover"
+            >
               <motion.div
-                className="overflow-hidden rounded-xl"
-                whileHover="hover"
+                className="relative w-full h-[250px] lg:h-[300px]"
+                variants={{
+                  hover: { scale: 1.03 }
+                }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               >
-                <motion.div
-                  className="relative w-full h-[250px] lg:h-[300px]"
-                  variants={{
-                    hover: { scale: 1.03 }
-                  }}
-                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <Image
-                    src="/images/toWEBP/1774468095390.webp"
-                    alt="Conference room"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 42vw"
-                  />
-                </motion.div>
+                <Image
+                  src="/images/toWEBP/1774468095390.webp"
+                  alt="Conference room"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 42vw"
+                />
               </motion.div>
-            </ScrollReveal>
+            </motion.div>
             
             <ScrollReveal delay={0.2}>
               <p className="text-text-secondary text-base leading-relaxed">
@@ -97,28 +113,36 @@ export function AboutSection() {
               </p>
             </ScrollReveal>
             
-            <ScrollReveal delay={0.4}>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              variants={{
+                hidden: { clipPath: 'inset(100% 0 0 0)' },
+                visible: { 
+                  clipPath: 'inset(0% 0 0 0)', 
+                  transition: { duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.4 } 
+                }
+              }}
+              className="overflow-hidden rounded-xl h-[400px] lg:h-[500px]"
+              whileHover="hover"
+            >
               <motion.div
-                className="overflow-hidden rounded-xl h-[400px] lg:h-[500px]"
-                whileHover="hover"
+                className="relative w-full h-full"
+                variants={{
+                  hover: { scale: 1.03 }
+                }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               >
-                <motion.div
-                  className="relative w-full h-full"
-                  variants={{
-                    hover: { scale: 1.03 }
-                  }}
-                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <Image
-                    src="/images/toWEBP/1774468101559.webp"
-                    alt="Premium London networking event"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 25vw"
-                  />
-                </motion.div>
+                <Image
+                  src="/images/toWEBP/1774468101559.webp"
+                  alt="Premium London networking event"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 25vw"
+                />
               </motion.div>
-            </ScrollReveal>
+            </motion.div>
           </div>
         </div>
       </div>

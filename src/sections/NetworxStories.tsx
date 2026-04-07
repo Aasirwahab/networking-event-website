@@ -179,19 +179,19 @@ export function NetworxStories() {
   };
 
   return (
-    <section className="py-20 bg-[#050505] overflow-hidden">
+    <section className="py-20 bg-[#5174d6] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-12 flex items-end justify-between">
           <div className="space-y-4">
-            <span className="text-primary text-xs font-bold tracking-[0.4em] uppercase block">Networx Stories</span>
-            <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter leading-none">
-              MOMENTS THAT <br />
-              <span className="text-white/20">MATTER.</span>
+            <span className="text-white/80 text-xs font-bold tracking-[0.4em] uppercase block">Networx Stories</span>
+            <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter leading-none uppercase">
+              Moments That <br />
+              <span className="text-white/40">Matter.</span>
             </h2>
           </div>
           <div className="hidden md:block text-right">
-            <p className="text-white/40 text-sm max-w-[200px] font-light leading-relaxed">
+            <p className="text-white/70 text-sm max-w-[200px] font-light leading-relaxed">
               Scroll through highlights from our exclusive networking events.
             </p>
           </div>
