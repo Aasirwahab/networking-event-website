@@ -1,13 +1,9 @@
 'use client';
 
-import { useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useRef, useState, useCallback } from 'react';
+import { motion, AnimatePresence, useMotionValue, useTransform, PanInfo } from 'framer-motion';
 import { networxStories } from '@/data/content';
 import { MapPin, Play, Pause, Volume2, VolumeX, GripHorizontal } from 'lucide-react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCards } from 'swiper/modules';
-import 'swiper/css/effect-cards';
-import 'swiper/css';
 
 interface VideoCardProps {
   story: typeof networxStories[0];
@@ -40,7 +36,7 @@ function VideoCard({ story, isActive, showDragHint }: VideoCardProps) {
 
   return (
     <div
-      className="relative w-full max-w-[360px] rounded-[24px] overflow-hidden border border-white/10 bg-black"
+      className="relative w-full rounded-[24px] overflow-hidden border border-white/10 bg-black"
       style={{ aspectRatio: '9/16' }}
       onClick={togglePlay}
     >
@@ -74,7 +70,7 @@ function VideoCard({ story, isActive, showDragHint }: VideoCardProps) {
         {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
       </button>
 
-      {/* Drag hint - appears on hover, centered on card */}
+      {/* Drag hint */}
       <AnimatePresence>
         {showDragHint && (
           <motion.div
@@ -92,7 +88,7 @@ function VideoCard({ story, isActive, showDragHint }: VideoCardProps) {
         )}
       </AnimatePresence>
 
-      {/* Play/Pause center indicator - hide when drag hint is showing */}
+      {/* Play/Pause center indicator */}
       {!showDragHint && (
         <div className={`absolute inset-0 flex items-center justify-center z-10 pointer-events-none transition-opacity duration-300 ${isPlaying ? 'opacity-0' : 'opacity-100'}`}>
           <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center">
@@ -108,7 +104,6 @@ function VideoCard({ story, isActive, showDragHint }: VideoCardProps) {
       {/* Bottom content */}
       <div className="absolute bottom-6 left-5 right-5 z-10 pointer-events-none">
         <div className="space-y-3">
-          {/* Brand pill */}
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary rounded-full text-[9px] font-black uppercase text-white tracking-[0.2em]">
             <Play className="w-2.5 h-2.5 fill-white" />
             {story.brand}
@@ -138,10 +133,51 @@ function VideoCard({ story, isActive, showDragHint }: VideoCardProps) {
   );
 }
 
+// Fan card layout — returns transform values for each card position
+function getFanTransform(offset: number, total: number) {
+  // offset: distance from active card (-2, -1, 0, 1, 2)
+  const rotation = offset * 8; // degrees per card
+  const translateX = offset * 60; // px shift per card
+  const translateY = Math.abs(offset) * 15; // cards away from center drop down slightly
+  const scale = 1 - Math.abs(offset) * 0.06;
+  const zIndex = total - Math.abs(offset);
+  const opacity = 1 - Math.abs(offset) * 0.15;
+
+  return { rotation, translateX, translateY, scale, zIndex, opacity };
+}
+
 export function NetworxStories() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
   const [hasSwiped, setHasSwiped] = useState(false);
+  const dragX = useMotionValue(0);
+  const dragRotate = useTransform(dragX, [-200, 0, 200], [-8, 0, 8]);
+
+  const total = networxStories.length;
+
+  const goNext = useCallback(() => {
+    setActiveIndex((prev) => (prev + 1) % total);
+    setHasSwiped(true);
+  }, [total]);
+
+  const goPrev = useCallback(() => {
+    setActiveIndex((prev) => (prev - 1 + total) % total);
+    setHasSwiped(true);
+  }, [total]);
+
+  const handleDragEnd = (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    if (info.offset.x < -60) goNext();
+    else if (info.offset.x > 60) goPrev();
+  };
+
+  // Calculate offset for each card relative to active (wrapping around)
+  const getOffset = (index: number) => {
+    let offset = index - activeIndex;
+    const half = Math.floor(total / 2);
+    if (offset > half) offset -= total;
+    if (offset < -half) offset += total;
+    return offset;
+  };
 
   return (
     <section className="py-20 bg-[#050505] overflow-hidden">
@@ -162,39 +198,59 @@ export function NetworxStories() {
           </div>
         </div>
 
-        {/* Swipeable Video Cards */}
+        {/* Fan Card Stack */}
         <div
-          className="relative w-full flex flex-col items-center justify-center min-h-[600px]"
+          className="relative w-full flex items-center justify-center"
+          style={{ height: '680px' }}
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
         >
-          <Swiper
-            effect="cards"
-            grabCursor={true}
-            loop={true}
-            className="w-full max-w-xl h-auto"
-            modules={[EffectCards]}
-            cardsEffect={{
-              slideShadows: false,
-              perSlideRotate: 4,
-              perSlideOffset: 10,
-              rotate: true,
-            }}
-            onSlideChange={(swiper) => {
-              setActiveIndex(swiper.realIndex);
-              setHasSwiped(true);
-            }}
-          >
-            {networxStories.map((story, index) => (
-              <SwiperSlide key={story.id} className="!flex !items-start !justify-center bg-transparent">
+          {networxStories.map((story, index) => {
+            const offset = getOffset(index);
+            const { rotation, translateX, translateY, scale, zIndex, opacity } = getFanTransform(offset, total);
+            const isActive = offset === 0;
+
+            return (
+              <motion.div
+                key={story.id}
+                className="absolute cursor-grab active:cursor-grabbing"
+                style={{
+                  width: 'min(340px, 80vw)',
+                  zIndex,
+                  ...(isActive ? { rotate: dragRotate } : {}),
+                }}
+                animate={{
+                  x: translateX,
+                  y: translateY,
+                  rotate: rotation,
+                  scale,
+                  opacity,
+                }}
+                transition={{
+                  type: 'spring',
+                  stiffness: 300,
+                  damping: 30,
+                }}
+                drag={isActive ? 'x' : false}
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.7}
+                onDragEnd={isActive ? handleDragEnd : undefined}
+                dragMomentum={false}
+                onClick={() => {
+                  if (!isActive) {
+                    setActiveIndex(index);
+                    setHasSwiped(true);
+                  }
+                }}
+              >
                 <VideoCard
                   story={story}
-                  isActive={activeIndex === index}
-                  showDragHint={isHovering && !hasSwiped && activeIndex === index}
+                  isActive={isActive}
+                  showDragHint={isHovering && !hasSwiped && isActive}
                 />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

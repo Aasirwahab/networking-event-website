@@ -6,12 +6,13 @@ import { AgendaSection } from "@/sections/AgendaSection";
 import { StatsSection } from "@/sections/StatsSection";
 import { TestimonialsSection } from "@/sections/TestimonialsSection";
 import { CTASection } from "@/sections/CTASection";
+import { SectionSkeleton } from "@/components/SectionSkeleton";
 
-const AboutSection = dynamic(() => import("@/sections/AboutSection").then(m => ({ default: m.AboutSection })));
-const EventsSection = dynamic(() => import("@/sections/EventsSection").then(m => ({ default: m.EventsSection })));
-const VenueSection = dynamic(() => import("@/sections/VenueSection").then(m => ({ default: m.VenueSection })));
-const NetworxStories = dynamic(() => import("@/sections/NetworxStories").then(m => ({ default: m.NetworxStories })));
-const SpeakersSection = dynamic(() => import("@/sections/SpeakersSection").then(m => ({ default: m.SpeakersSection })));
+const AboutSection = dynamic(() => import("@/sections/AboutSection").then(m => ({ default: m.AboutSection })), { loading: () => <SectionSkeleton /> });
+const EventsSection = dynamic(() => import("@/sections/EventsSection").then(m => ({ default: m.EventsSection })), { loading: () => <SectionSkeleton /> });
+const VenueSection = dynamic(() => import("@/sections/VenueSection").then(m => ({ default: m.VenueSection })), { loading: () => <SectionSkeleton /> });
+const NetworxStories = dynamic(() => import("@/sections/NetworxStories").then(m => ({ default: m.NetworxStories })), { loading: () => <SectionSkeleton /> });
+const SpeakersSection = dynamic(() => import("@/sections/SpeakersSection").then(m => ({ default: m.SpeakersSection })), { loading: () => <SectionSkeleton /> });
 
 export const metadata: Metadata = {
   description: 'Join London\'s premier breakfast networking community. Connect with directors, founders, and professionals over great food in a relaxed, welcoming environment.',

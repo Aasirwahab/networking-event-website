@@ -19,10 +19,19 @@ const InstagramIcon = () => (
 
 export function Footer() {
   const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 3000);
+      return;
+    }
+    // TODO: Wire up to newsletter provider (e.g., Mailchimp, ConvertKit)
+    setStatus('success');
     setEmail('');
+    setTimeout(() => setStatus('idle'), 4000);
   };
 
   return (
@@ -51,10 +60,12 @@ export function Footer() {
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           placeholder="your@email.com"
+                          required
+                          aria-label="Email address for newsletter"
                           className="w-full bg-transparent border-b border-white/10 py-6 pr-12 text-white placeholder:text-white/20 focus:outline-none focus:border-primary transition-all text-xl font-extralight group-hover:border-white/30"
                         />
-                        <button 
-                          type="submit" 
+                        <button
+                          type="submit"
                           className="absolute right-0 top-1/2 -translate-y-1/2 text-primary hover:text-white transition-all transform hover:scale-110"
                           aria-label="Subscribe"
                           title="Subscribe to newsletter"
@@ -62,6 +73,12 @@ export function Footer() {
                           <ArrowRight className="w-8 h-8" />
                         </button>
                       </form>
+                      {status === 'success' && (
+                        <p className="text-green-400 text-sm mt-3 font-light">Thank you for subscribing!</p>
+                      )}
+                      {status === 'error' && (
+                        <p className="text-red-400 text-sm mt-3 font-light">Please enter a valid email address.</p>
+                      )}
                     </div>
                   </div>
 

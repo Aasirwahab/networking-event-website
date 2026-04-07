@@ -76,6 +76,12 @@ html.lenis body {
   }
 }
 
+/* Dark theme select dropdown */
+select option {
+  background-color: #0a0a0a;
+  color: #fff;
+}
+
 /* Selection color */
 ::selection {
   background-color: rgba(37, 99, 235, 0.2);

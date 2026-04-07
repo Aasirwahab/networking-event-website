@@ -234,7 +234,7 @@ const ImagesFlow: React.FC<ImagesFlowProps> = ({
               >
                 <Image
                   src={src}
-                  alt=""
+                  alt={`Networx London event photo ${index + 1}`}
                   fill
                   className="object-cover"
                   sizes={index === images.length - 1 ? '100vw' : '500px'}
