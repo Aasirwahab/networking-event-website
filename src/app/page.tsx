@@ -4,7 +4,6 @@ import { HeroSection } from "@/sections/HeroSection";
 import { BenefitsSection } from "@/sections/BenefitsSection";
 import { AgendaSection } from "@/sections/AgendaSection";
 import { StatsSection } from "@/sections/StatsSection";
-import { TestimonialsSection } from "@/sections/TestimonialsSection";
 import { CTASection } from "@/sections/CTASection";
 import { SectionSkeleton } from "@/components/SectionSkeleton";
 
@@ -38,7 +37,6 @@ export default function HomePage() {
         <StatsSection />
         <NetworxStories />
         <SpeakersSection />
-        <TestimonialsSection />
         <CTASection />
       </main>
     </div>

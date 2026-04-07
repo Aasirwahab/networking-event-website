@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import TransitionTemplate, { Heading, SubHeading } from "@/components/TransitionTemplate";
 import { EventSchedule } from "@/sections/EventSchedule";
 import { TicketTiers } from "@/sections/TicketTiers";
-import { TestimonialsSection } from "@/sections/TestimonialsSection";
 
 export const metadata: Metadata = {
   title: 'Our Events | London Networking Events',
@@ -27,7 +26,6 @@ export default function EventsPage() {
       <main className="space-y-0">
         <EventSchedule />
         <TicketTiers />
-        <TestimonialsSection />
       </main>
 
     </div>
