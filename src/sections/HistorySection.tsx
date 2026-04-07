@@ -7,12 +7,12 @@ const milestones = [
   {
     year: "2025",
     title: "The Beginning",
-    description: "Networx London was founded with a simple mission: make networking human, relaxed, and genuinely enjoyable. Our first breakfast brought together a small group of London professionals."
+    description: "Networx London was founded with a simple mission: make networking human, relaxed, and genuinely enjoyable. Our first gathering brought together a small group of ambitious London professionals."
   },
   {
     year: "2025",
     title: "Growing Community",
-    description: "Word spread quickly. Directors, founders, investors, and entrepreneurs started joining our monthly breakfasts, drawn by the relaxed format and real conversations."
+    description: "Word spread quickly. Directors, founders, investors, and entrepreneurs started joining our monthly events, drawn by the relaxed format and real business outcomes."
   },
   {
     year: "2025",
@@ -22,7 +22,7 @@ const milestones = [
   {
     year: "NOW",
     title: "What's Next",
-    description: "We're focused on growing our community while keeping every interaction as personal and meaningful as it was at our very first breakfast."
+    description: "We're focused on growing our community while keeping every interaction as personal and meaning-driven as it was at our very first event."
   }
 ];
 

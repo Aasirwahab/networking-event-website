@@ -5,8 +5,8 @@ import { TicketTiers } from "@/sections/TicketTiers";
 import { TestimonialsSection } from "@/sections/TestimonialsSection";
 
 export const metadata: Metadata = {
-  title: 'Our Events',
-  description: 'Join the next Networx London breakfast networking event. Great food, real conversations, and meaningful connections.',
+  title: 'Our Events | London Networking Events',
+  description: 'Join the next Networx London exclusive networking event. Meet startup founders, CEOs, investors, and build meaningful professional connections.',
 };
 
 export default function EventsPage() {
@@ -19,7 +19,7 @@ export default function EventsPage() {
             <span className="text-primary italic font-light">EVENTS.</span>
           </Heading>
           <SubHeading className="text-lg md:text-xl text-white/40 max-w-2xl mx-auto font-light leading-relaxed">
-            Join our monthly breakfast networking events in London. Great food, real conversations, and meaningful connections.
+            Join the premier networking events for professionals in London. We focus on real conversations, actionable growth, and forging highly valuable connections.
           </SubHeading>
         </div>
       </TransitionTemplate>

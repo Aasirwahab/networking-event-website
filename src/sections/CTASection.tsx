@@ -52,7 +52,7 @@ export function CTASection() {
               className="flex items-center justify-center w-28 h-28 lg:w-36 lg:h-36 bg-primary rounded-full text-white text-center text-sm lg:text-base font-medium shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
               <span className="leading-tight">
-                Book Your<br />Breakfast
+                Reserve<br />Your Seat
               </span>
             </motion.a>
           </motion.div>

@@ -63,7 +63,7 @@ export function TeamSection() {
         {/* Recruitment CTA */}
         <ScrollReveal delay={0.4} className="mt-20 text-center">
           <div className="inline-flex items-center gap-4 px-8 py-5 bg-white/5 border border-white/10 rounded-3xl hover:bg-white/10 transition-colors cursor-pointer group">
-             <span className="text-white font-black text-xs uppercase tracking-widest leading-none">JOIN OUR NEXT BREAKFAST</span>
+             <span className="text-white font-black text-xs uppercase tracking-widest leading-none">JOIN OUR NEXT EVENT</span>
              <ExternalLink className="w-4 h-4 text-primary group-hover:scale-125 transition-transform" />
           </div>
         </ScrollReveal>

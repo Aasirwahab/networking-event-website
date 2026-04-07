@@ -51,7 +51,7 @@ export function HeroSection() {
             {/* Tagline */}
             <motion.div variants={itemVariants} className="mb-3">
               <span className="text-primary text-[11px] sm:text-[13px] font-medium tracking-[0.2em] uppercase">
-                Networking Made Human, Relaxed & Enjoyable.
+                London&apos;s Premier Professional Network.
               </span>
             </motion.div>
 
@@ -60,8 +60,8 @@ export function HeroSection() {
               variants={itemVariants}
               className="text-[32px] sm:text-[44px] lg:text-[52px] font-bold text-white tracking-tight leading-[1.1] mb-5"
             >
-              Come for the Network<br />
-              Stay for the People
+              Meaningful Connections<br />
+              For Visionary Leaders
             </motion.h1>
 
             {/* Description */}
@@ -69,7 +69,7 @@ export function HeroSection() {
               variants={itemVariants}
               className="text-[14px] sm:text-[15px] text-white/60 max-w-md mb-8 font-light leading-[1.7]"
             >
-              Bringing together directors, CEOs, entrepreneurs, founders, investors, and professionals over a great breakfast to spark valuable connections.
+              Bringing together directors, CEOs, entrepreneurs, founders, and investors for relaxed, high-value networking sessions. Scale your business and spark genuine partnerships in London.
             </motion.p>
 
             {/* CTA Buttons */}

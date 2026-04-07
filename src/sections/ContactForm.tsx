@@ -85,7 +85,7 @@ export function ContactForm() {
               <span className="text-white/20">CONNECT.</span>
             </h1>
             <p className="text-white/40 text-lg font-light leading-relaxed mb-16 max-w-md">
-              Whether you want to attend a breakfast, partner with us, or just learn more — we&apos;d love to hear from you.
+              Whether you want to attend an event, partner with us, or just learn more — we&apos;d love to hear from you.
             </p>
 
             <div className="space-y-8">
@@ -177,7 +177,7 @@ export function ContactForm() {
                 {...register('interest')}
               >
                 <option value="">Select your interest</option>
-                <option value="attend">Attend a Breakfast</option>
+                <option value="attend">Attend an Event</option>
                 <option value="partner">Partnership Inquiry</option>
                 <option value="membership">Membership Info</option>
                 <option value="other">Other</option>

@@ -88,7 +88,7 @@ export function SpeakerNomination() {
           </button>
           
           <p className="text-center text-[9px] font-bold uppercase tracking-widest text-white/10">
-            * We'll get back to you within 48 hours with details about our next breakfast.
+            * We'll get back to you within 48 hours with details about our next event.
           </p>
         </motion.form>
       </div>

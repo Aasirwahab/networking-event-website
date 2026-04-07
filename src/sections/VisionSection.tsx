@@ -13,8 +13,8 @@ const values = [
   },
   {
     icon: Coffee,
-    title: "Relaxed Logic",
-    description: "The best ideas don't happen in boardrooms. They happen over a great breakfast and meaningful silence."
+    title: "Relaxed Environment",
+    description: "The best ideas don't happen in boardrooms. They happen in relaxed settings where genuine dialogue thrives."
   },
   {
     icon: Zap,
@@ -66,7 +66,7 @@ export function VisionSection() {
             <div className="aspect-[4/5] rounded-[40px] overflow-hidden border border-white/10 relative group">
               <Image
                 src="/images/about-1.jpg"
-                alt="Networx London members having genuine conversations at a breakfast networking event"
+                alt="Networx London members having genuine conversations at an exclusive networking event"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover transition-transform duration-1000 group-hover:scale-110"

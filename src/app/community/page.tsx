@@ -4,16 +4,16 @@ import { SpeakerSpotlight } from "@/sections/SpeakerSpotlight";
 import { SpeakerNomination } from "@/sections/SpeakerNomination";
 
 export const metadata: Metadata = {
-  title: 'Our Community',
-  description: 'Meet the diverse mix of professionals who make Networx London a welcoming space for genuine connection.',
+  title: 'Our Community | Startup Founders & Professionals',
+  description: 'Meet the diverse mix of investors, CEOs, founders, and professionals who make Networx London a welcoming space for powerful connection.',
   openGraph: {
-    title: 'Our Community',
-    description: 'Meet the diverse mix of professionals who make Networx London a welcoming space for genuine connection.',
+    title: 'Our Community | Startup Founders & Professionals',
+    description: 'Meet the diverse mix of investors, CEOs, founders, and professionals who make Networx London a welcoming space for powerful connection.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Our Community',
-    description: 'Meet the diverse mix of professionals who make Networx London a welcoming space for genuine connection.',
+    title: 'Our Community | Startup Founders & Professionals',
+    description: 'Meet the diverse mix of investors, CEOs, founders, and professionals who make Networx London a welcoming space for powerful connection.',
   },
 };
 
@@ -27,7 +27,7 @@ export default function SpeakersPage() {
             <span className="text-primary italic font-light">COMMUNITY.</span>
           </Heading>
           <SubHeading className="text-lg md:text-xl text-white/40 max-w-2xl mx-auto font-light leading-relaxed">
-            Meet the diverse mix of directors, founders, entrepreneurs, and professionals who make our breakfasts genuinely special.
+            Meet the diverse mix of directors, founders, entrepreneurs, and investors who make our events genuinely transformative for your career and business.
           </SubHeading>
         </div>
       </TransitionTemplate>

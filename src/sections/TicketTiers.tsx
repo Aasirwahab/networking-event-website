@@ -6,24 +6,24 @@ import { Check, ArrowRight } from 'lucide-react';
 
 const tiers = [
   {
-    name: "Single Breakfast",
+    name: "Single Event Access",
     price: "£25",
-    description: "Try Networx London for a single breakfast event and see what we're all about.",
-    features: ["One Breakfast Event", "Full Breakfast Included", "Open Networking Session", "Attendee Introductions"],
+    description: "Try Networx London for a single networking event and experience our high-value community.",
+    features: ["One Networking Event", "Full Event Access", "Open Networking Session", "Attendee Introductions"],
     accent: false
   },
   {
     name: "Monthly Member",
     price: "£20",
-    description: "For professionals who want to attend regularly and build lasting connections.",
-    features: ["Monthly Breakfast Access", "Full Breakfast Included", "Priority Seating", "Member Directory Access", "Exclusive Invitations"],
+    description: "For professionals who want to attend regularly and build lasting professional connections.",
+    features: ["Monthly Event Access", "Priority Registration", "Priority Seating", "Member Directory Access", "Exclusive Invitations"],
     accent: true
   },
   {
     name: "Annual Pass",
     price: "£180",
-    description: "Best value for committed networkers. Join every breakfast for a full year.",
-    features: ["12 Breakfast Events", "Full Breakfast Included", "Priority Seating", "Member Directory Access", "Special Event Invites"],
+    description: "Best value for committed networkers. Join every event for a full year and maximize your reach.",
+    features: ["12 Networking Events", "Priority Registration", "Priority Seating", "Full Member Directory Access", "Special VIP Event Invites"],
     accent: false
   }
 ];

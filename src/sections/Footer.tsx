@@ -132,7 +132,7 @@ export function Footer() {
                       <p className="text-white/40 text-xs uppercase tracking-widest font-bold mb-6">Experience</p>
                       <div className="group cursor-pointer">
                         <p className="text-white/30 text-xs font-light leading-relaxed group-hover:text-white/50 transition-colors">
-                          Making networking human, relaxed, and genuinely enjoyable. Networx London brings people together over great breakfasts.
+                          Making networking human, relaxed, and genuinely enjoyable. Networx London brings people together for impactful connections.
                         </p>
                       </div>
                     </div>

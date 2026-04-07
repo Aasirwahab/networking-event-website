@@ -19,11 +19,11 @@ export default function GalleryPage() {
       <main>
         <ImagesFlow 
           introTitle="Networx London"
-          introSubtitle="A look at the people and moments from our breakfast networking events."
+          introSubtitle="A look at the people and moments from our networking events."
           introImages={introImages}
-          flowText={'Where breakfast meets vision.\nMeaningful conversations, recorded forever.'}
+          flowText={'Where connection meets vision.\nMeaningful conversations, recorded forever.'}
           outroTitle="The Connection"
-          outroSubtitle="The connections you make over breakfast stay with you long after the morning."
+          outroSubtitle="The connections you make at our events stay with you long after the morning."
           images={images}
         />
       </main>

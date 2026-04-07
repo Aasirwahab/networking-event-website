@@ -14,15 +14,15 @@ const NetworxStories = dynamic(() => import("@/sections/NetworxStories").then(m 
 const SpeakersSection = dynamic(() => import("@/sections/SpeakersSection").then(m => ({ default: m.SpeakersSection })), { loading: () => <SectionSkeleton /> });
 
 export const metadata: Metadata = {
-  description: 'Join London\'s premier breakfast networking community. Connect with directors, founders, and professionals over great food in a relaxed, welcoming environment.',
+  description: 'Join London\'s premier networking community. Connect with directors, startup founders, CEOs, and investors for meaningful relationship building.',
   openGraph: {
-    title: 'Networx London - Human Networking Over Great Breakfasts',
-    description: 'Join London\'s premier breakfast networking community.',
+    title: 'London Networking Events | Professional Founders & Startups',
+    description: 'Join London\'s premier professional networking gathering.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Networx London - Human Networking Over Great Breakfasts',
-    description: 'Join London\'s premier breakfast networking community.',
+    title: 'London Networking Events | Professional Founders & Startups',
+    description: 'Join London\'s premier professional networking gathering.',
   },
 };
 

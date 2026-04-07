@@ -13,9 +13,14 @@ export function AboutSection() {
           {/* Left Column */}
           <div className="lg:col-span-4 space-y-6">
             <ScrollReveal delay={0}>
-              <p className="text-text-secondary text-base lg:text-lg leading-relaxed">
-                We bring together a diverse mix of London professionals for relaxed, meaningful networking over breakfast.
-              </p>
+              <div className="space-y-4">
+                <p className="text-text-secondary text-base lg:text-lg leading-relaxed">
+                  Networx London makes networking human, relaxed, and genuinely enjoyable. Founded in 2025, we specialize in high-end events services that bring together a diverse mix of company directors, CEOs, entrepreneurs, startups, investors, and professionals.
+                </p>
+                <p className="text-text-secondary text-sm lg:text-base leading-relaxed opacity-80">
+                  Whether you are scaling a business or exploring new ventures, this is a welcoming and dynamic space to connect, share ideas, and build lasting relationships.
+                </p>
+              </div>
             </ScrollReveal>
             
             <ScrollReveal delay={0.1}>
@@ -69,7 +74,7 @@ export function AboutSection() {
             
             <ScrollReveal delay={0.2}>
               <p className="text-text-secondary text-base leading-relaxed">
-                Networx London makes networking human, relaxed, and genuinely enjoyable. We focus on fostering meaningful conversations rather than formal pitches.
+                Our focus is on fostering meaningful conversations rather than formal pitches. By removing the pressure of traditional networking, we create an environment where genuine partnerships flourish and businesses actively scale.
               </p>
             </ScrollReveal>
             
@@ -88,7 +93,7 @@ export function AboutSection() {
           <div className="lg:col-span-3 space-y-6">
             <ScrollReveal delay={0.3}>
               <p className="text-text-secondary text-base leading-relaxed">
-                A welcoming and dynamic space to connect, share ideas, and build lasting relationships over a great breakfast.
+                Join our exclusive community of London&apos;s brightest minds to access unparalleled professional opportunities, expert insights, and collaborative ventures.
               </p>
             </ScrollReveal>
             

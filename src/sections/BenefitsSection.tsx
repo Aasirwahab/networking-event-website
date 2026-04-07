@@ -21,8 +21,8 @@ const benefits = [
   },
   {
     icon: ShieldCheck,
-    title: 'Great Breakfast Included',
-    description: 'Connect over quality food in a welcoming and dynamic setting. Networking should be enjoyable, not a chore.'
+    title: 'High-Value Community',
+    description: 'Connect with London\'s brightest minds in a welcoming and dynamic setting. Networking should be productive, actionable, and enjoyable.'
   }
 ];
 
@@ -33,11 +33,11 @@ export function BenefitsSection() {
         <ScrollReveal>
           <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-24">
             <h2 className="text-3xl lg:text-5xl font-light tracking-tight text-dark mb-6">
-              Why Professionals <br />
+              Why London Professionals <br />
               <span className="font-medium italic">Choose Networx</span>
             </h2>
             <p className="text-text-secondary text-lg">
-              We make networking human, relaxed, and genuinely enjoyable — fostering meaningful connections over great food.
+              We make networking human, relaxed, and genuinely transformative — fostering meaningful business relationships and robust partnerships.
             </p>
           </div>
         </ScrollReveal>

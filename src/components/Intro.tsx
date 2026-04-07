@@ -8,7 +8,7 @@ export const IMAGES = [
   "/images/gallery-2.png",
   "/images/networx_story_mayfair.png",
   "/images/networx_story_shard.png",
-  "/images/networx_hero_breakfast.png",
+  "/images/networx_hero_event.png",
 ];
 
 export const INTRO_END_DELAY_SEC =

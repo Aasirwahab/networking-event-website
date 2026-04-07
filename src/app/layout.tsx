@@ -14,23 +14,24 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Networx London - Human Networking Over Great Breakfasts",
+    default: "London Networking Events | Professional Founders & Startups | Networx London",
     template: "%s | Networx London",
   },
   description:
-    "Networx London makes networking human, relaxed, and genuinely enjoyable. Join a diverse mix of directors, CEOs, entrepreneurs, founders, and professionals.",
+    "Networx London hosts premier networking events for professional founders, startups, CEOs, and investors. Build valuable connections and scale your business in a relaxed environment.",
+  keywords: ["London networking events", "Startup networking London", "Founder networking events London", "Professional networks London", "Investor networking events", "Tech startup events London", "Business networking London SW15"],
   openGraph: {
-    title: "Networx London - Human Networking Over Great Breakfasts",
+    title: "London Networking Events | Professional Founders & Startups | Networx London",
     description:
-      "Networx London makes networking human, relaxed, and genuinely enjoyable.",
+      "Join a diverse mix of directors, CEOs, entrepreneurs, founders, startups, and investors to spark valuable connections.",
     type: "website",
     siteName: "Networx London",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Networx London - Human Networking Over Great Breakfasts",
+    title: "London Networking Events | Professional Founders & Startups",
     description:
-      "Networx London makes networking human, relaxed, and genuinely enjoyable.",
+      "Join a diverse mix of directors, CEOs, entrepreneurs, founders, startups, and investors to spark valuable connections.",
   },
 };
 
@@ -39,8 +40,14 @@ const jsonLd = {
   "@type": "Organization",
   name: "Networx London",
   description:
-    "Networx London makes networking human, relaxed, and genuinely enjoyable.",
+    "Networx London makes networking human, relaxed, and genuinely enjoyable. Events bring together a diverse mix of company directors, CEOs, entrepreneurs, founders, startups, small business owners, investors, and working professionals to spark valuable connections.",
   url: "https://networxlondon.com",
+  founder: {
+    "@type": "Organization",
+    name: "Networx London Network"
+  },
+  foundingDate: "2025",
+  industry: "Events Services",
   address: {
     "@type": "PostalAddress",
     addressLocality: "London",
