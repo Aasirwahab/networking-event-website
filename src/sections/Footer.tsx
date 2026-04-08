@@ -188,17 +188,12 @@ export function Footer() {
   // Use a stable DOM structure to prevent unmounting the ref.
   return (
     <div 
-      className="relative w-full"
-      style={{ 
-        clipPath: isSticky ? "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" : "none",
-        height: isSticky ? `${footerHeight}px` : 'auto'
-      }}
+      className={`relative w-full ${isSticky ? 'clip-footer' : ''}`}
+      style={{ '--footer-h': isSticky ? `${footerHeight}px` : 'auto' } as React.CSSProperties}
     >
       <div 
         className={isSticky ? "fixed bottom-0 left-0 w-full" : "w-full"}
-        style={{ 
-          height: isSticky ? `${footerHeight}px` : 'auto'
-        }}
+        style={{ height: 'var(--footer-h)' }}
       >
         {FooterContent}
       </div>

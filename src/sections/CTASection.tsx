@@ -23,16 +23,7 @@ export function CTASection() {
             className="relative"
           >
             <h2 
-              className="text-7xl sm:text-8xl lg:text-[140px] font-bold tracking-tight"
-              style={{
-                backgroundImage: 'url(/images/hero-bg.jpg)',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                WebkitBackgroundClip: 'text',
-                backgroundClip: 'text',
-                color: 'transparent',
-                WebkitTextFillColor: 'transparent',
-              }}
+              className="text-7xl sm:text-8xl lg:text-[140px] font-bold tracking-tight cta-text-mask"
             >
               JOIN US
             </h2>
