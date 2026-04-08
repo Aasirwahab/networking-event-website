@@ -1,8 +1,16 @@
 'use client';
 
-import { useRef } from 'react';
-import { useScroll } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
 import { AgendaCard } from '@/components/AgendaCard';
+import './AgendaSection.css';
+
+// Register GSAP plugins
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
+}
 
 const agenda = [
   {
@@ -14,74 +22,113 @@ const agenda = [
   },
   {
     time: 'Phase 02',
-    title: 'Welcome & Strategic Networking',
+    title: 'Strategic Networking',
     description: 'A brief, impactful welcome from our founders followed by open networking with London\'s industry leaders and visionaries.',
     src: '/images/london/2.png',
     color: 'rgba(255, 255, 255, 0.04)'
   },
   {
     time: 'Phase 03',
-    title: 'Curated Roundtable Discussions',
+    title: 'Roundtable Discussions',
     description: 'Engage in guided, high-value conversations. Share your expertise, tackle industry challenges, and discover synergistic opportunities.',
     src: '/images/london/3.png',
     color: 'rgba(255, 255, 255, 0.06)'
   },
   {
     time: 'Phase 04',
-    title: 'Partnerships & Open Dialogue',
+    title: 'Partnerships & Dialogue',
     description: 'Dedicated time to forge meaningful business partnerships, exchange details, and solidify new professional relationships.',
     src: '/images/london/4.png',
     color: 'rgba(255, 255, 255, 0.08)'
   },
   {
     time: 'Phase 05',
-    title: 'Closing Remarks & Next Steps',
+    title: 'Closing & Next Steps',
     description: 'Wrap up the session with actionable takeaways, upcoming event calendars, and exclusive community announcements.',
     src: '/images/london/5.png',
     color: 'rgba(255, 255, 255, 0.1)'
   }
 ];
 
-const SCALE_STEP = 0.05;
-
 export function AgendaSection() {
-  const container = useRef(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ['start start', 'end end']
-  });
+  const containerRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+  const [activeStep, setActiveStep] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
-  const rangeStep = 1 / agenda.length;
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useGSAP(() => {
+    if (isMobile || !containerRef.current || !headerRef.current || !cardsRef.current) return;
+
+    // Pin the header
+    ScrollTrigger.create({
+      trigger: containerRef.current,
+      start: 'top top',
+      end: 'bottom bottom',
+      pin: headerRef.current,
+      pinSpacing: false,
+    });
+
+    // Track active step
+    const cards = gsap.utils.toArray<HTMLElement>('.agenda-card-wrapper');
+    cards.forEach((card, index) => {
+      ScrollTrigger.create({
+        trigger: card,
+        start: 'top center',
+        end: 'bottom center',
+        onEnter: () => setActiveStep(index),
+        onEnterBack: () => setActiveStep(index),
+      });
+    });
+  }, { dependencies: [isMobile], scope: containerRef });
 
   return (
-    <section className="bg-[#5174d6] text-white relative pt-20 lg:pt-32" style={{ contain: 'layout style paint' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-10 lg:mb-20">
-          <h2 className="text-3xl lg:text-5xl font-light tracking-tight mb-6">
+    <section ref={containerRef} className="agenda-section">
+      <div ref={headerRef} className="agenda-header-col">
+        <div className="agenda-header-content">
+          <h2 className="text-3xl lg:text-5xl font-light tracking-tight mb-8 text-white">
             An Experience of <span className="font-medium italic text-primary">Real Connections</span>
           </h2>
-          <p className="text-white/80 text-lg">
+          <p className="text-white/60 text-lg leading-relaxed mb-10">
             Every session is designed to be relaxed, engaging, and genuinely valuable for building robust partnerships and growing your professional network.
           </p>
+
+          <div className="agenda-steps">
+            {agenda.map((_, index) => (
+              <div
+                key={index}
+                className={`agenda-step ${activeStep === index ? 'active' : ''}`}
+                onClick={() => {
+                  const card = document.querySelectorAll('.agenda-card-wrapper')[index];
+                  if (card) {
+                    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  }
+                }}
+              >
+                <p className="agenda-step-label">Phase</p>
+                <p className="agenda-step-index">{index + 1}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      <div ref={container} className="relative mt-[10vh]">
-        {agenda.map((item, index) => {
-          const targetScale = 1 - ((agenda.length - index) * SCALE_STEP);
-          return (
+      <div ref={cardsRef} className="agenda-cards-col">
+        {agenda.map((item, index) => (
+          <div key={index} className="agenda-card-wrapper">
             <AgendaCard
-              key={item.time}
               index={index}
               {...item}
-              progress={scrollYProgress}
-              range={[index * rangeStep, 1]}
-              targetScale={targetScale}
-              rangeStep={rangeStep}
             />
-          );
-        })}
+          </div>
+        ))}
       </div>
     </section>
   );

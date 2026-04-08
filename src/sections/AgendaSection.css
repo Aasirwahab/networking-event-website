@@ -1,0 +1,132 @@
+.agenda-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  background-color: #5174d6; /* Matching existing background */
+}
+
+.agenda-header-col {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100vh;
+  overflow: hidden;
+  will-change: transform;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 4rem;
+}
+
+.agenda-header-content {
+  max-width: 500px;
+}
+
+.agenda-steps {
+  display: flex;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.agenda-step {
+  position: relative;
+  padding: 1rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 1rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+.agenda-step p {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: white;
+  margin: 0;
+}
+
+.agenda-step-label {
+  position: absolute;
+  left: 1.5rem;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  font-size: 0.875rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.agenda-step-index {
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.agenda-step.active {
+  width: 9rem;
+  background-color: white;
+  border-color: white;
+}
+
+.agenda-step.active p {
+  color: #5174d6;
+}
+
+.agenda-step.active .agenda-step-index {
+  transform: translateX(28px);
+}
+
+.agenda-step.active .agenda-step-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.agenda-cards-col {
+  flex: 1;
+  position: relative;
+  margin-left: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  padding: 10rem 2rem 10rem 0;
+}
+
+@media (max-width: 1024px) {
+  .agenda-section {
+    flex-direction: column;
+    min-height: auto;
+    background-color: #5174d6;
+  }
+
+  .agenda-header-col {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 4rem 1.5rem 2rem 1.5rem;
+    overflow: visible;
+  }
+
+  .agenda-header-content {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .agenda-steps {
+    display: none;
+  }
+
+  .agenda-cards-col {
+    margin-left: 0;
+    padding: 2rem 1rem;
+    gap: 2rem;
+  }
+}

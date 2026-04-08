@@ -1,6 +1,5 @@
 'use client';
 
-import { useTransform, motion, MotionValue } from 'framer-motion';
 import Image from 'next/image';
 
 interface AgendaCardProps {
@@ -10,72 +9,45 @@ interface AgendaCardProps {
   description: string;
   src: string;
   color: string;
-  progress: MotionValue<number>;
-  range: [number, number];
-  targetScale: number;
-  rangeStep: number;
 }
 
 export const AgendaCard = ({
-  index,
   time,
   title,
   description,
   src,
   color,
-  progress,
-  range,
-  targetScale,
-  rangeStep
 }: AgendaCardProps) => {
-  // Derive image scale from parent progress instead of a per-card useScroll()
-  // This eliminates 5 extra scroll listeners (was the primary source of scroll lag)
-  const imageEntryStart = Math.max(0, range[0] - rangeStep);
-  const imageEntryEnd = range[0];
-  const imageScale = useTransform(progress, [imageEntryStart, imageEntryEnd], [2, 1]);
-  const scale = useTransform(progress, range, [1, targetScale]);
-
   return (
-    <div className="h-screen flex items-center justify-center sticky top-0">
-      <motion.div
-        style={{
-          backgroundColor: color,
-          scale,
-          top: `calc(-5vh + ${index * 25}px)`
-        }}
-        className="relative flex flex-col h-[600px] w-full max-w-[1000px] rounded-[40px] p-8 lg:p-12 origin-top border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.2)] overflow-hidden backdrop-blur-2xl will-change-transform"
-      >
-        <div className="flex h-full gap-8 lg:gap-12 flex-col lg:flex-row items-center">
-          {/* Text Content */}
-          <div className="w-full lg:w-2/5 flex flex-col justify-center h-full">
-            <span className="text-primary font-medium tracking-widest uppercase mb-4 block">
-              {time}
-            </span>
-            <h2 className="text-3xl lg:text-4xl font-medium mb-6 text-white">
-              {title}
-            </h2>
-            <p className="text-white/60 text-lg leading-relaxed">
-              {description}
-            </p>
-          </div>
-
-          {/* Image Content */}
-          <div className="relative w-full lg:w-3/5 h-[300px] lg:h-full rounded-2xl overflow-hidden shadow-2xl">
-            <motion.div
-              className="relative w-full h-full will-change-transform"
-              style={{ scale: imageScale }}
-            >
-              <Image
-                fill
-                src={src}
-                alt={title}
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 60vw"
-              />
-            </motion.div>
-          </div>
+    <div 
+      className="agenda-card group relative flex flex-col w-full rounded-[2rem] p-6 lg:p-10 border border-white/5 shadow-2xl overflow-hidden backdrop-blur-xl transition-all duration-500 hover:border-white/20"
+      style={{ backgroundColor: color }}
+    >
+      <div className="flex flex-col gap-6 lg:gap-8">
+        {/* Image Content */}
+        <div className="relative w-full aspect-video lg:aspect-[16/10] rounded-2xl overflow-hidden">
+          <Image
+            fill
+            src={src}
+            alt={title}
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            sizes="(max-width: 1024px) 100vw, 40vw"
+          />
         </div>
-      </motion.div>
+
+        {/* Text Content */}
+        <div className="flex flex-col">
+          <span className="text-[#a5b4fc] font-medium tracking-widest uppercase mb-3 block text-sm">
+            {time}
+          </span>
+          <h2 className="text-2xl lg:text-3xl font-medium mb-4 text-white">
+            {title}
+          </h2>
+          <p className="text-white/60 text-lg leading-relaxed">
+            {description}
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
