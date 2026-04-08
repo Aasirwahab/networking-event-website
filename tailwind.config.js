@@ -16,8 +16,8 @@ module.exports = {
           foreground: "#FFFFFF",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "#10B981",
+          foreground: "#FFFFFF",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive) / <alpha-value>)",
@@ -28,8 +28,8 @@ module.exports = {
           foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: "#F0F9FF",
+          foreground: "#0F172A",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -49,12 +49,13 @@ module.exports = {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        dark: "#1A1A1A",
-        "dark-border": "#333333",
-        "text-primary": "#111111",
-        "text-secondary": "#666666",
-        "text-muted": "#999999",
-        "bg-gray": "#F5F5F5",
+        dark: "#1E293B",
+        "dark-border": "#E2E8F0",
+        "text-primary": "#0F172A",
+        "text-secondary": "#475569",
+        "text-muted": "#94A3B8",
+        "bg-gray": "#F8FAFC",
+        "fresh-mint": "#10B981",
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],

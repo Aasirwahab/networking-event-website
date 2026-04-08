@@ -97,7 +97,7 @@ export function AboutSection() {
             <ScrollReveal delay={0.25}>
               <a
                 href="#about-more"
-                className="group inline-flex items-center gap-2 bg-dark text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-dark/90 hover:scale-[1.02]"
+                className="group inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-primary/90 hover:scale-[1.02]"
               >
                 Discover More
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />

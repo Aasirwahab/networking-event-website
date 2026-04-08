@@ -4,25 +4,25 @@
 
 @layer base {
   :root {
-    --background: 0 0% 2%;    /* Deep Obsidian */
-    --foreground: 0 0% 98%;
-    --card: 0 0% 5%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 5%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 38 48% 56%;    /* Refined Gold/Champagne */
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 221 83% 53%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 10%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
-    --accent: 38 48% 56%;
-    --accent-foreground: 0 0% 100%;
+    --secondary: 161 72% 43%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222 47% 11%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 38 48% 56%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
     --radius: 1rem;
   }
 }
@@ -89,8 +89,8 @@ select option {
 
 /* Selection color */
 ::selection {
-  background-color: rgba(37, 99, 235, 0.2);
-  color: inherit;
+  background-color: rgba(37, 99, 235, 0.1);
+  color: #2563EB;
 }
 
 /* Focus styles */
@@ -172,16 +172,16 @@ select option {
   backface-visibility: hidden;
 }
 
-.nav-bg:nth-child(1) { background-color: #60a5fa; }
-.nav-bg:nth-child(2) { background-color: #172554; }
-.nav-bg:nth-child(3) { background-color: #2563EB; }
+.nav-bg:nth-child(1) { background-color: #BFDBFE; }
+.nav-bg:nth-child(2) { background-color: #DBEAFE; }
+.nav-bg:nth-child(3) { background-color: #EFF6FF; }
 
 .nav-items {
   display: flex;
   gap: 2rem;
   padding: 8rem;
   height: 100%;
-  background-color: #1e40af;
+  background-color: #ffffff;
   opacity: 0;
   will-change: opacity;
   pointer-events: inherit;
@@ -204,7 +204,7 @@ select option {
 
 .nav-items a {
   text-decoration: none;
-  color: #fff;
+  color: #1E293B;
   display: block;
   letter-spacing: -2%;
   line-height: 1.1;
@@ -218,7 +218,7 @@ select option {
 }
 
 .nav-socials a { font-size: 1.25rem; }
-.nav-legal a { font-size: 0.9rem; color: #93c5fd; }
+.nav-legal a { font-size: 0.9rem; color: #64748B; }
 .nav-primary-links a { font-size: 3.5rem; font-weight: 600; }
 .nav-secondary-links a { font-size: 1.75rem; }
 

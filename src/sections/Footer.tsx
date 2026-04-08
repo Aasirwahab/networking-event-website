@@ -68,7 +68,7 @@ export function Footer() {
   const FooterContent = (
     <footer 
       ref={footerRef}
-      className={`bg-[#5174d6] text-white pt-16 lg:pt-20 pb-8 flex flex-col justify-between relative overflow-hidden ${isSticky ? '' : 'w-full'}`}
+      className={`bg-primary text-white pt-16 lg:pt-20 pb-8 flex flex-col justify-between relative overflow-hidden ${isSticky ? '' : 'w-full'}`}
     >
       {/* Massive Brand Watermark */}
       <div className="absolute -bottom-10 lg:-bottom-20 left-1/2 -translate-x-1/2 select-none pointer-events-none w-full text-center">

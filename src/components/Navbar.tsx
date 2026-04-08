@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import { MenuOverlay } from './MenuOverlay';
 import { usePageTransition } from './TransitionProvider';
@@ -11,12 +11,27 @@ import { INTRO_END_DELAY_SEC } from './Intro';
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { navigateTo } = usePageTransition();
   const pathname = usePathname();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // If we are on the homepage, delay the Navbar reveal until the Intro cinematic finishes
   const shouldDelay = pathname === '/';
   const delayAmount = shouldDelay ? INTRO_END_DELAY_SEC : 0;
+
+  // Theme-based colors
+  const isDarkTheme = !isScrolled && !mobileMenuOpen;
+  const textColor = isDarkTheme ? 'text-white' : 'text-slate-900';
+  const iconBg = isDarkTheme ? 'bg-white' : 'bg-slate-900';
+  const subTextColor = isDarkTheme ? 'text-white/70 group-hover:text-white' : 'text-slate-500 group-hover:text-slate-900';
 
   return (
     <>
@@ -24,10 +39,10 @@ export function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, delay: delayAmount, ease: [0.16, 1, 0.3, 1] }}
-        className={`top-0 left-0 right-0 z-[9999] ease-custom-out transition-all duration-500 ${
-          mobileMenuOpen
-            ? 'fixed bg-transparent text-white pt-8'
-            : 'absolute bg-transparent py-8'
+        className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-500 ease-in-out ${
+          isScrolled && !mobileMenuOpen 
+            ? 'bg-transparent py-4' 
+            : 'bg-transparent py-8'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
@@ -46,7 +61,7 @@ export function Navbar() {
               }} 
               className={`group flex items-center gap-1.5 transition-transform duration-300 hover:scale-[1.02]`}
             >
-              <span className={`text-2xl font-black tracking-tighter uppercase transition-all duration-500 text-white`}>
+              <span className={`text-2xl font-black tracking-tighter uppercase transition-all duration-500 ${textColor}`}>
                 Networx
               </span>
               <span className="text-[10px] tracking-[0.6em] uppercase font-bold text-primary ml-1">
@@ -65,15 +80,15 @@ export function Navbar() {
                 <span className={`h-[1px] ease-custom-out transition-all duration-500 ${
                   mobileMenuOpen
                     ? 'w-8 bg-white translate-y-[6px] rotate-45'
-                    : `w-8 group-hover:w-10 bg-white shadow-xl`
+                    : `w-8 group-hover:w-10 ${iconBg} shadow-sm`
                 }`}></span>
                 <span className={`h-[1px] ease-custom-out transition-all duration-500 ${
                   mobileMenuOpen
                     ? 'w-8 bg-white -translate-y-[0px] -rotate-45'
-                    : `w-5 group-hover:w-10 bg-white shadow-xl`
+                    : `w-5 group-hover:w-10 ${iconBg} shadow-sm`
                 }`}></span>
                 {!mobileMenuOpen && (
-                   <span className={`text-[9px] uppercase tracking-[0.3em] font-bold mt-1 transition-all duration-500 text-white/70 group-hover:text-white`}>
+                   <span className={`text-[9px] uppercase tracking-[0.3em] font-bold mt-1 transition-all duration-500 ${subTextColor}`}>
                      Menu
                    </span>
                 )}
@@ -84,7 +99,11 @@ export function Navbar() {
       </motion.header>
 
       {/* Full Screen Menu Overlay */}
-      <MenuOverlay isOpen={mobileMenuOpen} onLinkClick={() => setMobileMenuOpen(false)} />
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <MenuOverlay isOpen={mobileMenuOpen} onLinkClick={() => setMobileMenuOpen(false)} />
+        )}
+      </AnimatePresence>
     </>
   );
 }

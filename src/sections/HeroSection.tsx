@@ -76,7 +76,7 @@ export function HeroSection() {
             <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-3">
               <button
                 onClick={() => navigateTo('/events')}
-                className="group inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full font-semibold uppercase tracking-[0.15em] text-[11px] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_12px_30px_rgba(197,160,89,0.3)] cursor-pointer"
+                className="group inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full font-semibold uppercase tracking-[0.15em] text-[11px] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_12px_30px_rgba(37,99,235,0.25)] cursor-pointer"
               >
                 Explore Events
                 <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
