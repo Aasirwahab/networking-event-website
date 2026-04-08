@@ -15,11 +15,24 @@ function VideoCard({ story, isActive, showDragHint }: VideoCardProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [videoError, setVideoError] = useState(false);
 
   const togglePlay = () => {
     if (!videoRef.current) return;
+
+    // Lazily set the video src on first play attempt
+    if (!videoLoaded && !videoError) {
+      videoRef.current.src = story.videoUrl;
+      videoRef.current.load();
+      setVideoLoaded(true);
+    }
+
     if (videoRef.current.paused) {
-      videoRef.current.play();
+      videoRef.current.play().catch(() => {
+        setVideoError(true);
+        setIsPlaying(false);
+      });
       setIsPlaying(true);
     } else {
       videoRef.current.pause();
@@ -39,16 +52,25 @@ function VideoCard({ story, isActive, showDragHint }: VideoCardProps) {
       className="relative w-full rounded-[24px] overflow-hidden border border-white/10 bg-black aspect-9-16"
       onClick={togglePlay}
     >
-      {/* Video */}
+      {/* Thumbnail image (always visible as background) */}
+      {story.thumbnail && (
+        <img
+          src={story.thumbnail}
+          alt={story.title}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${isPlaying && videoLoaded && !videoError ? 'opacity-0' : 'opacity-100'}`}
+        />
+      )}
+
+      {/* Video (lazy loaded, only shown when playing) */}
       <video
         ref={videoRef}
-        src={story.videoUrl}
         poster={story.thumbnail}
-        className="absolute inset-0 w-full h-full object-cover"
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${isPlaying && videoLoaded && !videoError ? 'opacity-100' : 'opacity-0'}`}
         loop
         muted={isMuted}
         playsInline
-        preload="metadata"
+        preload="none"
+        onError={() => setVideoError(true)}
       />
 
       {/* Gradient overlays */}

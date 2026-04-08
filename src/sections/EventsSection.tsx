@@ -30,32 +30,35 @@ const itemVariants = {
 };
 
 export function EventsSection() {
-  const container = useRef<HTMLElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ["start end", 'end start']
+    target: sectionRef,
+    offset: ["start end", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
 
   return (
-    <section 
-      id="events" 
-      ref={container} 
-      className="relative py-20 lg:py-30 overflow-hidden clip-parallax"
+    <section
+      id="events"
+      ref={sectionRef}
+      className="relative py-20 lg:py-30 overflow-hidden"
+      style={{ contain: 'layout style paint' }}
     >
-      <div className='fixed top-[-10vh] left-0 h-[120vh] w-full z-0 pointer-events-none'>
-        <motion.div style={{ y }} className='relative w-full h-full'>
-          <Image 
-            src="/images/london/11.png" 
-            fill 
-            alt="Events background image" 
-            className="object-cover" 
-            sizes="100vw"
-          />
-          {/* Dark Overlay */}
-          <div className="absolute inset-0 bg-black/60" />
-        </motion.div>
-      </div>
+      <motion.div
+        className="absolute inset-[-15%] z-0 will-change-transform"
+        style={{ y }}
+      >
+        <Image
+          src="/images/london/11.png"
+          fill
+          alt="Events background image"
+          className="object-cover"
+          sizes="100vw"
+          quality={75}
+        />
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/60" />
+      </motion.div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}

@@ -33,6 +33,7 @@
   }
   html {
     scroll-behavior: auto !important;
+    position: relative;
   }
   body {
     @apply bg-background text-foreground font-sans antialiased;

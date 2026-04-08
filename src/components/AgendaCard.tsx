@@ -1,7 +1,6 @@
 'use client';
 
-import { useTransform, motion, useScroll, MotionValue } from 'framer-motion';
-import { useRef } from 'react';
+import { useTransform, motion, MotionValue } from 'framer-motion';
 import Image from 'next/image';
 
 interface AgendaCardProps {
@@ -14,6 +13,7 @@ interface AgendaCardProps {
   progress: MotionValue<number>;
   range: [number, number];
   targetScale: number;
+  rangeStep: number;
 }
 
 export const AgendaCard = ({
@@ -25,27 +25,25 @@ export const AgendaCard = ({
   color,
   progress,
   range,
-  targetScale
+  targetScale,
+  rangeStep
 }: AgendaCardProps) => {
-  const container = useRef(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ['start end', 'start start']
-  });
-
-  const imageScale = useTransform(scrollYProgress, [0, 1], [2, 1]);
+  // Derive image scale from parent progress instead of a per-card useScroll()
+  // This eliminates 5 extra scroll listeners (was the primary source of scroll lag)
+  const imageEntryStart = Math.max(0, range[0] - rangeStep);
+  const imageEntryEnd = range[0];
+  const imageScale = useTransform(progress, [imageEntryStart, imageEntryEnd], [2, 1]);
   const scale = useTransform(progress, range, [1, targetScale]);
 
   return (
-    <div ref={container} className="h-screen flex items-center justify-center sticky top-0">
-      <motion.div 
+    <div className="h-screen flex items-center justify-center sticky top-0">
+      <motion.div
         style={{
-          backgroundColor: color, 
-          scale, 
+          backgroundColor: color,
+          scale,
           top: `calc(-5vh + ${index * 25}px)`
-        }} 
-        className="relative flex flex-col h-[600px] w-full max-w-[1000px] rounded-[40px] p-8 lg:p-12 origin-top border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.2)] overflow-hidden backdrop-blur-2xl"
+        }}
+        className="relative flex flex-col h-[600px] w-full max-w-[1000px] rounded-[40px] p-8 lg:p-12 origin-top border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.2)] overflow-hidden backdrop-blur-2xl will-change-transform"
       >
         <div className="flex h-full gap-8 lg:gap-12 flex-col lg:flex-row items-center">
           {/* Text Content */}
@@ -64,7 +62,7 @@ export const AgendaCard = ({
           {/* Image Content */}
           <div className="relative w-full lg:w-3/5 h-[300px] lg:h-full rounded-2xl overflow-hidden shadow-2xl">
             <motion.div
-              className="w-full h-full"
+              className="relative w-full h-full will-change-transform"
               style={{ scale: imageScale }}
             >
               <Image

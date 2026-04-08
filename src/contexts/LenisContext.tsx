@@ -32,11 +32,11 @@ export const LenisProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
     try {
       lenisInstance = new Lenis({
-        duration: 1.0,
-        easing: (t) => 1 - Math.pow(1 - t, 4),
+        duration: 0.8,
+        easing: (t) => 1 - Math.pow(1 - t, 3),
         smoothWheel: true,
-        wheelMultiplier: 1.2,
-        touchMultiplier: 1.5,
+        wheelMultiplier: 1.0,
+        touchMultiplier: 1.8,
       });
 
       lenisRef.current = lenisInstance;

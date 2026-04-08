@@ -12,17 +12,19 @@ export const IMAGES = [
   "/images/networx_hero_event.png",
 ];
 
-export const INTRO_END_DELAY_SEC = 0.35 + (IMAGES.length - 1) * 0.15 + 0.6 + 1.4 + 0.85;
+export const INTRO_END_DELAY_SEC = 0.35 + (IMAGES.length - 1) * 0.5 + 1.2 + 1.4 + 0.85;
 
 const INITIAL_SCALE = 0.35;
 
 const Intro = () => {
-  const refs = useRef<(HTMLImageElement | null)[]>([]);
+  const imgRefs = useRef<(HTMLImageElement | null)[]>([]);
+  const overlayRefs = useRef<(HTMLDivElement | null)[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
   const radialRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const imgs = refs.current.filter(Boolean);
+    const imgs = imgRefs.current.filter(Boolean);
+    const overlays = overlayRefs.current.filter(Boolean);
     const container = containerRef.current;
     if (!imgs.length || !container) return;
 
@@ -30,13 +32,25 @@ const Intro = () => {
 
     const timeline = gsap.timeline();
 
-    // Phase 1: Quick staggered image reveals inside the small centered box
+    // Phase 1: Slow, premium staggered image reveals inside the centered box
     timeline.to(imgs, {
       clipPath: "inset(0% 0% 0% 0%)",
-      duration: 0.6,
+      duration: 1.2,
       delay: 0.35,
-      stagger: { each: 0.15, ease: "power1.out" },
+      stagger: { each: 0.5, ease: "power2.inOut" },
     });
+
+    // Shading effect via opacity overlay (GPU-accelerated, replaces filter: brightness)
+    timeline.to(
+      overlays,
+      {
+        opacity: 0,
+        duration: 1.0,
+        stagger: 0.5,
+        ease: "power2.out",
+      },
+      0.35
+    );
 
     // Phase 2: Smooth, balanced ZOOM from center (scale transform — GPU accelerated)
     timeline.to(container, {
@@ -68,16 +82,23 @@ const Intro = () => {
         className="relative w-full h-[100dvh] will-change-transform"
       >
         {IMAGES.map((src, i) => (
-          <img
-            key={src}
-            ref={(el) => {
-              refs.current[i] = el;
-            }}
-            src={src}
-            alt=""
-            className="absolute inset-0 size-full object-cover intro-image-initial"
-            style={{ zIndex: i }}
-          />
+          <div key={src} className="absolute inset-0" style={{ zIndex: i }}>
+            <img
+              ref={(el) => {
+                imgRefs.current[i] = el;
+              }}
+              src={src}
+              alt=""
+              className="absolute inset-0 size-full object-cover intro-image-initial"
+            />
+            {/* Dark overlay for shading effect — opacity animation is GPU-accelerated */}
+            <div
+              ref={(el) => {
+                overlayRefs.current[i] = el;
+              }}
+              className="absolute inset-0 bg-black/50 pointer-events-none intro-image-initial will-change-[opacity]"
+            />
+          </div>
         ))}
         <div
           ref={radialRef}

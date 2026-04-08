@@ -210,7 +210,7 @@ const ImagesFlow: React.FC<ImagesFlowProps> = ({
   }, [images, lenisContext.isReady]);
 
   return (
-    <main ref={containerRef} className={cn('w-full overflow-x-hidden', className)}>
+    <main ref={containerRef} className={cn('relative w-full overflow-x-hidden', className)}>
       {/* Intro */}
       <section
         ref={introRef}

@@ -55,7 +55,7 @@ export function AgendaSection() {
   const rangeStep = 1 / agenda.length;
 
   return (
-    <section className="bg-[#5174d6] text-white relative pt-20 lg:pt-32">
+    <section className="bg-[#5174d6] text-white relative pt-20 lg:pt-32" style={{ contain: 'layout style paint' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-10 lg:mb-20">
           <h2 className="text-3xl lg:text-5xl font-light tracking-tight mb-6">
@@ -78,6 +78,7 @@ export function AgendaSection() {
               progress={scrollYProgress}
               range={[index * rangeStep, 1]}
               targetScale={targetScale}
+              rangeStep={rangeStep}
             />
           );
         })}

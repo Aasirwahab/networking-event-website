@@ -62,8 +62,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className="antialiased">
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
+      <body className="antialiased" suppressHydrationWarning>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -77,7 +77,7 @@ export default function RootLayout({
         <LenisProvider>
           <TransitionProvider>
             <Navbar />
-            <div id="main-content">
+            <div id="main-content" className="relative">
               {children}
             </div>
             <Footer />
