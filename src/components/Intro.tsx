@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 
 export const IMAGES = [
@@ -75,6 +76,8 @@ const Intro = () => {
     };
   }, []);
 
+  const zClasses = ['z-0', 'z-[1]', 'z-[2]', 'z-[3]', 'z-[4]', 'z-[5]'];
+
   return (
     <div className="absolute inset-0 flex items-center justify-center bg-zinc-950 overflow-hidden">
       <div
@@ -82,14 +85,17 @@ const Intro = () => {
         className="relative w-full h-[100dvh] will-change-transform"
       >
         {IMAGES.map((src, i) => (
-          <div key={src} className="absolute inset-0" style={{ zIndex: i }}>
-            <img
+          <div key={src} className={`absolute inset-0 ${zClasses[i]}`} aria-hidden="true">
+            <Image
               ref={(el) => {
                 imgRefs.current[i] = el;
               }}
               src={src}
               alt=""
-              className="absolute inset-0 size-full object-cover intro-image-initial"
+              fill
+              sizes="100vw"
+              priority={i <= 1}
+              className="object-cover intro-image-initial"
             />
             {/* Dark overlay for shading effect — opacity animation is GPU-accelerated */}
             <div

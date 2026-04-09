@@ -1,52 +1,15 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { footerLinks, socialLinks } from '@/data/content';
-
-// Social icons as SVG components
-const TwitterIcon = () => (
-  <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-  </svg>
-);
-
-const InstagramIcon = () => (
-  <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
-    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
-  </svg>
-);
+import { TwitterIcon, InstagramIcon } from '@/components/SocialIcons';
+import { useFooterSticky } from '@/hooks/useFooterSticky';
 
 export function Footer() {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  
-  const footerRef = useRef<HTMLDivElement>(null);
-  const [footerHeight, setFooterHeight] = useState(0);
-  const [windowHeight, setWindowHeight] = useState(0);
-
-  useEffect(() => {
-    // Only apply logic on client
-    setWindowHeight(window.innerHeight);
-
-    const handleResize = () => setWindowHeight(window.innerHeight);
-    window.addEventListener('resize', handleResize);
-
-    const resizeObserver = new ResizeObserver((entries) => {
-      for (let entry of entries) {
-        setFooterHeight(entry.target.getBoundingClientRect().height);
-      }
-    });
-
-    if (footerRef.current) {
-      resizeObserver.observe(footerRef.current);
-    }
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      resizeObserver.disconnect();
-    };
-  }, []);
+  const { footerRef, wrapperRef, innerRef, isSticky } = useFooterSticky();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -60,13 +23,16 @@ export function Footer() {
     setTimeout(() => setStatus('idle'), 4000);
   };
 
-  // Check if we can safely apply sticky effect (requires height to be < window height to feel right)
-  // But even if taller than window height, standard footer scroll is better to ensure viewability.
-  const isSticky = footerHeight > 0 && windowHeight > 0 && footerHeight <= windowHeight;
-
-  // The actual footer content payload
-  const FooterContent = (
-    <footer 
+  return (
+    <div
+      ref={wrapperRef}
+      className={`relative w-full ${isSticky ? 'clip-footer' : ''}`}
+    >
+      <div
+        ref={innerRef}
+        className={isSticky ? "fixed bottom-0 left-0 w-full" : "w-full"}
+      >
+    <footer
       ref={footerRef}
       className={`bg-primary text-white pt-16 lg:pt-20 pb-8 flex flex-col justify-between relative overflow-hidden ${isSticky ? '' : 'w-full'}`}
     >
@@ -82,7 +48,7 @@ export function Footer() {
         {/* Top Tier: Newsletter Hero */}
         <div className="mb-16 lg:mb-20">
           <div className="max-w-2xl">
-            <span className="text-primary text-xs uppercase tracking-[0.3em] font-medium mb-4 block underline underline-offset-8 decoration-primary/30">Intelligence</span>
+            <span className="text-white/50 text-xs uppercase tracking-[0.3em] font-medium mb-4 block underline underline-offset-8 decoration-white/20">Intelligence</span>
             <h3 className="text-3xl lg:text-4xl font-extralight italic mb-8 max-w-lg leading-tight text-white">
               Stay connected with London's most welcoming networking community.
             </h3>
@@ -94,11 +60,11 @@ export function Footer() {
                 placeholder="your@email.com"
                 required
                 aria-label="Email address for newsletter"
-                className="w-full bg-transparent border-b border-white/20 py-6 pr-12 text-white placeholder:text-white/20 focus:outline-none focus:border-primary transition-all text-xl font-extralight group-hover:border-white/40"
+                className="w-full bg-transparent border-b border-white/20 py-6 pr-12 text-white placeholder:text-white/20 focus:outline-none focus:border-white/60 transition-all text-xl font-extralight group-hover:border-white/40"
               />
               <button
                 type="submit"
-                className="absolute right-0 top-1/2 -translate-y-1/2 text-primary hover:text-white transition-all transform hover:scale-110"
+                className="absolute right-0 top-1/2 -translate-y-1/2 text-white hover:text-blue-200 transition-all transform hover:scale-110"
                 aria-label="Subscribe"
                 title="Subscribe to newsletter"
               >
@@ -119,7 +85,7 @@ export function Footer() {
           {/* Branding & Contact */}
           <div className="col-span-2 lg:col-span-1">
             <p className="text-white/40 text-xs uppercase tracking-widest font-bold mb-6">Connect</p>
-            <a href="mailto:hello@networxlondon.com" className="text-white text-md font-medium hover:text-primary transition-colors block mb-2 underline underline-offset-4 decoration-primary/20">
+            <a href="mailto:hello@networxlondon.com" className="text-white text-md font-medium hover:text-blue-200 transition-colors block mb-2 underline underline-offset-4 decoration-white/20">
               hello@networxlondon.com
             </a>
             <p className="text-white/30 text-sm leading-relaxed mb-6 font-light">
@@ -127,8 +93,8 @@ export function Footer() {
               United Kingdom
             </p>
             <div className="flex items-center gap-6">
-              <a href={socialLinks[0].href} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-primary hover:scale-125 transition-all duration-300 inline-block" title={socialLinks[0].label}><TwitterIcon /></a>
-              <a href={socialLinks[2].href} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-primary hover:scale-125 transition-all duration-300 inline-block" title={socialLinks[2].label}><InstagramIcon /></a>
+              <a href={socialLinks[0].href} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-blue-200 hover:scale-125 transition-all duration-300 inline-block" title={socialLinks[0].label}><TwitterIcon /></a>
+              <a href={socialLinks[2].href} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-blue-200 hover:scale-125 transition-all duration-300 inline-block" title={socialLinks[2].label}><InstagramIcon /></a>
             </div>
           </div>
 
@@ -175,7 +141,7 @@ export function Footer() {
           <div className="flex items-center gap-2">
             <span className="text-3xl font-extralight tracking-tighter text-white">NETWORX</span>
             <div className="h-4 w-[1px] bg-white/10 mx-1" />
-            <span className="text-[10px] tracking-[0.6em] uppercase text-primary font-bold">LONDON</span>
+            <span className="text-[10px] tracking-[0.6em] uppercase text-blue-200 font-bold">LONDON</span>
           </div>
           <p className="text-white/20 text-[10px] lg:text-[11px] uppercase tracking-[0.2em] font-light">
             &copy; {new Date().getFullYear()} Networx London. All Rights Reserved. Human Networking Made Simple.
@@ -183,19 +149,6 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  );
-
-  // Use a stable DOM structure to prevent unmounting the ref.
-  return (
-    <div 
-      className={`relative w-full ${isSticky ? 'clip-footer' : ''}`}
-      style={{ '--footer-h': isSticky ? `${footerHeight}px` : 'auto' } as React.CSSProperties}
-    >
-      <div 
-        className={isSticky ? "fixed bottom-0 left-0 w-full" : "w-full"}
-        style={{ height: 'var(--footer-h)' }}
-      >
-        {FooterContent}
       </div>
     </div>
   );

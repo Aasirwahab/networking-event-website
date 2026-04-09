@@ -3,7 +3,7 @@
   width: 100%;
   min-height: 100vh;
   display: flex;
-  background-color: #5174d6; /* Matching existing background */
+  background-color: #2563EB; /* Matching existing background */
 }
 
 .agenda-header-col {
@@ -78,7 +78,7 @@
 }
 
 .agenda-step.active p {
-  color: #5174d6;
+  color: #2563EB;
 }
 
 .agenda-step.active .agenda-step-index {
@@ -104,7 +104,7 @@
   .agenda-section {
     flex-direction: column;
     min-height: auto;
-    background-color: #5174d6;
+    background-color: #2563EB;
   }
 
   .agenda-header-col {

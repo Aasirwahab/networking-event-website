@@ -49,7 +49,7 @@ export function TicketTiers() {
               transition={{ delay: index * 0.1, duration: 0.8 }}
               className={`relative flex flex-col p-10 rounded-[48px] border transition-all duration-700 hover:scale-[1.02] ${
                 tier.accent 
-                ? 'bg-primary border-primary shadow-[0_30px_60px_rgba(197,160,89,0.2)]' 
+                ? 'bg-primary border-primary shadow-[0_30px_60px_rgba(37,99,235,0.25)]'
                 : 'bg-white/5 border-white/10 hover:bg-white/10'
               }`}
             >
@@ -93,7 +93,7 @@ export function TicketTiers() {
               <button className={`w-full py-5 rounded-3xl font-black text-xs uppercase tracking-widest-plus flex items-center justify-center gap-3 transition-all duration-500 overflow-hidden group ${
                 tier.accent 
                 ? 'bg-white text-primary hover:bg-[#050505] hover:text-white' 
-                : 'bg-primary text-white hover:bg-white hover:text-primary shadow-[0_15px_30px_rgba(197,160,89,0.1)]'
+                : 'bg-primary text-white hover:bg-white hover:text-primary shadow-[0_15px_30px_rgba(37,99,235,0.15)]'
               }`}>
                 Book Your Seat
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />

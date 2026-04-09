@@ -136,7 +136,7 @@ export function BenefitsSection() {
   const rangeStep = 1 / benefits.length;
 
   return (
-    <section className="bg-white text-slate-900 relative py-20 lg:py-32" style={{ contain: 'layout style paint' }}>
+    <section className="bg-white text-slate-900 relative py-20 lg:py-32 contain-strict">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-24">

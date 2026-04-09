@@ -24,16 +24,10 @@ export function AboutSection() {
             </ScrollReveal>
             
             <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              variants={{
-                hidden: { clipPath: 'inset(100% 0 0 0)' },
-                visible: { 
-                  clipPath: 'inset(0% 0 0 0)', 
-                  transition: { duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.1 } 
-                }
-              }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
               className="overflow-hidden rounded-xl"
               whileHover="hover"
             >
@@ -58,16 +52,10 @@ export function AboutSection() {
           {/* Center Column */}
           <div className="lg:col-span-5 space-y-6">
             <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              variants={{
-                hidden: { clipPath: 'inset(0 100% 0 0)' },
-                visible: { 
-                  clipPath: 'inset(0% 0 0 0)', 
-                  transition: { duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.15 } 
-                }
-              }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
               className="overflow-hidden rounded-xl"
               whileHover="hover"
             >
@@ -114,16 +102,10 @@ export function AboutSection() {
             </ScrollReveal>
             
             <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              variants={{
-                hidden: { clipPath: 'inset(100% 0 0 0)' },
-                visible: { 
-                  clipPath: 'inset(0% 0 0 0)', 
-                  transition: { duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.4 } 
-                }
-              }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
               className="overflow-hidden rounded-xl h-[400px] lg:h-[500px]"
               whileHover="hover"
             >

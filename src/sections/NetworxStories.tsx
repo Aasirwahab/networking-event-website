@@ -2,6 +2,7 @@
 
 import { useRef, useState, useCallback } from 'react';
 import { motion, AnimatePresence, useMotionValue, useTransform, PanInfo } from 'framer-motion';
+import Image from 'next/image';
 import { networxStories } from '@/data/content';
 import { MapPin, Play, Pause, Volume2, VolumeX, GripHorizontal } from 'lucide-react';
 
@@ -49,15 +50,17 @@ function VideoCard({ story, isActive, showDragHint }: VideoCardProps) {
 
   return (
     <div
-      className="relative w-full rounded-[24px] overflow-hidden border border-white/10 bg-black aspect-9-16"
+      className="relative w-full rounded-[24px] overflow-hidden border border-white/10 bg-black aspect-9-16 cursor-pointer"
       onClick={togglePlay}
     >
       {/* Thumbnail image (always visible as background) */}
       {story.thumbnail && (
-        <img
+        <Image
           src={story.thumbnail}
           alt={story.title}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${isPlaying && videoLoaded && !videoError ? 'opacity-0' : 'opacity-100'}`}
+          fill
+          sizes="(max-width: 768px) 80vw, 340px"
+          className={`object-cover transition-opacity duration-300 ${isPlaying && videoLoaded && !videoError ? 'opacity-0' : 'opacity-100'}`}
         />
       )}
 
@@ -86,6 +89,7 @@ function VideoCard({ story, isActive, showDragHint }: VideoCardProps) {
       {/* Mute toggle - top right */}
       <button
         onClick={toggleMute}
+        aria-label={isMuted ? 'Unmute video' : 'Mute video'}
         className="absolute top-5 right-5 z-10 w-9 h-9 rounded-full bg-white/10 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/60 hover:text-white transition-colors"
       >
         {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
@@ -191,17 +195,16 @@ export function NetworxStories() {
     else if (info.offset.x > 60) goPrev();
   };
 
-  // Calculate offset for each card relative to active (wrapping around)
-  const getOffset = (index: number) => {
+  const getOffset = useCallback((index: number) => {
     let offset = index - activeIndex;
     const half = Math.floor(total / 2);
     if (offset > half) offset -= total;
     if (offset < -half) offset += total;
     return offset;
-  };
+  }, [activeIndex, total]);
 
   return (
-    <section className="py-20 bg-[#5174d6] overflow-hidden">
+    <section className="py-20 bg-primary overflow-hidden contain-strict">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-12 flex items-end justify-between">

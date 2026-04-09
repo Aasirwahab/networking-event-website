@@ -41,8 +41,7 @@ export function EventsSection() {
     <section
       id="events"
       ref={sectionRef}
-      className="relative py-20 lg:py-30 overflow-hidden"
-      style={{ contain: 'layout style paint' }}
+      className="relative py-20 lg:py-30 overflow-hidden contain-strict"
     >
       <motion.div
         className="absolute inset-[-15%] z-0 will-change-transform"

@@ -151,7 +151,8 @@ const ImagesFlow: React.FC<ImagesFlowProps> = ({
     const delayStep = Math.min(0.03, maxTotalDelay / Math.max(1, images.length));
     const lastImgDelay = (images.length - 1) * delayStep;
     const progressMultiplier = 1 / (1 - lastImgDelay);
-    const endScreens = progressMultiplier / 0.4;
+    // Add extra buffer (1.5 screens) so the last image holds in place before unpin
+    const endScreens = (progressMultiplier / 0.4) + 1.5;
 
     const st = ScrollTrigger.create({
       trigger: flow,
@@ -160,6 +161,7 @@ const ImagesFlow: React.FC<ImagesFlowProps> = ({
       pin: true,
       pinSpacing: true,
       scrub: 1,
+      anticipatePin: 1,
       onUpdate: (self) => {
         const progress = self.progress;
 
@@ -170,10 +172,8 @@ const ImagesFlow: React.FC<ImagesFlowProps> = ({
           const start = initPos[index];
           const end = finalPos[index];
 
-          let currentProgress = imgProgress;
-          if (index === images.length - 1) {
-            currentProgress = Math.min(1, imgProgress);
-          }
+          // Clamp all images to [0, 1] — extra scroll distance is a hold zone
+          const currentProgress = Math.min(1, imgProgress);
 
           let interpX = gsap.utils.interpolate(start.x, end.x, currentProgress);
           let interpY = gsap.utils.interpolate(start.y, end.y, currentProgress);

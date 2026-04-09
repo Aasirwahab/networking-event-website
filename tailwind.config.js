@@ -55,7 +55,6 @@ module.exports = {
         "text-secondary": "#475569",
         "text-muted": "#94A3B8",
         "bg-gray": "#F8FAFC",
-        "fresh-mint": "#10B981",
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],

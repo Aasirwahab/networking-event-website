@@ -14,7 +14,7 @@ export function CTASection() {
   const textY = useTransform(scrollYProgress, [0, 1], [50, -50]);
 
   return (
-    <section ref={sectionRef} className="relative py-20 lg:py-30 bg-white overflow-hidden" style={{ contain: 'layout style paint' }}>
+    <section ref={sectionRef} className="relative py-20 lg:py-30 bg-white overflow-hidden contain-strict">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal className="relative flex items-center justify-center min-h-[300px]">
           {/* Background Text with Image Mask */}

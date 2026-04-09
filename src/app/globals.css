@@ -105,16 +105,16 @@ select option {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #f8fafc;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
+  background: #94a3b8;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a1a1a1;
+  background: #64748b;
 }
 
 /* Hide scrollbar utility */
@@ -272,6 +272,9 @@ select option {
 
 /* ── Utility classes (replace inline styles) ── */
 
+.contain-strict {
+  contain: layout style paint;
+}
 .ease-custom-out {
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }

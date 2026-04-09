@@ -3,12 +3,11 @@
 import Image from 'next/image';
 
 interface AgendaCardProps {
-  index: number;
   time: string;
   title: string;
   description: string;
   src: string;
-  color: string;
+  bgClass: string;
 }
 
 export const AgendaCard = ({
@@ -16,12 +15,11 @@ export const AgendaCard = ({
   title,
   description,
   src,
-  color,
+  bgClass,
 }: AgendaCardProps) => {
   return (
-    <div 
-      className="agenda-card group relative flex flex-col w-full rounded-[2rem] p-6 lg:p-10 border border-white/5 shadow-2xl overflow-hidden backdrop-blur-xl transition-all duration-500 hover:border-white/20"
-      style={{ backgroundColor: color }}
+    <div
+      className={`agenda-card group relative flex flex-col w-full rounded-[2rem] p-6 lg:p-10 border border-white/5 shadow-2xl overflow-hidden backdrop-blur-xl transition-all duration-500 hover:border-white/20 ${bgClass}`}
     >
       <div className="flex flex-col gap-6 lg:gap-8">
         {/* Image Content */}
@@ -37,7 +35,7 @@ export const AgendaCard = ({
 
         {/* Text Content */}
         <div className="flex flex-col">
-          <span className="text-[#a5b4fc] font-medium tracking-widest uppercase mb-3 block text-sm">
+          <span className="text-blue-300 font-medium tracking-widest uppercase mb-3 block text-sm">
             {time}
           </span>
           <h2 className="text-2xl lg:text-3xl font-medium mb-4 text-white">

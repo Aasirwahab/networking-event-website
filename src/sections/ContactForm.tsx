@@ -125,6 +125,7 @@ export function ContactForm() {
                   id="firstName"
                   type="text"
                   placeholder="Alexander"
+                  aria-required="true"
                   {...{ 'aria-invalid': errors.firstName ? 'true' : 'false' }}
                   aria-describedby={errors.firstName ? 'firstName-error' : undefined}
                   className={inputClasses('firstName')}
@@ -140,6 +141,7 @@ export function ContactForm() {
                   id="lastName"
                   type="text"
                   placeholder="Sterling"
+                  aria-required="true"
                   {...{ 'aria-invalid': errors.lastName ? 'true' : 'false' }}
                   aria-describedby={errors.lastName ? 'lastName-error' : undefined}
                   className={inputClasses('lastName')}
@@ -157,6 +159,7 @@ export function ContactForm() {
                 id="email"
                 type="email"
                 placeholder="alex@example.com"
+                aria-required="true"
                 {...{ 'aria-invalid': errors.email ? 'true' : 'false' }}
                 aria-describedby={errors.email ? 'email-error' : undefined}
                 className={inputClasses('email')}
@@ -171,6 +174,7 @@ export function ContactForm() {
               <label htmlFor="interest" className="text-[10px] font-black uppercase tracking-widest text-white/20 ml-2">Interest</label>
               <select
                 id="interest"
+                aria-required="true"
                 {...{ 'aria-invalid': errors.interest ? 'true' : 'false' }}
                 aria-describedby={errors.interest ? 'interest-error' : undefined}
                 className={`${inputClasses('interest')} ${!errors.interest ? 'text-white/50' : ''} appearance-none`}
@@ -193,6 +197,7 @@ export function ContactForm() {
                 id="message"
                 rows={4}
                 placeholder="Tell us about yourself..."
+                aria-required="true"
                 {...{ 'aria-invalid': errors.message ? 'true' : 'false' }}
                 aria-describedby={errors.message ? 'message-error' : undefined}
                 className={`${inputClasses('message')} resize-none`}
