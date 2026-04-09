@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import Image from "next/image";
 import gsap from "gsap";
 
 export const IMAGES = [
@@ -86,16 +85,14 @@ const Intro = () => {
       >
         {IMAGES.map((src, i) => (
           <div key={src} className={`absolute inset-0 ${zClasses[i]}`} aria-hidden="true">
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               ref={(el) => {
                 imgRefs.current[i] = el;
               }}
               src={src}
               alt=""
-              fill
-              sizes="100vw"
-              priority={i <= 1}
-              className="object-cover intro-image-initial"
+              className="absolute inset-0 w-full h-full object-cover intro-image-initial"
             />
             {/* Dark overlay for shading effect — opacity animation is GPU-accelerated */}
             <div

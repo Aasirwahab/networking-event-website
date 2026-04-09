@@ -35,6 +35,7 @@ export function SpeakerSpotlight() {
                 src={speaker.image} 
                 alt={speaker.name}
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover transition-transform duration-1000 group-hover:scale-110 grayscale hover:grayscale-0"
               />
               
@@ -85,6 +86,7 @@ export function SpeakerSpotlight() {
                  src={speaker.image} 
                  alt={speaker.name}
                  fill
+                 sizes="(max-width: 640px) 50vw, 25vw"
                  className="object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700 blur-[2px] group-hover:blur-0"
                />
                <div className="absolute inset-0 bg-gradient-to-t from-white/90 to-transparent" />
