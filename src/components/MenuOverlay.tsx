@@ -140,14 +140,6 @@ export const MenuOverlay = ({ isOpen, onLinkClick }: MenuOverlayProps) => {
             ))}
           </div>
 
-          <div className="nav-secondary-links">
-            <Link href="/faq" onClick={(e) => handleLinkClick(e, "/faq")}>
-              <span className="nav-link-reveal inline-block">FAQ</span>
-            </Link>
-            <Link href="/changelog" onClick={(e) => handleLinkClick(e, "/changelog")}>
-              <span className="nav-link-reveal inline-block">Changelog</span>
-            </Link>
-          </div>
         </div>
       </nav>
     </div>

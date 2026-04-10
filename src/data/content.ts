@@ -162,14 +162,12 @@ export const footerLinks = {
     { label: 'Gallery', href: '/gallery' },
   ],
   column2: [
-    { label: 'FAQ', href: '/faq' },
     { label: 'Contact us', href: '/contact' },
     { label: 'Licensing', href: '/licensing' },
   ],
   column3: [
     { label: 'Privacy Policy', href: '/privacy-policy' },
     { label: 'Style Guide', href: '/styleguide' },
-    { label: 'Changelog', href: '/changelog' },
   ],
 };
 

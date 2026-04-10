@@ -172,16 +172,16 @@ select option {
   backface-visibility: hidden;
 }
 
-.nav-bg:nth-child(1) { background-color: #BFDBFE; }
-.nav-bg:nth-child(2) { background-color: #DBEAFE; }
-.nav-bg:nth-child(3) { background-color: #EFF6FF; }
+.nav-bg:nth-child(1) { background-color: #1E3A8A; }
+.nav-bg:nth-child(2) { background-color: #1D4ED8; }
+.nav-bg:nth-child(3) { background-color: #2563EB; }
 
 .nav-items {
   display: flex;
   gap: 2rem;
   padding: 8rem;
   height: 100%;
-  background-color: #ffffff;
+  background-color: #2563EB;
   opacity: 0;
   will-change: opacity;
   pointer-events: inherit;
@@ -204,7 +204,7 @@ select option {
 
 .nav-items a {
   text-decoration: none;
-  color: #1E293B;
+  color: #ffffff;
   display: block;
   letter-spacing: -2%;
   line-height: 1.1;
@@ -217,10 +217,10 @@ select option {
   opacity: 0.7;
 }
 
-.nav-socials a { font-size: 1.25rem; }
-.nav-legal a { font-size: 0.9rem; color: #64748B; }
-.nav-primary-links a { font-size: 3.5rem; font-weight: 600; }
-.nav-secondary-links a { font-size: 1.75rem; }
+.nav-socials a { font-size: 1.25rem; color: #ffffff; }
+.nav-legal a { font-size: 0.9rem; color: #BFDBFE; }
+.nav-primary-links a { font-size: 3.5rem; font-weight: 600; color: #ffffff; }
+.nav-secondary-links a { font-size: 1.75rem; color: #ffffff; }
 
 /* Menu link reveal animation */
 .nav-link-reveal {

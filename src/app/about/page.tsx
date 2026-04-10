@@ -3,6 +3,7 @@ import { SubPageHero } from "@/components/SubPageHero";
 import { VisionSection } from "@/sections/VisionSection";
 import { TeamSection } from "@/sections/TeamSection";
 import { HistorySection } from "@/sections/HistorySection";
+import { FAQSection } from "@/sections/FAQSection";
 
 export const metadata: Metadata = {
   title: 'Our Philosophy',
@@ -21,6 +22,7 @@ export default function AboutPage() {
         <VisionSection />
         <TeamSection />
         <HistorySection />
+        <FAQSection />
       </main>
     </div>
   );

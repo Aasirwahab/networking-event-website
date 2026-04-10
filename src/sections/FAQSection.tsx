@@ -89,7 +89,7 @@ export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-24 md:py-32 relative overflow-hidden">
+    <section id="faq" className="py-24 md:py-32 relative overflow-hidden scroll-mt-24">
       <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-primary/5 blur-[200px] rounded-full" />
 
       <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">

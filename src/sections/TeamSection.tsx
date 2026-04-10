@@ -8,16 +8,20 @@ import { Linkedin, Twitter, ExternalLink } from 'lucide-react';
 
 export function TeamSection() {
   return (
-    <section className="py-24 bg-[#050505]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-24 relative overflow-hidden bg-gradient-to-b from-[#0F1F52] via-[#1E3A8A] to-[#1D4ED8]">
+      {/* Ambient glows */}
+      <div className="pointer-events-none absolute -top-40 left-1/4 w-[600px] h-[600px] bg-blue-400/20 blur-[160px] rounded-full" />
+      <div className="pointer-events-none absolute -bottom-40 right-1/4 w-[600px] h-[600px] bg-indigo-500/20 blur-[160px] rounded-full" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <ScrollReveal className="text-center mb-20">
-           <span className="text-primary text-xs font-bold tracking-[0.4em] uppercase block mb-4 underline underline-offset-8">Our Community</span>
+           <span className="text-blue-200 text-xs font-bold tracking-[0.4em] uppercase block mb-4 underline underline-offset-8">Our Community</span>
            <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-none mb-8">
              WHO <br />
-             <span className="text-white/20">ATTENDS.</span>
+             <span className="text-white/30">ATTENDS.</span>
            </h2>
-           <p className="text-white/30 text-lg font-light leading-relaxed max-w-2xl mx-auto">
+           <p className="text-blue-100/80 text-lg font-light leading-relaxed max-w-2xl mx-auto">
              A diverse mix of company directors, CEOs, entrepreneurs, founders, startups, small business owners, investors, and working professionals.
            </p>
         </ScrollReveal>
@@ -32,7 +36,7 @@ export function TeamSection() {
               transition={{ delay: index * 0.1, duration: 0.8 }}
               className="group relative"
             >
-              <div className="relative aspect-[3/4] overflow-hidden rounded-[32px] border border-white/5 bg-white/5 transition-all duration-700 group-hover:scale-[1.02] group-hover:bg-white/10">
+              <div className="relative aspect-[3/4] overflow-hidden rounded-[32px] border border-white/15 bg-white/5 shadow-xl shadow-blue-950/40 transition-all duration-700 group-hover:scale-[1.02] group-hover:bg-white/10 group-hover:border-white/30">
                 <Image 
                   src={member.image} 
                   alt={member.name}
@@ -44,7 +48,7 @@ export function TeamSection() {
                 {/* Overlay Text */}
                 <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black/90 via-black/40 to-transparent">
                   <h4 className="text-white font-bold text-xl tracking-tight mb-1">{member.name}</h4>
-                  <p className="text-primary text-[10px] font-bold uppercase tracking-widest">{member.role}</p>
+                  <p className="text-blue-200 text-[10px] font-bold uppercase tracking-widest">{member.role}</p>
                 </div>
                 
                 {/* Social Links (Hover) */}
@@ -63,9 +67,9 @@ export function TeamSection() {
         
         {/* Recruitment CTA */}
         <ScrollReveal delay={0.4} className="mt-20 text-center">
-          <div className="inline-flex items-center gap-4 px-8 py-5 bg-white/5 border border-white/10 rounded-3xl hover:bg-white/10 transition-colors cursor-pointer group">
-             <span className="text-white font-black text-xs uppercase tracking-widest leading-none">JOIN OUR NEXT EVENT</span>
-             <ExternalLink className="w-4 h-4 text-primary group-hover:scale-125 transition-transform" />
+          <div className="inline-flex items-center gap-4 px-8 py-5 bg-white/10 border border-white/25 backdrop-blur-md rounded-3xl hover:bg-white hover:text-blue-900 transition-colors cursor-pointer group">
+             <span className="text-white font-black text-xs uppercase tracking-widest leading-none group-hover:text-blue-900">JOIN OUR NEXT EVENT</span>
+             <ExternalLink className="w-4 h-4 text-blue-200 group-hover:text-blue-900 group-hover:scale-125 transition-all" />
           </div>
         </ScrollReveal>
       </div>

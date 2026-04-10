@@ -20,9 +20,9 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-[#050505] text-white">
       <SubPageHero
-        backgroundImage="/images/hero-bg.jpg"
-        title={<>GET IN <br /><span className="text-primary italic font-light">TOUCH.</span></>}
-        subtitle="Whether you want to attend an event, partner with us, or just learn more — we'd love to hear from you."
+        backgroundImage="/images/networx_story_shard.png"
+        title={<>LET'S <br /><span className="text-primary italic font-light">CONNECT.</span></>}
+        subtitle="Partnerships, press, speaking slots or just a hello — drop us a line and the Networx London team will get back to you within 24 hours."
       />
       <main>
         <ContactForm />

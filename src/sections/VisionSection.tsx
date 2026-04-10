@@ -65,7 +65,7 @@ export function VisionSection() {
           <ScrollReveal delay={0.2} className="relative">
             <div className="aspect-[4/5] rounded-[40px] overflow-hidden border border-slate-100 relative group shadow-2xl">
               <Image
-                src="/images/about-1.jpg"
+                src="/images/toWEBP/1774468095390.webp"
                 alt="Networx London members having genuine conversations at an exclusive networking event"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
