@@ -25,7 +25,7 @@ export const Heading = ({ children, className }: { children: ReactNode, classNam
         return span;
     });
 
-    gsap.fromTo(
+    const tween = gsap.fromTo(
       innerLines || [],
       { yPercent: 120, opacity: 0 },
       {
@@ -38,7 +38,10 @@ export const Heading = ({ children, className }: { children: ReactNode, classNam
       }
     );
 
-    return () => split.revert();
+    return () => {
+      tween.kill();
+      split.revert();
+    };
   }, []);
 
   return (
@@ -54,7 +57,7 @@ export const SubHeading = ({ children, className }: { children: ReactNode, class
   useEffect(() => {
     if (!subHeadingRef.current) return;
 
-    gsap.fromTo(subHeadingRef.current, 
+    const tween = gsap.fromTo(subHeadingRef.current,
         {
             opacity: 0,
             y: 20
@@ -66,7 +69,9 @@ export const SubHeading = ({ children, className }: { children: ReactNode, class
             duration: 1,
             delay: 0.4
         }
-    )
+    );
+
+    return () => { tween.kill(); };
   }, [])
 
   return (

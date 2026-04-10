@@ -4,8 +4,9 @@
     {
       "name": "dev",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["next", "dev", "--turbopack", "--port", "3099"],
-      "port": 3099
+      "runtimeArgs": ["next", "dev", "--turbopack"],
+      "port": 3001,
+      "autoPort": true
     }
   ]
 }

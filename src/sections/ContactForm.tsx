@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -27,6 +27,14 @@ const contactInfoItems = [
 
 export function ContactForm() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const statusTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Clear timeout on unmount to prevent setState on unmounted component
+  useEffect(() => {
+    return () => {
+      if (statusTimerRef.current !== null) clearTimeout(statusTimerRef.current);
+    };
+  }, []);
 
   const {
     register,
@@ -57,10 +65,10 @@ export function ContactForm() {
 
       setSubmitStatus('success');
       reset();
-      setTimeout(() => setSubmitStatus('idle'), 5000);
+      statusTimerRef.current = setTimeout(() => setSubmitStatus('idle'), 5000);
     } catch {
       setSubmitStatus('error');
-      setTimeout(() => setSubmitStatus('idle'), 5000);
+      statusTimerRef.current = setTimeout(() => setSubmitStatus('idle'), 5000);
     }
   };
 
@@ -72,7 +80,7 @@ export function ContactForm() {
     }`;
 
   return (
-    <section className="min-h-screen flex items-center py-32 relative overflow-hidden">
+    <section className="flex items-center py-24 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 blur-[200px] rounded-full" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
@@ -94,6 +102,7 @@ export function ContactForm() {
                   key={item.label}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
                   className="flex items-start gap-5 group"
                 >

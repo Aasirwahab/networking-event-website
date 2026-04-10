@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
-import { PageHeader } from "@/components/PageHeader";
+import { SubPageHero } from "@/components/SubPageHero";
+import { ChangelogSection } from "@/sections/ChangelogSection";
 
 export const metadata: Metadata = {
   title: 'Changelog',
@@ -17,15 +18,14 @@ export const metadata: Metadata = {
 
 export default function ChangelogPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#050505] text-white">
+      <SubPageHero
+        backgroundImage="/images/london/3.png"
+        title={<>CHANGE<br /><span className="text-primary italic font-light">LOG.</span></>}
+        subtitle="Stay informed about the newest features, enhancements, and updates to the Networx London platform."
+      />
       <main>
-        <PageHeader 
-          title="Changelog" 
-          description="Stay informed about the newest features, enhancements, and organizational updates for Networx London."
-        />
-        <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
-          <p className="text-xl text-gray-500">Changelog content will be updated soon.</p>
-        </section>
+        <ChangelogSection />
       </main>
     </div>
   );

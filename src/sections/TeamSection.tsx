@@ -8,7 +8,7 @@ import { Linkedin, Twitter, ExternalLink } from 'lucide-react';
 
 export function TeamSection() {
   return (
-    <section className="py-24 bg-background">
+    <section className="py-24 bg-[#050505]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <ScrollReveal className="text-center mb-20">
@@ -38,7 +38,7 @@ export function TeamSection() {
                   alt={member.name}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  className="object-cover transition-transform duration-1000 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                  className="object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
                 
                 {/* Overlay Text */}

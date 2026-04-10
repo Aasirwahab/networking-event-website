@@ -1,10 +1,12 @@
 'use client';
 
 import React, { useRef, useEffect, useState } from 'react';
+import Link from 'next/link';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useLenisScroll } from '@/contexts/LenisContext';
 
@@ -23,11 +25,12 @@ const DEFAULT_POSITIONS = [
 export interface ImagesFlowProps {
   introTitle: string;
   introSubtitle?: string;
+  introEyebrow?: string;
+  introCtaLabel?: string;
+  introCtaHref?: string;
   introImage?: string;
   introImages?: string[];
   flowText?: string;
-  outroTitle: string;
-  outroSubtitle?: string;
   images: string[];
   className?: string;
 }
@@ -44,40 +47,48 @@ const IntroBackground = ({ images, y }: { images: string[], y: any }) => {
   }, [images.length]);
 
   return (
-    <div className="absolute inset-0 z-0 h-full w-full overflow-hidden flex items-center justify-center">
-      {images.map((src, i) => (
-        <motion.div
-          key={src}
-          initial={{ opacity: 0 }}
-          animate={{ 
-            opacity: i === index ? 1 : 0,
-            zIndex: i === index ? 2 : 1
-          }}
-          transition={{ 
-            opacity: { duration: 2, ease: "easeInOut" }
-          }}
-          className="absolute inset-0 h-full w-full"
-        >
-          <motion.div 
-            style={{ y }} 
-            initial={{ scale: 1.15 }}
-            animate={{ scale: i === index ? 1 : 1.15 }}
-            transition={{ duration: 6, ease: "linear" }}
-            className="relative h-full w-full"
+    <div className="absolute inset-0 z-0 h-full w-full overflow-hidden bg-[#0a0a0a]">
+      {images.map((src, i) => {
+        const isActive = i === index;
+        return (
+          <motion.div
+            key={src}
+            initial={{ opacity: i === 0 ? 1 : 0 }}
+            animate={{ opacity: isActive ? 1 : 0 }}
+            transition={{
+              opacity: {
+                // Active image fades in smoothly; outgoing image only drops to 0
+                // AFTER the new one has fully covered it, preventing a black flash.
+                duration: isActive ? 1.4 : 0,
+                delay: isActive ? 0 : 1.4,
+                ease: 'linear',
+              },
+            }}
+            style={{ zIndex: isActive ? 2 : 1 }}
+            className="absolute inset-0 h-full w-full"
           >
-            <Image
-              src={src}
-              alt={`Intro background ${i + 1}`}
-              fill
-              priority={i === 0}
-              className="object-cover"
-              sizes="100vw"
-            />
+            <motion.div
+              style={{ y }}
+              initial={{ scale: 1.1 }}
+              animate={{ scale: isActive ? 1 : 1.1 }}
+              transition={{ duration: 6, ease: 'linear' }}
+              className="relative h-full w-full"
+            >
+              <Image
+                src={src}
+                alt={`Intro background ${i + 1}`}
+                fill
+                priority={i < 2}
+                className="object-cover"
+                sizes="100vw"
+              />
+            </motion.div>
           </motion.div>
-        </motion.div>
-      ))}
-      {/* Overlay to ensure text readability */}
-      <div className="absolute inset-0 bg-black/50 z-20" />
+        );
+      })}
+      {/* Gradient overlay for left-aligned text readability */}
+      <div className="absolute inset-0 z-20 bg-gradient-to-r from-black/85 via-black/55 to-black/30" />
+      <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
     </div>
   );
 };
@@ -85,11 +96,12 @@ const IntroBackground = ({ images, y }: { images: string[], y: any }) => {
 const ImagesFlow: React.FC<ImagesFlowProps> = ({
   introTitle,
   introSubtitle,
+  introEyebrow,
+  introCtaLabel,
+  introCtaHref,
   introImage,
   introImages,
   flowText = 'Every moment holds a universe waiting to be discovered',
-  outroTitle,
-  outroSubtitle,
   images,
   className,
 }) => {
@@ -214,7 +226,7 @@ const ImagesFlow: React.FC<ImagesFlowProps> = ({
       {/* Intro */}
       <section
         ref={introRef}
-        className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden"
+        className="relative flex min-h-screen w-full flex-col items-start justify-center overflow-hidden"
       >
         {introImages && introImages.length > 0 ? (
           <IntroBackground images={introImages} y={y} />
@@ -235,19 +247,38 @@ const ImagesFlow: React.FC<ImagesFlowProps> = ({
             <div className="absolute inset-0 bg-black/60" />
           </motion.div>
         ) : null}
-        <div className="pointer-events-none absolute left-1/2 top-1/2 z-[100] -translate-x-1/2 -translate-y-1/2 text-center">
-          <h1
-            className="mb-4 bg-gradient-to-br from-white to-white/60 bg-clip-text font-extralight uppercase tracking-[0.3em] text-transparent text-[clamp(2rem,8vw,6rem)]"
+        <div className="relative z-[100] w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="max-w-3xl text-left"
           >
-            {introTitle}
-          </h1>
-          {introSubtitle && (
-            <p
-              className="font-light tracking-[0.15em] text-white/70 text-[clamp(0.75rem,2vw,1.2rem)]"
-            >
-              {introSubtitle}
-            </p>
-          )}
+            {introEyebrow && (
+              <span className="inline-block mb-5 text-primary text-xs sm:text-sm font-bold uppercase tracking-[0.3em]">
+                {introEyebrow}
+              </span>
+            )}
+            <h1 className="whitespace-pre-line font-black text-white leading-[1] tracking-tight text-[clamp(2rem,5.2vw,4.5rem)]">
+              {introTitle}
+            </h1>
+            {introSubtitle && (
+              <p className="mt-6 max-w-xl text-white/75 font-light leading-relaxed text-[clamp(0.95rem,1.3vw,1.15rem)]">
+                {introSubtitle}
+              </p>
+            )}
+            {introCtaLabel && introCtaHref && (
+              <Link
+                href={introCtaHref}
+                className="group mt-9 inline-flex items-center gap-3 rounded-full bg-primary pl-7 pr-2 py-2 text-white font-bold text-sm sm:text-base uppercase tracking-wider hover:bg-primary/90 transition-all duration-300 shadow-lg shadow-primary/30"
+              >
+                <span>{introCtaLabel}</span>
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-primary transition-transform duration-300 group-hover:translate-x-1">
+                  <ArrowRight className="h-4 w-4" />
+                </span>
+              </Link>
+            )}
+          </motion.div>
         </div>
       </section>
 
@@ -272,9 +303,9 @@ const ImagesFlow: React.FC<ImagesFlowProps> = ({
               ref={(el) => {
                 if (el) imageRefs.current[index] = el;
               }}
-              style={{ opacity: isAnimationReady ? 1 : 0 }}
               className={cn(
-                'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 [transform-style:preserve-3d]',
+                'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 [transform-style:preserve-3d] transition-opacity duration-200',
+                isAnimationReady ? 'opacity-100' : 'opacity-0',
                 index === images.length - 1
                   ? 'h-full w-full'
                   : 'h-[350px] w-[500px] max-w-[90vw]'
@@ -297,24 +328,6 @@ const ImagesFlow: React.FC<ImagesFlowProps> = ({
               </div>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* Outro */}
-      <section className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#0B0B0F]">
-        <div className="pointer-events-none absolute left-1/2 top-1/2 z-[100] -translate-x-1/2 -translate-y-1/2 text-center">
-          <h1
-            className="mb-4 bg-gradient-to-br from-white to-white/60 bg-clip-text font-extralight uppercase tracking-[0.3em] text-transparent text-[clamp(2rem,8vw,6rem)]"
-          >
-            {outroTitle}
-          </h1>
-          {outroSubtitle && (
-            <p
-              className="font-light tracking-[0.15em] text-white/70 text-[clamp(0.75rem,2vw,1.2rem)]"
-            >
-              {outroSubtitle}
-            </p>
-          )}
         </div>
       </section>
     </main>

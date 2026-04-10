@@ -1,56 +1,66 @@
-import { useState, useEffect, useRef } from 'react';
+'use client';
+
+import { useEffect, useRef, useCallback } from 'react';
 
 export function useCountUp(end: number, duration: number = 2000) {
-  const [count, setCount] = useState(0);
-  const [hasStarted, setHasStarted] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const countRef = useRef<HTMLSpanElement>(null);
+  const hasStarted = useRef(false);
+
+  // Assign the span ref that will hold the count value
+  const countSpanRef = useCallback((node: HTMLSpanElement | null) => {
+    countRef.current = node;
+  }, []);
 
   useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasStarted) {
-            setHasStarted(true);
+          if (entry.isIntersecting && !hasStarted.current) {
+            hasStarted.current = true;
+            startAnimation();
           }
         });
       },
       { threshold: 0.3 }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
+    observer.observe(container);
 
-    return () => observer.disconnect();
-  }, [hasStarted]);
-
-  useEffect(() => {
-    if (!hasStarted) return;
-
-    let startTime: number | null = null;
     let animationFrame: number;
 
-    const animate = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-      
-      // Ease out cubic
-      const easeOut = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.floor(easeOut * end));
+    function startAnimation() {
+      let startTime: number | null = null;
 
-      if (progress < 1) {
-        animationFrame = requestAnimationFrame(animate);
-      }
-    };
+      const animate = (timestamp: number) => {
+        if (!startTime) startTime = timestamp;
+        const progress = Math.min((timestamp - startTime) / duration, 1);
 
-    animationFrame = requestAnimationFrame(animate);
+        // Ease out cubic
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+        const current = Math.floor(easeOut * end);
+
+        // Direct DOM update — no React re-render
+        if (countRef.current) {
+          countRef.current.textContent = String(current);
+        }
+
+        if (progress < 1) {
+          animationFrame = requestAnimationFrame(animate);
+        }
+      };
+
+      animationFrame = requestAnimationFrame(animate);
+    }
 
     return () => {
-      if (animationFrame) {
-        cancelAnimationFrame(animationFrame);
-      }
+      observer.disconnect();
+      if (animationFrame) cancelAnimationFrame(animationFrame);
     };
-  }, [hasStarted, end, duration]);
+  }, [end, duration]);
 
-  return { count, ref };
+  return { ref: containerRef, countSpanRef };
 }

@@ -5,13 +5,13 @@ import { stats } from '@/data/content';
 import { ScrollReveal } from '@/components/ScrollReveal';
 
 function StatItem({ value, suffix, label }: { value: number; suffix: string; label: string }) {
-  const { count, ref } = useCountUp(value, 2000);
+  const { ref, countSpanRef } = useCountUp(value, 2000);
 
   return (
     <div ref={ref} className="text-center">
       <div className="flex items-baseline justify-center gap-1">
-        <span className="text-4xl lg:text-5xl font-bold text-primary">
-          {count}
+        <span ref={countSpanRef} className="text-4xl lg:text-5xl font-bold text-primary">
+          0
         </span>
         <span className="text-4xl lg:text-5xl font-bold text-primary">
           {suffix}

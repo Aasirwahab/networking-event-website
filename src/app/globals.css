@@ -99,22 +99,22 @@ select option {
   outline-offset: 2px;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar — dark theme to match site */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f8fafc;
+  background: #0a0a0a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #94a3b8;
+  background: #334155;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
+  background: #475569;
 }
 
 /* Hide scrollbar utility */

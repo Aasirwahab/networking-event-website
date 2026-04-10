@@ -17,7 +17,17 @@
       "Bash(npm uninstall:*)",
       "Bash(grep -r FloatingCard 'D:\\\\Work new\\\\Networking event website\\\\app\\\\src' --include=*.tsx --include=*.ts)",
       "Bash(grep -r \"from ''@/''\" \"D:\\\\Work new\\\\Networking event website\\\\app\\\\src\\\\sections\\\\ContactForm.tsx\")",
-      "Bash(grep -rn \"missing\\\\|not found\\\\|undefined\" 'D:\\\\Work new\\\\Networking event website\\\\app\\\\src' --include=*.tsx --include=*.ts)"
+      "Bash(grep -rn \"missing\\\\|not found\\\\|undefined\" 'D:\\\\Work new\\\\Networking event website\\\\app\\\\src' --include=*.tsx --include=*.ts)",
+      "Bash(grep -r \"motion\\\\\\\\.div\\\\|motion\\\\\\\\.button\\\\|useScroll\\\\|useTransform\\\\|AnimatePresence\" \"D:\\\\Work new\\\\Networking event website\\\\app/src\" --include=\"*.tsx\" --include=\"*.ts\")",
+      "Bash(wc -l \"D:\\\\Work new\\\\Networking event website\\\\app/src/sections\"/*.tsx)",
+      "Bash(wc -l \"D:\\\\Work new\\\\Networking event website\\\\app/src/components\"/*.tsx)",
+      "Bash(findstr :3099)",
+      "Bash(rm -rf .next)",
+      "Bash(cmd //c \"rmdir /s /q .next\")",
+      "Bash(taskkill /PID 16368 /F)",
+      "Bash(cmd //c \"taskkill /PID 16368 /F\")",
+      "Bash(cmd //c \"netstat -ano | findstr :3001\")",
+      "Bash(dir src\\\\app\\\\gallery)"
     ]
   }
 }

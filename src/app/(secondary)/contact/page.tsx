@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { SubPageHero } from "@/components/SubPageHero";
 import { ContactForm } from "@/sections/ContactForm";
 
 export const metadata: Metadata = {
@@ -18,6 +19,11 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-[#050505] text-white">
+      <SubPageHero
+        backgroundImage="/images/hero-bg.jpg"
+        title={<>GET IN <br /><span className="text-primary italic font-light">TOUCH.</span></>}
+        subtitle="Whether you want to attend an event, partner with us, or just learn more — we'd love to hear from you."
+      />
       <main>
         <ContactForm />
       </main>

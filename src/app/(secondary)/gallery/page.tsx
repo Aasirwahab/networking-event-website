@@ -17,13 +17,14 @@ export default function GalleryPage() {
   return (
     <div className="min-h-screen bg-[#050505]">
       <main>
-        <ImagesFlow 
-          introTitle="Networx London"
-          introSubtitle="A look at the people and moments from our networking events."
+        <ImagesFlow
+          introEyebrow="Our Gallery"
+          introTitle={"Moments That\nMade Us."}
+          introSubtitle="A curated look at the people, the conversations and the connections sparked at Networx London events. Real founders, real stories, real momentum."
+          introCtaLabel="Join Next Event"
+          introCtaHref="/events"
           introImages={introImages}
           flowText={'Where connection meets vision.\nMeaningful conversations, recorded forever.'}
-          outroTitle="The Connection"
-          outroSubtitle="The connections you make at our events stay with you long after the morning."
           images={images}
         />
       </main>

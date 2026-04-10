@@ -152,7 +152,6 @@ export const contactInfo = {
 export const navLinks = [
   { label: 'About us', href: '/about' },
   { label: 'Events', href: '/events' },
-  { label: 'Community', href: '/community' },
   { label: 'Gallery', href: '/gallery' },
 ];
 
@@ -160,7 +159,6 @@ export const footerLinks = {
   column1: [
     { label: 'About us', href: '/about' },
     { label: 'Events', href: '/events' },
-    { label: 'Community', href: '/community' },
     { label: 'Gallery', href: '/gallery' },
   ],
   column2: [

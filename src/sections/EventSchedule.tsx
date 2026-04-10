@@ -7,7 +7,7 @@ import { Calendar, MapPin, Clock, ArrowRight } from 'lucide-react';
 
 export function EventSchedule() {
   return (
-    <section className="py-24 bg-background">
+    <section className="py-24 bg-[#050505]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal className="mb-16">
            <span className="text-primary text-xs font-bold tracking-[0.4em] uppercase block mb-4">Upcoming Summits</span>

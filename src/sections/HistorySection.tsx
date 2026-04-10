@@ -1,6 +1,8 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import Image from 'next/image';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ScrollReveal } from '@/components/ScrollReveal';
 
 const milestones = [
@@ -27,9 +29,28 @@ const milestones = [
 ];
 
 export function HistorySection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  });
+  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
+
   return (
-    <section className="py-24 bg-[#0a0a0a] relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section ref={sectionRef} className="py-24 relative overflow-hidden">
+      {/* Background image with parallax */}
+      <motion.div style={{ y: bgY }} className="absolute inset-0 -top-[20%] -bottom-[20%] z-0">
+        <Image
+          src="/images/london/8.png"
+          alt=""
+          fill
+          className="object-cover"
+          sizes="100vw"
+        />
+      </motion.div>
+      <div className="absolute inset-0 z-[1] bg-black/80" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <ScrollReveal className="text-center mb-24">
            <span className="text-primary text-xs font-bold tracking-[0.4em] uppercase block mb-4 underline underline-offset-4">Our Journey</span>
            <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter leading-none mb-8">
