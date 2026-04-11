@@ -12,28 +12,28 @@ const benefits = [
     title: 'Diverse Community',
     description: 'Meet company directors, CEOs, entrepreneurs, founders, startups, small business owners, investors, and working professionals.',
     src: '/images/toWEBP/1775159002011.webp',
-    color: 'rgba(255, 255, 255, 0.95)'
+    color: '#ffffff'
   },
   {
     icon: Target,
     title: 'Meaningful Conversations',
     description: 'No formal pitches or awkward introductions. Just genuine, relaxed conversations that lead to real connections.',
     src: '/images/toWEBP/1773868046417.webp',
-    color: 'rgba(240, 249, 255, 0.95)'
+    color: '#f0f9ff'
   },
   {
     icon: TrendingUp,
     title: 'Grow Your Network',
     description: 'Whether scaling a business, exploring new ventures, or simply expanding your professional circle — this is your space.',
     src: '/images/toWEBP/1775069944270.webp',
-    color: 'rgba(255, 255, 255, 0.95)'
+    color: '#ffffff'
   },
   {
     icon: ShieldCheck,
     title: 'High-Value Community',
     description: 'Connect with London\'s brightest minds in a welcoming and dynamic setting. Networking should be productive, actionable, and enjoyable.',
     src: '/images/toWEBP/1775159002538.webp',
-    color: 'rgba(240, 249, 255, 0.95)'
+    color: '#f0f9ff'
   }
 ];
 
@@ -93,7 +93,7 @@ function BenefitCard({ benefit, index, progress, range, targetScale, rangeStep }
           top: `calc(-5vh + ${index * 25}px)`
         }}
         onMouseMove={handleMouseMove}
-        className="group relative flex flex-col h-[600px] w-full max-w-[1000px] rounded-[40px] p-8 lg:p-12 origin-top border border-black/5 shadow-[0_20px_40px_rgba(0,0,0,0.06)] overflow-hidden backdrop-blur-2xl will-change-transform"
+        className="group relative flex flex-col h-[600px] w-full max-w-[1000px] rounded-[40px] p-8 lg:p-12 origin-top border border-black/5 shadow-[0_20px_40px_rgba(0,0,0,0.06)] overflow-hidden will-change-transform transform-gpu [backface-visibility:hidden]"
       >
         {/* Hover Spotlight Glow */}
         <motion.div
