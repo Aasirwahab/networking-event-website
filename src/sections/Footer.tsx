@@ -1,26 +1,42 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
+import { z } from 'zod';
 import { footerLinks, socialLinks } from '@/data/content';
 import { TwitterIcon, InstagramIcon } from '@/components/SocialIcons';
 import { useFooterSticky } from '@/hooks/useFooterSticky';
+
+const newsletterSchema = z.string().trim().email();
 
 export function Footer() {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const { footerRef, wrapperRef, innerRef, isSticky } = useFooterSticky();
+  const statusTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (statusTimerRef.current !== null) clearTimeout(statusTimerRef.current);
+    };
+  }, []);
+
+  const scheduleReset = (ms: number) => {
+    if (statusTimerRef.current !== null) clearTimeout(statusTimerRef.current);
+    statusTimerRef.current = setTimeout(() => setStatus('idle'), ms);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    const result = newsletterSchema.safeParse(email);
+    if (!result.success) {
       setStatus('error');
-      setTimeout(() => setStatus('idle'), 3000);
+      scheduleReset(3000);
       return;
     }
     setStatus('success');
     setEmail('');
-    setTimeout(() => setStatus('idle'), 4000);
+    scheduleReset(4000);
   };
 
   return (
@@ -71,12 +87,14 @@ export function Footer() {
                 <ArrowRight className="w-8 h-8" />
               </button>
             </form>
-            {status === 'success' && (
-              <p className="text-green-400 text-sm mt-3 font-light">Thank you for subscribing!</p>
-            )}
-            {status === 'error' && (
-              <p className="text-red-400 text-sm mt-3 font-light">Please enter a valid email address.</p>
-            )}
+            <p role="status" aria-live="polite" className="min-h-[1.25rem] mt-3 text-sm font-light">
+              {status === 'success' && (
+                <span className="text-green-400">Thank you for subscribing!</span>
+              )}
+              {status === 'error' && (
+                <span className="text-red-400">Please enter a valid email address.</span>
+              )}
+            </p>
           </div>
         </div>
 

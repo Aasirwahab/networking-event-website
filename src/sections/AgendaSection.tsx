@@ -59,18 +59,11 @@ export function AgendaSection() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    let timeoutId: ReturnType<typeof setTimeout>;
-    const checkMobile = () => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => setIsMobile(window.innerWidth < 1024), 150);
-    };
-    // Initial check without debounce
-    setIsMobile(window.innerWidth < 1024);
-    window.addEventListener('resize', checkMobile);
-    return () => {
-      window.removeEventListener('resize', checkMobile);
-      clearTimeout(timeoutId);
-    };
+    const mql = window.matchMedia('(max-width: 1023.98px)');
+    const update = () => setIsMobile(mql.matches);
+    update();
+    mql.addEventListener('change', update);
+    return () => mql.removeEventListener('change', update);
   }, []);
 
   useGSAP(() => {
@@ -111,9 +104,12 @@ export function AgendaSection() {
 
           <div className="agenda-steps">
             {agenda.map((_, index) => (
-              <div
+              <button
+                type="button"
                 key={index}
                 className={`agenda-step ${activeStep === index ? 'active' : ''}`}
+                aria-label={`Jump to Phase ${index + 1}`}
+                aria-current={activeStep === index ? 'step' : undefined}
                 onClick={() => {
                   const card = cardRefs.current[index];
                   if (card) {
@@ -123,7 +119,7 @@ export function AgendaSection() {
               >
                 <p className="agenda-step-label">Phase</p>
                 <p className="agenda-step-index">{index + 1}</p>
-              </div>
+              </button>
             ))}
           </div>
         </div>

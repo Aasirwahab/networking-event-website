@@ -54,6 +54,7 @@ export function ContactForm() {
 
   const onSubmit = async (data: ContactFormData) => {
     setSubmitStatus('loading');
+    if (statusTimerRef.current !== null) clearTimeout(statusTimerRef.current);
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -61,12 +62,13 @@ export function ContactForm() {
         body: JSON.stringify(data),
       });
 
-      if (!response.ok) throw new Error('Failed to send message');
+      if (!response.ok) throw new Error(`Request failed with status ${response.status}`);
 
       setSubmitStatus('success');
       reset();
       statusTimerRef.current = setTimeout(() => setSubmitStatus('idle'), 5000);
-    } catch {
+    } catch (error) {
+      console.error('[ContactForm] submit failed', error);
       setSubmitStatus('error');
       statusTimerRef.current = setTimeout(() => setSubmitStatus('idle'), 5000);
     }
@@ -216,6 +218,13 @@ export function ContactForm() {
                 <p id="message-error" className="text-red-400 text-xs ml-2" role="alert">{errors.message.message}</p>
               )}
             </div>
+
+            {/* Screen-reader announcement for async form state */}
+            <p className="sr-only" role="status" aria-live="polite">
+              {submitStatus === 'loading' && 'Sending your message…'}
+              {submitStatus === 'success' && 'Message sent successfully.'}
+              {submitStatus === 'error' && 'Message failed to send. Please try again.'}
+            </p>
 
             <button
               type="submit"

@@ -29,9 +29,17 @@ export default function TransitionProvider({
   const router = useRouter();
   const pathname = usePathname();
   const colRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const coverTweenRef = useRef<gsap.core.Tween | null>(null);
   const pendingHref = useRef<string | null>(null);
   const coverDone = useRef(false);
   const [revealReady, setRevealReady] = useState(false);
+
+  // Kill any in-flight cover tween on unmount
+  useEffect(() => {
+    return () => {
+      coverTweenRef.current?.kill();
+    };
+  }, []);
 
   // Reveal columns (slide them off-screen to show the new page)
   useEffect(() => {
@@ -40,7 +48,7 @@ export default function TransitionProvider({
     const cols = colRefs.current;
     gsap.set(cols, { y: "0%" });
 
-    gsap.to(cols, {
+    const tween = gsap.to(cols, {
       y: "-100%",
       duration: 0.8,
       ease: "power4.inOut",
@@ -51,6 +59,11 @@ export default function TransitionProvider({
         setRevealReady(false);
       },
     });
+
+    return () => {
+      // Kill in-flight tween on unmount — don't revert finished ones to avoid visual pop
+      tween.kill();
+    };
   }, [revealReady]);
 
   // When pathname changes, check if it matches our pending navigation
@@ -75,7 +88,8 @@ export default function TransitionProvider({
 
       gsap.set(cols, { y: "100%" });
 
-      gsap.to(cols, {
+      coverTweenRef.current?.kill();
+      coverTweenRef.current = gsap.to(cols, {
         y: "0%",
         duration: 0.6,
         ease: "power4.inOut",

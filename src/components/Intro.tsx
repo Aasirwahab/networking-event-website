@@ -16,6 +16,8 @@ export const INTRO_END_DELAY_SEC = 0.35 + (IMAGES.length - 1) * 0.5 + 1.2 + 1.4 
 
 const INITIAL_SCALE = 0.35;
 
+const Z_CLASSES = ["z-0", "z-[1]", "z-[2]", "z-[3]", "z-[4]", "z-[5]"] as const;
+
 const Intro = () => {
   const imgRefs = useRef<(HTMLImageElement | null)[]>([]);
   const overlayRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -23,59 +25,59 @@ const Intro = () => {
   const radialRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const imgs = imgRefs.current.filter(Boolean);
-    const overlays = overlayRefs.current.filter(Boolean);
     const container = containerRef.current;
-    if (!imgs.length || !container) return;
+    if (!container) return;
 
-    gsap.set(container, { scale: INITIAL_SCALE });
+    const ctx = gsap.context(() => {
+      const imgs = imgRefs.current.filter(Boolean);
+      const overlays = overlayRefs.current.filter(Boolean);
+      if (!imgs.length) return;
 
-    const timeline = gsap.timeline();
+      gsap.set(container, { scale: INITIAL_SCALE });
 
-    // Phase 1: Slow, premium staggered image reveals inside the centered box
-    timeline.to(imgs, {
-      clipPath: "inset(0% 0% 0% 0%)",
-      duration: 1.2,
-      delay: 0.35,
-      stagger: { each: 0.5, ease: "power2.inOut" },
-    });
+      const timeline = gsap.timeline();
 
-    // Shading effect via opacity overlay (GPU-accelerated, replaces filter: brightness)
-    timeline.to(
-      overlays,
-      {
-        opacity: 0,
-        duration: 1.0,
-        stagger: 0.5,
-        ease: "power2.out",
-      },
-      0.35
-    );
+      // Phase 1: Slow, premium staggered image reveals inside the centered box
+      timeline.to(imgs, {
+        clipPath: "inset(0% 0% 0% 0%)",
+        duration: 1.2,
+        delay: 0.35,
+        stagger: { each: 0.5, ease: "power2.inOut" },
+      });
 
-    // Phase 2: Smooth, balanced ZOOM from center (scale transform — GPU accelerated)
-    timeline.to(container, {
-      scale: 1,
-      duration: 1.4,
-      ease: "power3.inOut",
-    });
+      // Shading effect via opacity overlay (GPU-accelerated, replaces filter: brightness)
+      timeline.to(
+        overlays,
+        {
+          opacity: 0,
+          duration: 1.0,
+          stagger: 0.5,
+          ease: "power2.out",
+        },
+        0.35
+      );
 
-    // Phase 3: Radial gradient fade-in
-    timeline.to(
-      radialRef.current,
-      {
-        opacity: 1,
-        duration: 0.85,
-        ease: "power2.out",
-      },
-      "-=0.3"
-    );
+      // Phase 2: Smooth, balanced ZOOM from center (scale transform — GPU accelerated)
+      timeline.to(container, {
+        scale: 1,
+        duration: 1.4,
+        ease: "power3.inOut",
+      });
 
-    return () => {
-      timeline.kill();
-    };
+      // Phase 3: Radial gradient fade-in
+      timeline.to(
+        radialRef.current,
+        {
+          opacity: 1,
+          duration: 0.85,
+          ease: "power2.out",
+        },
+        "-=0.3"
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
   }, []);
-
-  const zClasses = ['z-0', 'z-[1]', 'z-[2]', 'z-[3]', 'z-[4]', 'z-[5]'];
 
   return (
     <div className="absolute inset-0 flex items-center justify-center bg-zinc-950 overflow-hidden">
@@ -84,7 +86,7 @@ const Intro = () => {
         className="relative w-full h-[100dvh] will-change-transform"
       >
         {IMAGES.map((src, i) => (
-          <div key={src} className={`absolute inset-0 ${zClasses[i]}`} aria-hidden="true">
+          <div key={src} className={`absolute inset-0 ${Z_CLASSES[i]}`} aria-hidden="true">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               ref={(el) => {

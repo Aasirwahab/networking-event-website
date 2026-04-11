@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc:*)",
+      "Bash(npx next:*)",
+      "Bash(ls eslint.config*)",
+      "Bash(ls -la .eslintrc*)",
+      "Bash(ESLINT_USE_FLAT_CONFIG=false npx eslint src/)"
+    ]
+  }
+}

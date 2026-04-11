@@ -167,7 +167,6 @@ export const footerLinks = {
   ],
   column3: [
     { label: 'Privacy Policy', href: '/privacy-policy' },
-    { label: 'Style Guide', href: '/styleguide' },
   ],
 };
 

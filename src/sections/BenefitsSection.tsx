@@ -1,7 +1,7 @@
 'use client';
 
 import { Users, TrendingUp, Target, ShieldCheck } from 'lucide-react';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { motion, useMotionTemplate, useMotionValue, useScroll, useTransform, MotionValue } from 'framer-motion';
 import Image from 'next/image';
 import { ScrollReveal } from '@/components/ScrollReveal';
@@ -49,6 +49,8 @@ interface BenefitCardProps {
 function BenefitCard({ benefit, index, progress, range, targetScale, rangeStep }: BenefitCardProps) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  const rafRef = useRef<number | null>(null);
+  const pendingMouse = useRef<{ x: number; y: number } | null>(null);
 
   const spotlightBackground = useMotionTemplate`
     radial-gradient(
@@ -63,10 +65,23 @@ function BenefitCard({ benefit, index, progress, range, targetScale, rangeStep }
   const imageScale = useTransform(progress, [imageEntryStart, imageEntryEnd], [2, 1]);
   const scale = useTransform(progress, range, [1, targetScale]);
 
+  useEffect(() => {
+    return () => {
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+    };
+  }, []);
+
+  // RAF-throttled — coalesces rapid mousemove events into one write per frame
   function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
     const { left, top } = currentTarget.getBoundingClientRect();
-    mouseX.set(clientX - left);
-    mouseY.set(clientY - top);
+    pendingMouse.current = { x: clientX - left, y: clientY - top };
+    if (rafRef.current !== null) return;
+    rafRef.current = requestAnimationFrame(() => {
+      rafRef.current = null;
+      if (!pendingMouse.current) return;
+      mouseX.set(pendingMouse.current.x);
+      mouseY.set(pendingMouse.current.y);
+    });
   }
 
   return (

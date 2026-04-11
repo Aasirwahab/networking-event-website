@@ -29,47 +29,51 @@ export function SubPageHero({ title, subtitle, backgroundImage, className }: Sub
   useEffect(() => {
     if (!headingRef.current) return;
 
-    const split = new SplitType(headingRef.current, {
-      types: 'lines',
-      lineClass: 'overflow-hidden',
-    });
+    let split: SplitType | null = null;
 
-    const innerLines = split.lines?.map((line) => {
-      const span = document.createElement('span');
-      span.style.display = 'block';
-      span.className = 'line-inner inline-block h-full w-full';
-      span.innerHTML = line.innerHTML;
-      line.innerHTML = '';
-      line.appendChild(span);
-      return span;
-    });
+    const ctx = gsap.context(() => {
+      split = new SplitType(headingRef.current!, {
+        types: 'lines',
+        lineClass: 'overflow-hidden',
+      });
 
-    const tl = gsap.timeline({ delay: 0.3 });
+      const innerLines = split.lines?.map((line) => {
+        const span = document.createElement('span');
+        span.style.display = 'block';
+        span.className = 'line-inner inline-block h-full w-full';
+        span.innerHTML = line.innerHTML;
+        line.innerHTML = '';
+        line.appendChild(span);
+        return span;
+      });
 
-    tl.fromTo(
-      innerLines || [],
-      { yPercent: 120, opacity: 0 },
-      {
-        yPercent: 0,
-        opacity: 1,
-        stagger: 0.1,
-        ease: 'power4.out',
-        duration: 1.2,
-      }
-    );
+      const tl = gsap.timeline({ delay: 0.3 });
 
-    if (subtitleRef.current) {
       tl.fromTo(
-        subtitleRef.current,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, ease: 'power3.out', duration: 1 },
-        '-=0.6'
+        innerLines || [],
+        { yPercent: 120, opacity: 0 },
+        {
+          yPercent: 0,
+          opacity: 1,
+          stagger: 0.1,
+          ease: 'power4.out',
+          duration: 1.2,
+        }
       );
-    }
+
+      if (subtitleRef.current) {
+        tl.fromTo(
+          subtitleRef.current,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, ease: 'power3.out', duration: 1 },
+          '-=0.6'
+        );
+      }
+    }, sectionRef);
 
     return () => {
-      tl.kill();
-      split.revert();
+      ctx.revert();
+      split?.revert();
     };
   }, []);
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useCallback, useEffect, useState, useTransition } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
@@ -12,6 +12,7 @@ import { INTRO_END_DELAY_SEC } from './Intro';
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [, startTransition] = useTransition();
   const { navigateTo } = usePageTransition();
   const pathname = usePathname();
 
@@ -21,12 +22,34 @@ export function Navbar() {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => {
-        setIsScrolled(window.scrollY > 50);
+        const next = window.scrollY > 50;
+        startTransition(() => setIsScrolled(next));
         ticking = false;
       });
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleLogoClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      e.preventDefault();
+      const didNavigate = navigateTo('/');
+      if (didNavigate) {
+        setTimeout(() => setMobileMenuOpen(false), 300);
+      } else {
+        setMobileMenuOpen(false);
+      }
+    },
+    [navigateTo]
+  );
+
+  const handleMenuToggle = useCallback(() => {
+    setMobileMenuOpen((prev) => !prev);
+  }, []);
+
+  const handleMenuClose = useCallback(() => {
+    setMobileMenuOpen(false);
   }, []);
 
   // If we are on the homepage, delay the Navbar reveal until the Intro cinematic finishes
@@ -45,26 +68,17 @@ export function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, delay: delayAmount, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-500 ease-in-out ${
-          isScrolled && !mobileMenuOpen 
-            ? 'bg-transparent py-4' 
+        className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-500 ease-in-out ${isScrolled && !mobileMenuOpen
+            ? 'bg-transparent py-4'
             : 'bg-transparent py-8'
-        }`}
+          }`}
       >
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <nav className="flex items-center justify-between">
             {/* Logo: Premium Branding */}
-            <Link 
-              href="/" 
-              onClick={(e) => {
-                e.preventDefault();
-                const didNavigate = navigateTo('/');
-                if (didNavigate) {
-                  setTimeout(() => setMobileMenuOpen(false), 300);
-                } else {
-                  setMobileMenuOpen(false);
-                }
-              }} 
+            <Link
+              href="/"
+              onClick={handleLogoClick}
               className={`group flex items-center gap-1.5 transition-transform duration-300 hover:scale-[1.02]`}
             >
               <span className={`text-2xl font-black tracking-tighter uppercase transition-all duration-500 ${textColor}`}>
@@ -79,24 +93,23 @@ export function Navbar() {
             <div className="flex items-center gap-8">
               <button
                 className={`flex flex-col justify-center items-end gap-[5px] p-2 cursor-pointer bg-transparent border-none group outline-none`}
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                onClick={handleMenuToggle}
                 aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-                {...{ 'aria-expanded': mobileMenuOpen ? 'true' : 'false' }}
+                ariZa-controls="mobile-menu"
+                {...{ "aria-expanded": mobileMenuOpen ? "true" : "false" }}
               >
-                <span className={`h-[1px] ease-custom-out transition-all duration-500 ${
-                  mobileMenuOpen
+                <span className={`h-[1px] ease-custom-out transition-all duration-500 ${mobileMenuOpen
                     ? 'w-8 bg-white translate-y-[6px] rotate-45'
                     : `w-8 group-hover:w-10 ${iconBg} shadow-sm`
-                }`}></span>
-                <span className={`h-[1px] ease-custom-out transition-all duration-500 ${
-                  mobileMenuOpen
+                  }`}></span>
+                <span className={`h-[1px] ease-custom-out transition-all duration-500 ${mobileMenuOpen
                     ? 'w-8 bg-white -translate-y-[0px] -rotate-45'
                     : `w-5 group-hover:w-10 ${iconBg} shadow-sm`
-                }`}></span>
+                  }`}></span>
                 {!mobileMenuOpen && (
-                   <span className={`text-[9px] uppercase tracking-[0.3em] font-bold mt-1 transition-all duration-500 ${subTextColor}`}>
-                     Menu
-                   </span>
+                  <span className={`text-[9px] uppercase tracking-[0.3em] font-bold mt-1 transition-all duration-500 ${subTextColor}`}>
+                    Menu
+                  </span>
                 )}
               </button>
             </div>
@@ -107,7 +120,7 @@ export function Navbar() {
       {/* Full Screen Menu Overlay */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <MenuOverlay isOpen={mobileMenuOpen} onLinkClick={() => setMobileMenuOpen(false)} />
+          <MenuOverlay isOpen={mobileMenuOpen} onLinkClick={handleMenuClose} />
         )}
       </AnimatePresence>
     </>

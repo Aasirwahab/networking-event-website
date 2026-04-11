@@ -18,23 +18,26 @@ export function InfiniteMarquee() {
     const firstSet = track.children[0] as HTMLElement;
     if (!firstSet) return;
 
-    // Wait for layout to settle, then measure and animate
-    const frame = requestAnimationFrame(() => {
-      const setWidth = firstSet.offsetWidth;
-      const shift = setWidth + 32; // set width + gap (gap-8 = 32px)
+    let frame = 0;
+    const ctx = gsap.context(() => {
+      // Wait for layout to settle, then measure and animate
+      frame = requestAnimationFrame(() => {
+        const setWidth = firstSet.offsetWidth;
+        const shift = setWidth + 32; // set width + gap (gap-8 = 32px)
 
-      gsap.set(track, { x: 0 });
-      gsap.to(track, {
-        x: -shift,
-        duration: 25,
-        ease: 'none',
-        repeat: -1,
+        gsap.set(track, { x: 0 });
+        gsap.to(track, {
+          x: -shift,
+          duration: 25,
+          ease: 'none',
+          repeat: -1,
+        });
       });
-    });
+    }, trackRef);
 
     return () => {
       cancelAnimationFrame(frame);
-      gsap.killTweensOf(track);
+      ctx.revert();
     };
   }, []);
 
