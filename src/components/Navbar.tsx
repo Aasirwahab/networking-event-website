@@ -69,8 +69,8 @@ export function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, delay: delayAmount, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-500 ease-in-out ${isScrolled && !mobileMenuOpen
-            ? 'bg-transparent py-4'
-            : 'bg-transparent py-8'
+          ? 'bg-transparent py-4'
+          : 'bg-transparent py-8'
           }`}
       >
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
@@ -95,16 +95,18 @@ export function Navbar() {
                 className={`flex flex-col justify-center items-end gap-[5px] p-2 cursor-pointer bg-transparent border-none group outline-none`}
                 onClick={handleMenuToggle}
                 aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-                ariZa-controls="mobile-menu"
-                {...{ "aria-expanded": mobileMenuOpen ? "true" : "false" }}
+                {...{
+                  "aria-expanded": mobileMenuOpen ? "true" : "false",
+                  ...(mobileMenuOpen ? { "aria-controls": "mobile-menu" } : {}),
+                }}
               >
                 <span className={`h-[1px] ease-custom-out transition-all duration-500 ${mobileMenuOpen
-                    ? 'w-8 bg-white translate-y-[6px] rotate-45'
-                    : `w-8 group-hover:w-10 ${iconBg} shadow-sm`
+                  ? 'w-8 bg-white translate-y-[6px] rotate-45'
+                  : `w-8 group-hover:w-10 ${iconBg} shadow-sm`
                   }`}></span>
                 <span className={`h-[1px] ease-custom-out transition-all duration-500 ${mobileMenuOpen
-                    ? 'w-8 bg-white -translate-y-[0px] -rotate-45'
-                    : `w-5 group-hover:w-10 ${iconBg} shadow-sm`
+                  ? 'w-8 bg-white -translate-y-[0px] -rotate-45'
+                  : `w-5 group-hover:w-10 ${iconBg} shadow-sm`
                   }`}></span>
                 {!mobileMenuOpen && (
                   <span className={`text-[9px] uppercase tracking-[0.3em] font-bold mt-1 transition-all duration-500 ${subTextColor}`}>
