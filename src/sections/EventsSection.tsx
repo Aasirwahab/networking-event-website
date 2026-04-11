@@ -35,16 +35,16 @@ export function EventsSection() {
     target: sectionRef,
     offset: ["start end", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
 
   return (
     <section
       id="events"
       ref={sectionRef}
-      className="relative py-20 lg:py-30 overflow-hidden contain-strict"
+      className="relative py-20 lg:py-30 overflow-hidden contain-paint"
     >
       <motion.div
-        className="absolute inset-[-15%] z-0 will-change-transform"
+        className="absolute inset-[-20%] z-0 will-change-transform"
         style={{ y }}
       >
         <Image
