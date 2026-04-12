@@ -5,12 +5,14 @@ import Link from 'next/link';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, type MotionValue } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useLenisScroll } from '@/contexts/LenisContext';
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const DEFAULT_POSITIONS = [
   { x: -0.8, y: -0.6 }, { x: 0.7, y: 0.4 }, { x: -0.5, y: 0.7 }, { x: 0.6, y: -0.5 },
@@ -35,7 +37,7 @@ export interface ImagesFlowProps {
   className?: string;
 }
 
-const IntroBackground = ({ images, y }: { images: string[], y: any }) => {
+const IntroBackground = ({ images, y }: { images: string[], y: MotionValue<string> }) => {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {

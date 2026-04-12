@@ -30,7 +30,7 @@ const tiers = [
 
 export function TicketTiers() {
   return (
-    <section className="py-24 bg-[#0a0a0a] relative overflow-hidden">
+    <section className="py-24 bg-[#0a0a0a] relative overflow-hidden content-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal className="text-center mb-20">
            <span className="text-primary text-xs font-bold tracking-[0.4em] uppercase block mb-4 underline underline-offset-8">Reservation Tiers</span>
@@ -42,10 +42,11 @@ export function TicketTiers() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {tiers.map((tier, index) => (
-            <motion.div 
+            <motion.div
               key={tier.name}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.8 }}
               className={`relative flex flex-col p-10 rounded-[48px] border transition-all duration-700 hover:scale-[1.02] ${
                 tier.accent 

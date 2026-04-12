@@ -6,7 +6,7 @@ import { Send, User, MessageCircle, Link as LinkIcon } from 'lucide-react';
 
 export function SpeakerNomination() {
   return (
-    <section className="py-24 bg-[#080808] relative overflow-hidden">
+    <section className="py-24 bg-[#080808] relative overflow-hidden content-auto">
       {/* Background Decor */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 blur-[150px] rounded-full -translate-y-1/2 translate-x-1/3" />
       

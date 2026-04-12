@@ -11,7 +11,7 @@ export default function EventsPage() {
   return (
     <div className="min-h-screen bg-[#050505] text-white">
       <SubPageHero
-        backgroundImage="/images/networx_hero_event.png"
+        backgroundImage="/images/networx_hero_event.webp"
         title={<>OUR <br /><span className="text-primary italic font-light">EVENTS.</span></>}
         subtitle="Join the premier networking events for professionals in London. We focus on real conversations, actionable growth, and forging highly valuable connections."
       />

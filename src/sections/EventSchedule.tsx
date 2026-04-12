@@ -19,10 +19,11 @@ export function EventSchedule() {
 
         <div className="space-y-6">
           {events.map((event, index) => (
-            <motion.div 
+            <motion.div
               key={event.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               className="group relative bg-white/[0.02] border border-white/5 rounded-[32px] p-8 md:p-12 hover:bg-white/[0.05] hover:border-white/10 transition-all duration-500 flex flex-col md:flex-row md:items-center justify-between gap-8 cursor-pointer"
             >

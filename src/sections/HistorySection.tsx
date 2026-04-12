@@ -41,7 +41,7 @@ export function HistorySection() {
       {/* Background image with parallax */}
       <motion.div style={{ y: bgY }} className="absolute inset-0 -top-[25%] -bottom-[25%] z-0 will-change-transform">
         <Image
-          src="/images/london/8.png"
+          src="/images/london/8.webp"
           alt=""
           fill
           className="object-cover"
@@ -66,10 +66,11 @@ export function HistorySection() {
           
           <div className="space-y-12 md:space-y-32">
             {milestones.map((m, i) => (
-              <motion.div 
+              <motion.div
                 key={m.title}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
                 className={`flex flex-col md:flex-row items-center gap-8 ${i % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
               >

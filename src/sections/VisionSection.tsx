@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ScrollReveal } from '@/components/ScrollReveal';
-import { Utensils, Heart, Zap, Coffee } from 'lucide-react';
+import { Heart, Zap, Coffee } from 'lucide-react';
 
 const values = [
   {
@@ -43,10 +43,11 @@ export function VisionSection() {
              
              <div className="space-y-8">
                 {values.map((v, i) => (
-                  <motion.div 
+                  <motion.div
                     key={v.title}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
                     className="flex gap-6 group"
                   >

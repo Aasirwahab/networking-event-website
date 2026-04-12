@@ -6,7 +6,16 @@
       "Bash(ls eslint.config*)",
       "Bash(ls -la .eslintrc*)",
       "Bash(ESLINT_USE_FLAT_CONFIG=false npx eslint src/)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "mcp__playwright__playwright_navigate",
+      "mcp__playwright__playwright_screenshot",
+      "mcp__playwright__playwright_evaluate",
+      "Bash(ls -la gallery-*.png networx_*.png hero-bg.jpg)",
+      "Bash(ls -la *.png)",
+      "Bash(npx --yes sharp-cli --version)",
+      "Bash(npm ls:*)",
+      "Bash(node -e ':*)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code} | Total: %{time_total}s | Size: %{size_download} bytes\" http://localhost:3002/)"
     ]
   }
 }

@@ -275,6 +275,11 @@ select option {
 .contain-strict {
   contain: layout style paint;
 }
+/* Defer rendering of off-screen sections — browser skips layout/paint until near viewport */
+.content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
 .ease-custom-out {
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -308,7 +313,7 @@ select option {
 
 /* CTA Section: image-masked text */
 .cta-text-mask {
-  background-image: url('/images/hero-bg.jpg');
+  background-image: url('/images/hero-bg.webp');
   background-size: cover;
   background-position: center;
   -webkit-background-clip: text;

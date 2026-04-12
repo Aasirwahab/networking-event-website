@@ -4,12 +4,12 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 export const IMAGES = [
-  "/images/gallery-6.png",
-  "/images/gallery-2.png",
-  "/images/networx_story_mayfair.png",
-  "/images/gallery-4.png",
-  "/images/networx_story_shard.png",
-  "/images/networx_hero_event.png",
+  "/images/gallery-6.webp",
+  "/images/gallery-2.webp",
+  "/images/networx_story_mayfair.webp",
+  "/images/gallery-4.webp",
+  "/images/networx_story_shard.webp",
+  "/images/networx_hero_event.webp",
 ];
 
 export const INTRO_END_DELAY_SEC = 0.35 + (IMAGES.length - 1) * 0.5 + 1.2 + 1.4 + 0.85;
@@ -95,8 +95,8 @@ const Intro = () => {
               src={src}
               alt=""
               className="absolute inset-0 w-full h-full object-cover intro-image-initial"
-              // Last image is on top and visible first — mark as high priority for LCP
-              {...(i === IMAGES.length - 1 ? { fetchPriority: 'high' as const } : {})}
+              // Last image is on top and visible first — high priority for LCP; others deprioritised
+              fetchPriority={i === IMAGES.length - 1 ? 'high' : 'low'}
               loading="eager"
             />
             {/* Dark overlay for shading effect — opacity animation is GPU-accelerated */}

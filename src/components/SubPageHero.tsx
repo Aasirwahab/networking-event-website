@@ -80,7 +80,7 @@ export function SubPageHero({ title, subtitle, backgroundImage, className }: Sub
   return (
     <section
       ref={sectionRef}
-      className={`relative min-h-[70vh] flex items-end overflow-hidden ${className ?? ''}`}
+      className={`relative min-h-[70vh] flex items-end overflow-hidden pt-24 md:pt-32 ${className ?? ''}`}
     >
       {/* Background image with parallax */}
       <motion.div style={{ y }} className="absolute inset-0 z-0">
@@ -104,7 +104,7 @@ export function SubPageHero({ title, subtitle, backgroundImage, className }: Sub
       >
         <h1
           ref={headingRef}
-          className="font-display text-5xl md:text-8xl lg:text-[120px] font-black tracking-tighter leading-none mb-6"
+          className="font-display text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-none mb-6"
         >
           {title}
         </h1>

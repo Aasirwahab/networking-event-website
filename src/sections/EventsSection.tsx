@@ -27,7 +27,7 @@ export function EventsSection() {
         style={{ y }}
       >
         <Image
-          src="/images/london/11.png"
+          src="/images/london/11.webp"
           fill
           alt="Events background image"
           className="object-cover"

@@ -4,17 +4,15 @@ import { motion } from 'framer-motion';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { sponsorIcons } from '@/data/content';
 
-const containerVariants = {
+const sponsorContainerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.05,
-    },
+    transition: { staggerChildren: 0.05 },
   },
 };
 
-const itemVariants = {
+const sponsorItemVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
@@ -26,9 +24,15 @@ const itemVariants = {
   },
 };
 
+const sponsorHover = {
+  borderColor: '#2563EB',
+  y: -4,
+  transition: { duration: 0.3 },
+};
+
 export function SponsorsSection() {
   return (
-    <section className="py-20 lg:py-30 bg-white">
+    <section className="py-20 lg:py-30 bg-white content-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <ScrollReveal className="text-center mb-12">
@@ -42,10 +46,10 @@ export function SponsorsSection() {
 
         {/* Sponsors Grid */}
         <motion.div
-          variants={containerVariants}
+          variants={sponsorContainerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: '-100px' }}
           className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6"
         >
           {sponsorIcons.map((sponsor) => {
@@ -53,12 +57,8 @@ export function SponsorsSection() {
             return (
               <motion.div
                 key={sponsor.name}
-                variants={itemVariants}
-                whileHover={{ 
-                  borderColor: '#2563EB',
-                  y: -4,
-                  transition: { duration: 0.3 }
-                }}
+                variants={sponsorItemVariants}
+                whileHover={sponsorHover}
                 className="flex items-center justify-center gap-3 p-6 lg:p-8 border border-border rounded-xl bg-white transition-all duration-300 cursor-pointer"
               >
                 <Icon className="w-6 h-6 text-text-muted" strokeWidth={1.5} />

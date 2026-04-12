@@ -17,35 +17,35 @@ const agenda = [
     time: 'Phase 01',
     title: 'Arrival & Welcome Experience',
     description: 'Step into an immersive environment. Grab your morning coffee, settle in, and begin connecting with fellow professionals.',
-    src: '/images/london/1.png',
+    src: '/images/london/1.webp',
     bgClass: 'bg-white/[0.02]'
   },
   {
     time: 'Phase 02',
     title: 'Strategic Networking',
     description: 'A brief, impactful welcome from our founders followed by open networking with London\'s industry leaders and visionaries.',
-    src: '/images/london/2.png',
+    src: '/images/london/2.webp',
     bgClass: 'bg-white/[0.04]'
   },
   {
     time: 'Phase 03',
     title: 'Roundtable Discussions',
     description: 'Engage in guided, high-value conversations. Share your expertise, tackle industry challenges, and discover synergistic opportunities.',
-    src: '/images/london/3.png',
+    src: '/images/london/3.webp',
     bgClass: 'bg-white/[0.06]'
   },
   {
     time: 'Phase 04',
     title: 'Partnerships & Dialogue',
     description: 'Dedicated time to forge meaningful business partnerships, exchange details, and solidify new professional relationships.',
-    src: '/images/london/4.png',
+    src: '/images/london/4.webp',
     bgClass: 'bg-white/[0.08]'
   },
   {
     time: 'Phase 05',
     title: 'Closing & Next Steps',
     description: 'Wrap up the session with actionable takeaways, upcoming event calendars, and exclusive community announcements.',
-    src: '/images/london/5.png',
+    src: '/images/london/5.webp',
     bgClass: 'bg-white/10'
   }
 ];

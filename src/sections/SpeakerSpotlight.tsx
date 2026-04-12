@@ -24,10 +24,11 @@ export function SpeakerSpotlight() {
         {/* Cinematic Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {communityMembers.slice(0, 2).map((speaker, index) => (
-            <motion.div 
+            <motion.div
               key={speaker.id}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
               transition={{ delay: index * 0.2, duration: 0.8 }}
               className="group relative h-[500px] md:h-[600px] rounded-[48px] overflow-hidden border border-slate-200 bg-slate-50"
             >
@@ -75,10 +76,11 @@ export function SpeakerSpotlight() {
         {/* Secondary Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
           {communityMembers.slice(2).map((speaker, index) => (
-            <motion.div 
+            <motion.div
                key={speaker.id}
                initial={{ opacity: 0, y: 20 }}
                whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: true }}
                transition={{ delay: index * 0.1 }}
                className="group relative aspect-[3/4] rounded-3xl overflow-hidden border border-slate-200 bg-slate-50 hover:border-primary/30 transition-all duration-500"
             >

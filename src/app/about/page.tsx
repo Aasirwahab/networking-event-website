@@ -1,9 +1,12 @@
 import { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import { SubPageHero } from "@/components/SubPageHero";
 import { VisionSection } from "@/sections/VisionSection";
-import { TeamSection } from "@/sections/TeamSection";
-import { HistorySection } from "@/sections/HistorySection";
-import { FAQSection } from "@/sections/FAQSection";
+import { SectionSkeleton } from "@/components/SectionSkeleton";
+
+const TeamSection = dynamic(() => import("@/sections/TeamSection").then(m => ({ default: m.TeamSection })), { loading: () => <SectionSkeleton /> });
+const HistorySection = dynamic(() => import("@/sections/HistorySection").then(m => ({ default: m.HistorySection })), { loading: () => <SectionSkeleton /> });
+const FAQSection = dynamic(() => import("@/sections/FAQSection").then(m => ({ default: m.FAQSection })), { loading: () => <SectionSkeleton /> });
 
 export const metadata: Metadata = {
   title: 'Our Philosophy',
@@ -14,7 +17,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-[#050505] text-white">
       <SubPageHero
-        backgroundImage="/images/networx_story_mayfair.png"
+        backgroundImage="/images/networx_story_mayfair.webp"
         title={<>HUMAN <br /><span className="text-primary italic font-light">NETWORKING.</span></>}
         subtitle="Networx London makes networking human, relaxed, and genuinely enjoyable. We focus on fostering meaningful conversations over formal pitches."
       />

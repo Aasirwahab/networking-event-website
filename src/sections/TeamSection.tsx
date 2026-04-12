@@ -29,10 +29,11 @@ export function TeamSection() {
         {/* Team Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {communityMembers.map((member, index) => (
-            <motion.div 
+            <motion.div
               key={member.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.8 }}
               className="group relative"
             >
