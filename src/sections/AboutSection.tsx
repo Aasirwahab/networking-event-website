@@ -5,6 +5,11 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { ScrollReveal } from '@/components/ScrollReveal';
 
+const VIEWPORT_ONCE = { once: true, amount: 0.1 } as const;
+const EASE_OUT = [0.22, 1, 0.36, 1] as [number, number, number, number];
+const HOVER_SCALE = { hover: { scale: 1.03 } };
+const HOVER_TRANSITION = { duration: 0.4, ease: EASE_OUT };
+
 export function AboutSection() {
   return (
     <section id="about" className="py-20 lg:py-30 bg-white">
@@ -27,16 +32,14 @@ export function AboutSection() {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+              transition={{ duration: 0.8, ease: EASE_OUT, delay: 0.1 }}
               className="overflow-hidden rounded-xl"
               whileHover="hover"
             >
               <motion.div
                 className="relative w-full h-[400px] lg:h-[500px]"
-                variants={{
-                  hover: { scale: 1.03 }
-                }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                variants={HOVER_SCALE}
+                transition={HOVER_TRANSITION}
               >
                 <Image
                   src="/images/toWEBP/1773258581277.webp"
@@ -54,17 +57,15 @@ export function AboutSection() {
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+              viewport={VIEWPORT_ONCE}
+              transition={{ duration: 0.8, ease: EASE_OUT, delay: 0.15 }}
               className="overflow-hidden rounded-xl"
               whileHover="hover"
             >
               <motion.div
                 className="relative w-full h-[250px] lg:h-[300px]"
-                variants={{
-                  hover: { scale: 1.03 }
-                }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                variants={HOVER_SCALE}
+                transition={HOVER_TRANSITION}
               >
                 <Image
                   src="/images/toWEBP/1774468095390.webp"
@@ -104,17 +105,15 @@ export function AboutSection() {
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+              viewport={VIEWPORT_ONCE}
+              transition={{ duration: 0.8, ease: EASE_OUT, delay: 0.2 }}
               className="overflow-hidden rounded-xl h-[400px] lg:h-[500px]"
               whileHover="hover"
             >
               <motion.div
                 className="relative w-full h-full"
-                variants={{
-                  hover: { scale: 1.03 }
-                }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                variants={HOVER_SCALE}
+                transition={HOVER_TRANSITION}
               >
                 <Image
                   src="/images/toWEBP/1774468101559.webp"

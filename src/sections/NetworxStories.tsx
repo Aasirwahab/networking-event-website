@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, useCallback } from 'react';
+import { memo, useRef, useState, useCallback } from 'react';
 import { motion, AnimatePresence, useMotionValue, useTransform, PanInfo } from 'framer-motion';
 import Image from 'next/image';
 import { networxStories } from '@/data/content';
@@ -12,7 +12,7 @@ interface VideoCardProps {
   showDragHint: boolean;
 }
 
-function VideoCard({ story, isActive, showDragHint }: VideoCardProps) {
+const VideoCard = memo(function VideoCard({ story, isActive, showDragHint }: VideoCardProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
@@ -156,7 +156,7 @@ function VideoCard({ story, isActive, showDragHint }: VideoCardProps) {
       </div>
     </div>
   );
-}
+});
 
 // Fan card layout — returns transform values for each card position
 function getFanTransform(offset: number, total: number) {
@@ -190,10 +190,10 @@ export function NetworxStories() {
     setHasSwiped(true);
   }, [total]);
 
-  const handleDragEnd = (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+  const handleDragEnd = useCallback((_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     if (info.offset.x < -60) goNext();
     else if (info.offset.x > 60) goPrev();
-  };
+  }, [goNext, goPrev]);
 
   const getOffset = useCallback((index: number) => {
     let offset = index - activeIndex;

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { memo, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { ScrollReveal } from '@/components/ScrollReveal';
@@ -40,7 +40,7 @@ const faqs = [
   },
 ];
 
-function FAQItem({ question, answer, isOpen, onToggle, index }: {
+const FAQItem = memo(function FAQItem({ question, answer, isOpen, onToggle, index }: {
   question: string;
   answer: string;
   isOpen: boolean;
@@ -83,10 +83,14 @@ function FAQItem({ question, answer, isOpen, onToggle, index }: {
       </div>
     </ScrollReveal>
   );
-}
+});
 
 export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  const handleToggle = useCallback((index: number) => {
+    setOpenIndex((prev) => (prev === index ? null : index));
+  }, []);
 
   return (
     <section id="faq" className="py-24 md:py-32 relative overflow-hidden scroll-mt-24">
@@ -110,7 +114,7 @@ export function FAQSection() {
               question={faq.question}
               answer={faq.answer}
               isOpen={openIndex === index}
-              onToggle={() => setOpenIndex(openIndex === index ? null : index)}
+              onToggle={() => handleToggle(index)}
               index={index}
             />
           ))}

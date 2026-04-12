@@ -6,28 +6,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { events } from '@/data/content';
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
-    },
-  },
-};
+import { staggerContainer, fadeSlideUp, viewportOnce } from '@/lib/motion';
 
 export function EventsSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -72,16 +51,16 @@ export function EventsSection() {
 
         {/* Events List */}
         <motion.div
-          variants={containerVariants}
+          variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={viewportOnce}
           className="space-y-0"
         >
           {events.map((event) => (
             <motion.div
               key={event.id}
-              variants={itemVariants}
+              variants={fadeSlideUp}
               className="group border-b border-white/10 py-10 transition-colors hover:bg-white/[0.02]"
             >
               <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">

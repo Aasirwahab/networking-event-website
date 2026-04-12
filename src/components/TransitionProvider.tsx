@@ -105,7 +105,7 @@ export default function TransitionProvider({
   );
 
   const contextValue = useMemo(
-    () => ({ navigateTo: (href: string) => navigateTo(href) }),
+    () => ({ navigateTo }),
     [navigateTo]
   );
 

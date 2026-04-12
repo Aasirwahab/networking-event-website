@@ -9,6 +9,8 @@ export function useFooterSticky() {
   const [isSticky, setIsSticky] = useState(false);
 
   useEffect(() => {
+    let rafId: number | null = null;
+
     const updateLayout = () => {
       const footer = footerRef.current;
       const wrapper = wrapperRef.current;
@@ -24,7 +26,13 @@ export function useFooterSticky() {
       inner.style.height = sticky ? `${fh}px` : '';
     };
 
-    const handleResize = () => updateLayout();
+    const handleResize = () => {
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+        updateLayout();
+      });
+    };
     window.addEventListener('resize', handleResize);
 
     const resizeObserver = new ResizeObserver(() => updateLayout());
@@ -36,6 +44,7 @@ export function useFooterSticky() {
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      if (rafId !== null) cancelAnimationFrame(rafId);
       resizeObserver.disconnect();
     };
   }, []);

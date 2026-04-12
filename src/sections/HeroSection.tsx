@@ -6,7 +6,7 @@ import { InfiniteMarquee } from '@/components/InfiniteMarquee';
 import { usePageTransition } from '@/components/TransitionProvider';
 import Intro, { INTRO_END_DELAY_SEC } from '@/components/Intro';
 
-const containerVariants = {
+const heroContainerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -17,7 +17,7 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const heroItemVariants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
@@ -43,13 +43,13 @@ export function HeroSection() {
       <div className="flex-1 flex items-start pt-[20vh] sm:pt-[25vh] relative z-10 w-full">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full">
           <motion.div
-            variants={containerVariants}
+            variants={heroContainerVariants}
             initial="hidden"
             animate="visible"
             className="max-w-3xl"
           >
             {/* Tagline */}
-            <motion.div variants={itemVariants} className="mb-3">
+            <motion.div variants={heroItemVariants} className="mb-3">
               <span className="text-primary text-[11px] sm:text-[13px] font-medium tracking-[0.2em] uppercase">
                 London&apos;s Premier Professional Network.
               </span>
@@ -57,7 +57,7 @@ export function HeroSection() {
 
             {/* Heading */}
             <motion.h1
-              variants={itemVariants}
+              variants={heroItemVariants}
               className="text-[32px] sm:text-[44px] lg:text-[52px] font-bold text-white tracking-tight leading-[1.1] mb-5"
             >
               Meaningful Connections<br />
@@ -66,14 +66,14 @@ export function HeroSection() {
 
             {/* Description */}
             <motion.p
-              variants={itemVariants}
+              variants={heroItemVariants}
               className="text-[14px] sm:text-[15px] text-white/60 max-w-md mb-8 font-light leading-[1.7]"
             >
               Bringing together directors, CEOs, entrepreneurs, founders, and investors for relaxed, high-value networking sessions. Scale your business and spark genuine partnerships in London.
             </motion.p>
 
             {/* CTA Buttons */}
-            <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-3">
+            <motion.div variants={heroItemVariants} className="flex flex-wrap items-center gap-3">
               <button
                 onClick={() => navigateTo('/events')}
                 className="group inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full font-semibold uppercase tracking-[0.15em] text-[11px] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_12px_30px_rgba(37,99,235,0.25)] cursor-pointer"
@@ -94,11 +94,11 @@ export function HeroSection() {
 
       {/* Infinite Marquee Section at the bottom */}
       <motion.div 
-        variants={containerVariants}
+        variants={heroContainerVariants}
         initial="hidden"
         animate="visible"
       >
-        <motion.div variants={itemVariants} className="relative z-20 pb-6">
+        <motion.div variants={heroItemVariants} className="relative z-20 pb-6">
           <InfiniteMarquee />
         </motion.div>
       </motion.div>

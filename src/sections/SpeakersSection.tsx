@@ -5,28 +5,7 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { communityMembers } from '@/data/content';
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
-    },
-  },
-};
+import { staggerContainer, fadeSlideUp, viewportOnce } from '@/lib/motion';
 
 export function SpeakersSection() {
   return (
@@ -44,16 +23,16 @@ export function SpeakersSection() {
 
         {/* Speakers Grid */}
         <motion.div
-          variants={containerVariants}
+          variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={viewportOnce}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
         >
           {communityMembers.map((speaker) => (
             <motion.div
               key={speaker.id}
-              variants={itemVariants}
+              variants={fadeSlideUp}
               whileHover={{ y: -8 }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               className="group cursor-pointer"

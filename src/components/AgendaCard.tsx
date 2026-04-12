@@ -1,5 +1,6 @@
 'use client';
 
+import { memo } from 'react';
 import Image from 'next/image';
 
 interface AgendaCardProps {
@@ -10,13 +11,13 @@ interface AgendaCardProps {
   bgClass: string;
 }
 
-export const AgendaCard = ({
+export const AgendaCard = memo(function AgendaCard({
   time,
   title,
   description,
   src,
   bgClass,
-}: AgendaCardProps) => {
+}: AgendaCardProps) {
   return (
     <div
       className={`agenda-card group relative flex flex-col w-full rounded-[2rem] p-6 lg:p-10 border border-white/5 shadow-2xl overflow-hidden backdrop-blur-xl transition-all duration-500 hover:border-white/20 ${bgClass}`}
@@ -48,4 +49,4 @@ export const AgendaCard = ({
       </div>
     </div>
   );
-};
+});

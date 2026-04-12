@@ -95,6 +95,9 @@ const Intro = () => {
               src={src}
               alt=""
               className="absolute inset-0 w-full h-full object-cover intro-image-initial"
+              // Last image is on top and visible first — mark as high priority for LCP
+              {...(i === IMAGES.length - 1 ? { fetchPriority: 'high' as const } : {})}
+              loading="eager"
             />
             {/* Dark overlay for shading effect — opacity animation is GPU-accelerated */}
             <div

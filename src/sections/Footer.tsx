@@ -8,6 +8,7 @@ import { TwitterIcon, InstagramIcon } from '@/components/SocialIcons';
 import { useFooterSticky } from '@/hooks/useFooterSticky';
 
 const newsletterSchema = z.string().trim().email();
+const CURRENT_YEAR = new Date().getFullYear();
 
 export function Footer() {
   const [email, setEmail] = useState('');
@@ -162,7 +163,7 @@ export function Footer() {
             <span className="text-[10px] tracking-[0.6em] uppercase text-blue-200 font-bold">LONDON</span>
           </div>
           <p className="text-white/20 text-[10px] lg:text-[11px] uppercase tracking-[0.2em] font-light">
-            &copy; {new Date().getFullYear()} Networx London. All Rights Reserved. Human Networking Made Simple.
+            &copy; {CURRENT_YEAR} Networx London. All Rights Reserved. Human Networking Made Simple.
           </p>
         </div>
       </div>

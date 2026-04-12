@@ -1,10 +1,11 @@
 'use client';
 
+import { memo } from 'react';
 import { useCountUp } from '@/hooks/useCountUp';
 import { stats } from '@/data/content';
 import { ScrollReveal } from '@/components/ScrollReveal';
 
-function StatItem({ value, suffix, label }: { value: number; suffix: string; label: string }) {
+const StatItem = memo(function StatItem({ value, suffix, label }: { value: number; suffix: string; label: string }) {
   const { ref, countSpanRef } = useCountUp(value, 2000);
 
   return (
@@ -22,7 +23,7 @@ function StatItem({ value, suffix, label }: { value: number; suffix: string; lab
       </p>
     </div>
   );
-}
+});
 
 export function StatsSection() {
   return (
