@@ -15,11 +15,15 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-[#050505] text-white">
+    <div className="min-h-screen bg-white text-slate-900">
       <SubPageHero
         backgroundImage="/images/networx_story_mayfair.webp"
-        title={<>HUMAN <br /><span className="text-primary italic font-light">NETWORKING.</span></>}
-        subtitle="Networx London makes networking human, relaxed, and genuinely enjoyable. We focus on fostering meaningful conversations over formal pitches."
+        eyebrow="Network with us"
+        title="Discover the Community"
+        subtitle="Networx London makes networking human, relaxed, and genuinely enjoyable. We focus on fostering meaningful conversations over formal pitches — a dedicated space to connect with others who value authentic professional relationships."
+        ctaText="Join A Networking Event"
+        ctaLink="/events"
+        showMarquee={true}
       />
       <main className="space-y-0">
         <VisionSection />

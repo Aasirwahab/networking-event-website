@@ -1,0 +1,14 @@
+.scroll-reveal {
+  opacity: 0;
+  transform: var(--sr-transform-from);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) var(--sr-delay, 0s),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) var(--sr-delay, 0s);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  will-change: auto;
+}

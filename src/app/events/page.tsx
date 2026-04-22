@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { SubPageHero } from "@/components/SubPageHero";
 import { EventSchedule } from "@/sections/EventSchedule";
+import { EventFramer } from "@/sections/EventFramer";
 
 export const metadata: Metadata = {
   title: 'Our Events | London Networking Events',
@@ -9,13 +10,18 @@ export const metadata: Metadata = {
 
 export default function EventsPage() {
   return (
-    <div className="min-h-screen bg-[#050505] text-white">
+    <div className="min-h-screen bg-white text-slate-900">
       <SubPageHero
         backgroundImage="/images/networx_hero_event.webp"
-        title={<>OUR <br /><span className="text-primary italic font-light">EVENTS.</span></>}
-        subtitle="Join the premier networking events for professionals in London. We focus on real conversations, actionable growth, and forging highly valuable connections."
+        eyebrow="Network with us"
+        title="Discover the Events"
+        subtitle="Curated events for professionals who seek connection, growth, and community — a dedicated space to refine your network and connect with others who value genuine dialogue."
+        ctaText="Join An Event"
+        ctaLink="#events"
+        showMarquee={true}
       />
       <main className="space-y-0">
+        <EventFramer />
         <EventSchedule />
       </main>
     </div>

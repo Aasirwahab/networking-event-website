@@ -49,20 +49,20 @@ const FAQItem = memo(function FAQItem({ question, answer, isOpen, onToggle, inde
 }) {
   return (
     <ScrollReveal delay={index * 0.05}>
-      <div className="border-b border-white/10">
+      <div className="border-b border-slate-100">
         <button
           onClick={onToggle}
           className="w-full flex items-center justify-between py-7 text-left group"
         >
-          <span className="text-lg md:text-xl font-medium text-white group-hover:text-primary transition-colors pr-8">
+          <span className="text-lg md:text-xl font-medium text-slate-900 group-hover:text-primary transition-colors pr-8">
             {question}
           </span>
           <motion.div
             animate={{ rotate: isOpen ? 180 : 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="flex-shrink-0"
+            className="flex-shrink-0 w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-primary/10 transition-colors"
           >
-            <ChevronDown className="w-5 h-5 text-white/40" />
+            <ChevronDown className="w-4 h-4 text-text-muted group-hover:text-primary transition-colors" />
           </motion.div>
         </button>
         <AnimatePresence initial={false}>
@@ -74,7 +74,7 @@ const FAQItem = memo(function FAQItem({ question, answer, isOpen, onToggle, inde
               transition={{ duration: 0.3, ease: 'easeInOut' }}
               className="overflow-hidden"
             >
-              <p className="text-white/50 text-base leading-relaxed pb-7 max-w-3xl">
+              <p className="text-text-secondary text-base leading-relaxed pb-7 max-w-3xl">
                 {answer}
               </p>
             </motion.div>
@@ -93,17 +93,17 @@ export function FAQSection() {
   }, []);
 
   return (
-    <section id="faq" className="py-24 md:py-32 relative overflow-hidden scroll-mt-24 content-auto">
-      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-primary/5 blur-[200px] rounded-full" />
+    <section id="faq" className="py-24 md:py-32 relative overflow-hidden bg-bg-gray scroll-mt-24 content-auto">
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 blur-[200px] rounded-full" />
 
       <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         <ScrollReveal>
-          <span className="text-primary text-xs font-bold tracking-[0.4em] uppercase block mb-4">
+          <span className="text-primary text-xs font-medium tracking-[0.2em] uppercase block mb-4 underline underline-offset-8">
             Common Questions
           </span>
-          <h2 className="text-4xl md:text-6xl font-black tracking-tighter mb-16">
-            Everything you <br />
-            <span className="text-white/20">need to know.</span>
+          <h2 className="text-4xl md:text-6xl font-semibold tracking-tight mb-16 text-slate-900 leading-[1.1]">
+            Everything You{' '}<br />
+            <span className="text-primary italic">Need to Know.</span>
           </h2>
         </ScrollReveal>
 

@@ -1,9 +1,8 @@
 'use client';
 
-import { useRef } from 'react';
-import Image from 'next/image';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ScrollReveal } from '@/components/ScrollReveal';
+import './HistorySection.css';
 
 const milestones = [
   {
@@ -29,62 +28,48 @@ const milestones = [
 ];
 
 export function HistorySection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start'],
-  });
-  const bgY = useTransform(scrollYProgress, [0, 1], ['-15%', '15%']);
-
   return (
-    <section ref={sectionRef} className="py-24 relative overflow-hidden contain-paint">
-      {/* Background image with parallax */}
-      <motion.div style={{ y: bgY }} className="absolute inset-0 -top-[25%] -bottom-[25%] z-0 will-change-transform">
-        <Image
-          src="/images/london/8.webp"
-          alt=""
-          fill
-          className="object-cover"
-          sizes="100vw"
-        />
-      </motion.div>
-      <div className="absolute inset-0 z-[1] bg-black/80" />
+    <section className="py-24 lg:py-32 relative overflow-hidden">
+      <div
+        className="history-section-bg"
+        ref={(el) => { if (el) el.style.setProperty('--history-bg-image', `url('/images/london/8.webp')`); }}
+      />
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 bg-black/70 z-0" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <ScrollReveal className="text-center mb-24">
-           <span className="text-primary text-xs font-bold tracking-[0.4em] uppercase block mb-4 underline underline-offset-4">Our Journey</span>
-           <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter leading-none mb-8">
-             A TIMELINE OF <br />
-             <span className="text-white/20">GROWTH.</span>
+        <ScrollReveal className="text-center mb-20">
+           <span className="text-primary text-xs font-bold tracking-[0.4em] uppercase block mb-4 underline underline-offset-8">Our Journey</span>
+           <h2 className="text-4xl md:text-6xl font-semibold text-white tracking-tight leading-[1.1] mb-6">
+             A Timeline of{' '}
+             <span className="text-primary italic">Growth.</span>
            </h2>
         </ScrollReveal>
 
         {/* Vertical Timeline */}
         <div className="relative">
           {/* Vertical Line */}
-          <div className="absolute left-1/2 -translate-x-1/2 w-[1px] h-full bg-white/5 md:block hidden" />
+          <div className="absolute left-1/2 -translate-x-1/2 w-[2px] h-full bg-white/10 md:block hidden" />
           
-          <div className="space-y-12 md:space-y-32">
+          <div className="space-y-12 md:space-y-20">
             {milestones.map((m, i) => (
               <motion.div
                 key={m.title}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
                 className={`flex flex-col md:flex-row items-center gap-8 ${i % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
               >
                 {/* Year Bubble */}
-                <div className="w-20 h-20 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-primary font-black text-lg tracking-widest z-10 flex-shrink-0 group hover:bg-primary hover:border-primary transition-all duration-500 hover:scale-110">
+                <div className="w-16 h-16 rounded-full bg-white/10 border-2 border-white/20 backdrop-blur-sm flex items-center justify-center text-primary font-bold text-sm tracking-widest z-10 flex-shrink-0 hover:bg-primary hover:text-white hover:border-primary transition-all duration-500 hover:scale-110">
                   {m.year}
                 </div>
                 
                 {/* Content Card */}
-                <div className={`flex-1 p-8 md:p-12 rounded-[40px] bg-white/[0.03] border border-white/5 hover:bg-white/5 transition-all duration-500 relative group transform-gpu`}>
-                  <div className={`absolute top-1/2 -translate-y-1/2 ${i % 2 === 0 ? '-right-4' : '-left-4'} w-8 h-8 rotate-45 bg-white/[0.03] border-t border-r border-white/5 md:block hidden`} />
-                  
-                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 tracking-tighter leading-none group-hover:text-primary transition-colors">{m.title}</h3>
-                  <p className="text-white/30 text-sm md:text-lg font-light leading-relaxed max-w-xl">{m.description}</p>
+                <div className="flex-1 p-8 md:p-10 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 hover:bg-white/15 hover:border-white/20 transition-all duration-500 relative group">
+                  <h3 className="text-2xl font-semibold text-white mb-3 tracking-tight group-hover:text-primary transition-colors">{m.title}</h3>
+                  <p className="text-white/60 text-base font-light leading-relaxed">{m.description}</p>
                 </div>
                 
                 {/* Visual Spacer for Desktop */}

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState, type ReactNode } from 'react';
+import './ScrollReveal.css';
 
 interface ScrollRevealProps {
   children: ReactNode;
@@ -8,6 +9,13 @@ interface ScrollRevealProps {
   direction?: 'up' | 'down' | 'left' | 'right';
   className?: string;
 }
+
+const translateMap: Record<string, string> = {
+  up: 'translate3d(0, 40px, 0) scale(0.97)',
+  down: 'translate3d(0, -40px, 0) scale(0.97)',
+  left: 'translate3d(40px, 0, 0) scale(0.97)',
+  right: 'translate3d(-40px, 0, 0) scale(0.97)',
+};
 
 export function ScrollReveal({
   children,
@@ -22,6 +30,10 @@ export function ScrollReveal({
     const el = ref.current;
     if (!el) return;
 
+    // Set CSS custom properties for dynamic values
+    el.style.setProperty('--sr-delay', `${delay}s`);
+    el.style.setProperty('--sr-transform-from', translateMap[direction]);
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -34,25 +46,12 @@ export function ScrollReveal({
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, []);
-
-  const translateMap = {
-    up: 'translate3d(0, 40px, 0)',
-    down: 'translate3d(0, -40px, 0)',
-    left: 'translate3d(40px, 0, 0)',
-    right: 'translate3d(-40px, 0, 0)',
-  };
+  }, [delay, direction]);
 
   return (
     <div
       ref={ref}
-      className={className}
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translate3d(0, 0, 0) scale(1)' : `${translateMap[direction]} scale(0.97)`,
-        transition: `opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s`,
-        willChange: isVisible ? 'auto' : 'opacity, transform',
-      }}
+      className={`scroll-reveal ${isVisible ? 'is-visible' : ''} ${className}`}
     >
       {children}
     </div>
