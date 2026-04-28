@@ -50,7 +50,7 @@ const VideoCard = memo(function VideoCard({ story, isActive, showDragHint }: Vid
 
   return (
     <div
-      className="relative w-full rounded-[24px] overflow-hidden border border-white/10 bg-black aspect-9-16 cursor-pointer"
+      className="relative w-full rounded-[24px] overflow-hidden border border-white/10 bg-black aspect-9-16 cursor-pointer [transform:translateZ(0)]"
       onClick={togglePlay}
     >
       {/* Thumbnail image (always visible as background) */}
@@ -81,7 +81,7 @@ const VideoCard = memo(function VideoCard({ story, isActive, showDragHint }: Vid
 
       {/* Category badge - top left */}
       <div className="absolute top-5 left-5 z-10">
-        <span className="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] font-bold uppercase text-white/80 tracking-widest border border-white/5">
+        <span className={`px-3 py-1 ${isActive ? 'bg-white/10 backdrop-blur-md' : 'bg-black/40'} rounded-full text-[10px] font-bold uppercase text-white/80 tracking-widest border border-white/5`}>
           {story.category}
         </span>
       </div>
@@ -90,7 +90,7 @@ const VideoCard = memo(function VideoCard({ story, isActive, showDragHint }: Vid
       <button
         onClick={toggleMute}
         aria-label={isMuted ? 'Unmute video' : 'Mute video'}
-        className="absolute top-5 right-5 z-10 w-9 h-9 rounded-full bg-white/10 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/60 hover:text-white transition-colors"
+        className={`absolute top-5 right-5 z-10 w-9 h-9 rounded-full ${isActive ? 'bg-white/10 backdrop-blur-md' : 'bg-black/40'} border border-white/10 flex items-center justify-center text-white/60 hover:text-white transition-colors`}
       >
         {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
       </button>
@@ -116,7 +116,7 @@ const VideoCard = memo(function VideoCard({ story, isActive, showDragHint }: Vid
       {/* Play/Pause center indicator */}
       {!showDragHint && (
         <div className={`absolute inset-0 flex items-center justify-center z-10 pointer-events-none transition-opacity duration-300 ${isPlaying ? 'opacity-0' : 'opacity-100'}`}>
-          <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center">
+          <div className={`w-16 h-16 rounded-full ${isActive ? 'bg-white/10 backdrop-blur-md' : 'bg-black/40'} border border-white/20 flex items-center justify-center`}>
             {isPlaying ? (
               <Pause className="w-6 h-6 text-white" />
             ) : (
@@ -148,9 +148,9 @@ const VideoCard = memo(function VideoCard({ story, isActive, showDragHint }: Vid
       {/* Progress bar */}
       <div className="absolute bottom-0 left-0 w-full h-1 bg-white/10">
         <motion.div
-          className="h-full bg-primary"
-          initial={{ width: '0%' }}
-          animate={isActive && isPlaying ? { width: '100%' } : { width: '0%' }}
+          className="h-full w-full bg-primary origin-left"
+          initial={{ scaleX: 0 }}
+          animate={isActive && isPlaying ? { scaleX: 1 } : { scaleX: 0 }}
           transition={{ duration: 15, ease: 'linear' }}
         />
       </div>
@@ -239,6 +239,7 @@ export function NetworxStories() {
                 className="absolute cursor-grab active:cursor-grabbing w-card-fan"
                 style={{
                   zIndex,
+                  willChange: 'transform',
                   ...(isActive ? { rotate: dragRotate } : {}),
                 }}
                 animate={{

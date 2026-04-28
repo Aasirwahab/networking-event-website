@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState, useTransition } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import { MenuOverlay } from './MenuOverlay';
@@ -74,23 +75,61 @@ export function Navbar() {
           }`}
       >
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-          <nav className="flex items-center justify-between">
-            {/* Logo: Premium Branding */}
+          <nav className="grid grid-cols-3 items-center">
+
+            {/* Left: Text Logo with masked translateY reveal */}
             <Link
               href="/"
               onClick={handleLogoClick}
-              className={`group flex items-center gap-1.5 transition-transform duration-300 hover:scale-[1.02]`}
+              className="group flex items-end gap-1.5 transition-transform duration-300 hover:scale-[1.02] justify-self-start"
             >
-              <span className={`text-2xl font-black tracking-tighter uppercase transition-all duration-500 ${textColor}`}>
-                Networx
+              <span className="overflow-hidden inline-block leading-[0.95] pb-[2px]">
+                <motion.span
+                  initial={{ y: '110%' }}
+                  animate={{ y: '0%' }}
+                  transition={{ duration: 0.9, delay: delayAmount + 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  className={`block text-2xl font-black tracking-tighter uppercase transition-colors duration-500 ${textColor}`}
+                >
+                  Networx
+                </motion.span>
               </span>
-              <span className="text-[10px] tracking-[0.6em] uppercase font-bold text-primary ml-1">
-                London
+              <span className="overflow-hidden inline-block leading-[0.95] pb-[2px] ml-1">
+                <motion.span
+                  initial={{ y: '110%' }}
+                  animate={{ y: '0%' }}
+                  transition={{ duration: 0.9, delay: delayAmount + 0.55, ease: [0.16, 1, 0.3, 1] }}
+                  className="block text-[10px] tracking-[0.6em] uppercase font-bold text-primary"
+                >
+                  London
+                </motion.span>
               </span>
             </Link>
 
-            {/* Right Side: Elite Menu Toggler */}
-            <div className="flex items-center gap-8">
+            {/* Center: Logo Image with masked reveal */}
+            <div className="flex justify-center">
+              <Link href="/" onClick={handleLogoClick} className="transition-transform duration-300 hover:scale-[1.03]">
+                <span className="overflow-hidden inline-block pb-[2px]">
+                  <motion.span
+                    initial={{ y: '110%' }}
+                    animate={{ y: '0%' }}
+                    transition={{ duration: 0.9, delay: delayAmount + 0.45, ease: [0.16, 1, 0.3, 1] }}
+                    className="block"
+                  >
+                    <Image
+                      src="/images/logo.png"
+                      alt="Networx London"
+                      width={160}
+                      height={80}
+                      className={`object-contain h-20 w-auto transition-all duration-500 ${isDarkTheme ? 'brightness-0 invert' : 'brightness-0'}`}
+                      priority
+                    />
+                  </motion.span>
+                </span>
+              </Link>
+            </div>
+
+            {/* Right: Menu Toggler */}
+            <div className="flex items-center gap-8 justify-self-end">
               <button
                 className={`flex flex-col justify-center items-end gap-[5px] p-2 cursor-pointer bg-transparent border-none group outline-none`}
                 onClick={handleMenuToggle}
