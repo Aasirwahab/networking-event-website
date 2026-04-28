@@ -93,7 +93,7 @@ export function Navbar() {
                   Networx
                 </motion.span>
               </span>
-              <span className="overflow-hidden inline-block leading-[0.95] pb-[2px] ml-1">
+              <span className="hidden sm:inline-block overflow-hidden leading-[0.95] pb-[2px] ml-1">
                 <motion.span
                   initial={{ y: '110%' }}
                   animate={{ y: '0%' }}
@@ -120,7 +120,7 @@ export function Navbar() {
                       alt="Networx London"
                       width={160}
                       height={80}
-                      className={`object-contain h-20 w-auto transition-all duration-500 ${isDarkTheme ? 'brightness-0 invert' : 'brightness-0'}`}
+                      className={`object-contain h-12 sm:h-16 lg:h-20 w-auto transition-all duration-500 ${isDarkTheme ? 'brightness-0 invert' : 'brightness-0'}`}
                       priority
                     />
                   </motion.span>

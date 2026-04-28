@@ -92,6 +92,33 @@ export const MenuOverlay = ({ isOpen, onLinkClick }: MenuOverlayProps) => {
     }
   }, [isOpen]);
 
+  // Lock body scroll while overlay is open
+  useEffect(() => {
+    if (!isOpen) return;
+    const { body, documentElement } = document;
+    const scrollY = window.scrollY;
+    const prevBodyOverflow = body.style.overflow;
+    const prevHtmlOverflow = documentElement.style.overflow;
+    const prevBodyPosition = body.style.position;
+    const prevBodyTop = body.style.top;
+    const prevBodyWidth = body.style.width;
+
+    body.style.overflow = "hidden";
+    documentElement.style.overflow = "hidden";
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.width = "100%";
+
+    return () => {
+      body.style.overflow = prevBodyOverflow;
+      documentElement.style.overflow = prevHtmlOverflow;
+      body.style.position = prevBodyPosition;
+      body.style.top = prevBodyTop;
+      body.style.width = prevBodyWidth;
+      window.scrollTo(0, scrollY);
+    };
+  }, [isOpen]);
+
   // Keyboard accessibility: Escape closes, Tab cycles within the overlay
   useEffect(() => {
     if (!isOpen) return;
