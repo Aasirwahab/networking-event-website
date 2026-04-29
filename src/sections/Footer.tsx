@@ -71,7 +71,7 @@ export function Footer() {
           <div className="max-w-2xl">
             <span className="text-white/50 text-xs uppercase tracking-[0.3em] font-medium mb-4 block underline underline-offset-8 decoration-white/20">Intelligence</span>
             <h3 className="text-3xl lg:text-4xl font-extralight italic mb-8 max-w-lg leading-tight text-white">
-              Stay connected with London's most welcoming networking community.
+              Stay connected with London&apos;s most welcoming networking community.
             </h3>
             <form onSubmit={handleSubmit} className="relative group max-w-md">
               <input

@@ -18,7 +18,7 @@ export function SpeakerNomination() {
              <span className="text-white/20">STORY.</span>
            </h2>
            <p className="text-white/30 text-lg font-light leading-relaxed">
-             Are you a director, founder, entrepreneur, or professional looking to connect with like-minded people? We'd love to have you.
+             Are you a director, founder, entrepreneur, or professional looking to connect with like-minded people? We&apos;d love to have you.
            </p>
         </ScrollReveal>
 
@@ -88,7 +88,7 @@ export function SpeakerNomination() {
           </button>
           
           <p className="text-center text-[9px] font-bold uppercase tracking-widest text-white/10">
-            * We'll get back to you within 48 hours with details about our next event.
+            * We&apos;ll get back to you within 48 hours with details about our next event.
           </p>
         </motion.form>
       </div>

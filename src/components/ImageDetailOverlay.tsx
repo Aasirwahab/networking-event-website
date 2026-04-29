@@ -33,7 +33,7 @@ export default function ImageDetailOverlay({ image, onClose }: Props) {
     <div
       onClick={onClose}
       className={cn(
-        "fixed inset-0 bg-[#0a0a0a]/94 backdrop-blur-md z-[100] flex items-center justify-center p-8 lg:p-16 transition-opacity duration-[350ms] ease-in-out",
+        "fixed inset-0 bg-[#0a0a0a]/94 backdrop-blur-md z-[100] flex items-center justify-center p-8 lg:p-16 transition-opacity [transition-duration:350ms] ease-in-out",
         open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
       )}
     >
@@ -41,7 +41,7 @@ export default function ImageDetailOverlay({ image, onClose }: Props) {
         <div
           onClick={(e) => e.stopPropagation()}
           className={cn(
-            "grid grid-cols-1 lg:grid-cols-[1.4fr_0.9fr] gap-8 lg:gap-14 max-w-[1520px] w-full max-h-full items-center transition-transform duration-[350ms] ease-in-out",
+            "grid grid-cols-1 lg:grid-cols-[1.4fr_0.9fr] gap-8 lg:gap-14 max-w-[1520px] w-full max-h-full items-center transition-transform [transition-duration:350ms] ease-in-out",
             open ? "scale-100" : "scale-[0.98]"
           )}
         >

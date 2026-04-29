@@ -15,7 +15,18 @@
       "Bash(npx --yes sharp-cli --version)",
       "Bash(npm ls:*)",
       "Bash(node -e ':*)",
-      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code} | Total: %{time_total}s | Size: %{size_download} bytes\" http://localhost:3002/)"
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code} | Total: %{time_total}s | Size: %{size_download} bytes\" http://localhost:3002/)",
+      "Bash(curl -s -I http://localhost:3344/)",
+      "Bash(curl -s -o /dev/null -w \"HTTP: %{http_code}\\\\n\" http://localhost:3344/robots.txt)",
+      "Bash(curl -s -o /dev/null -w \"HTTP: %{http_code}\\\\n\" http://localhost:3344/sitemap.xml)",
+      "Bash(curl -s -o /dev/null -w \"HTTP: %{http_code}\\\\n\" http://localhost:3344/favicon.ico)",
+      "Bash(curl -s http://localhost:3344/)",
+      "Bash(taskkill //F //FI \"WINDOWTITLE eq *next start*\")",
+      "Bash(powershell -Command 'Get-NetTCPConnection -LocalPort 3344 -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }')",
+      "Bash(npx next *)",
+      "Bash(echo \"Started PID $!\")",
+      "Bash(curl -s http://localhost:3344/robots.txt)",
+      "Bash(curl -s http://localhost:3344/sitemap.xml)"
     ]
   }
 }

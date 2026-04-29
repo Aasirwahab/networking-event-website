@@ -159,7 +159,6 @@ const ImagesFlow: React.FC<ImagesFlowProps> = ({
 
     // Set initial hidden state
     imgElements.forEach((el, i) => gsap.set(el, initPos[i]));
-    setIsAnimationReady(true);
 
     const maxTotalDelay = 0.6;
     const delayStep = Math.min(0.03, maxTotalDelay / Math.max(1, images.length));
@@ -212,9 +211,10 @@ const ImagesFlow: React.FC<ImagesFlowProps> = ({
       },
     });
 
-    // Refresh after a frame to ensure layout is calculated
+    // Refresh after a frame to ensure layout is calculated, then reveal
     requestAnimationFrame(() => {
       ScrollTrigger.refresh();
+      setIsAnimationReady(true);
     });
 
     return () => {

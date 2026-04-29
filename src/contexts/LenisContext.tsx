@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
@@ -22,7 +22,7 @@ const LenisContext = createContext<LenisContextValue>({
 export const useLenisScroll = () => useContext(LenisContext);
 
 export const LenisProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const lenisRef = useRef<Lenis | null>(null);
+  const [lenis, setLenis] = useState<Lenis | null>(null);
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
@@ -38,8 +38,6 @@ export const LenisProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         touchMultiplier: 1.8,
       });
 
-      lenisRef.current = lenisInstance;
-
       lenisInstance.on('scroll', ScrollTrigger.update);
 
       tickerCallback = (time: number) => {
@@ -47,23 +45,26 @@ export const LenisProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       };
       gsap.ticker.add(tickerCallback);
       gsap.ticker.lagSmoothing(0);
+
+      // Bridging an external instance (Lenis) into React state — fires once on mount
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setLenis(lenisInstance);
     } catch {
       // Graceful fallback: site works without smooth scroll
     }
 
-    // Single state update triggers one render instead of two
     setIsReady(true);
 
     return () => {
       if (lenisInstance) lenisInstance.destroy();
       if (tickerCallback) gsap.ticker.remove(tickerCallback);
-      lenisRef.current = null;
+      setLenis(null);
     };
   }, []);
 
   const value = useMemo<LenisContextValue>(
-    () => ({ lenis: lenisRef.current, isReady }),
-    [isReady]
+    () => ({ lenis, isReady }),
+    [lenis, isReady]
   );
 
   return (

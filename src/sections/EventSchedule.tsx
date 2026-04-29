@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { events } from '@/data/content';
-import { Calendar, MapPin, Clock, ArrowRight } from 'lucide-react';
+import { MapPin, Clock, ArrowRight } from 'lucide-react';
 
 export function EventSchedule() {
   return (
