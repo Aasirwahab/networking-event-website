@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { ArrowRight } from 'lucide-react';
 import { z } from 'zod';
 import { footerLinks, socialLinks } from '@/data/content';
@@ -15,12 +16,15 @@ export function Footer() {
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const { footerRef, wrapperRef, innerRef, isSticky } = useFooterSticky();
   const statusTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     return () => {
       if (statusTimerRef.current !== null) clearTimeout(statusTimerRef.current);
     };
   }, []);
+
+  if (pathname === '/gallery') return null;
 
   const scheduleReset = (ms: number) => {
     if (statusTimerRef.current !== null) clearTimeout(statusTimerRef.current);
