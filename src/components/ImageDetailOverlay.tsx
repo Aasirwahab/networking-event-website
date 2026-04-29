@@ -87,14 +87,6 @@ export default function ImageDetailOverlay({ image, onClose }: Props) {
         </div>
       )}
 
-      {/* Close X (always in corner) */}
-      <button
-        onClick={onClose}
-        aria-label="Close"
-        className="fixed top-6 right-8 bg-transparent border-none text-white text-[28px] leading-none cursor-pointer px-3 py-2 opacity-70 transition-opacity duration-200 hover:opacity-100"
-      >
-        ×
-      </button>
     </div>
   );
 }

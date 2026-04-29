@@ -151,6 +151,12 @@ export default class VortexGallery {
   private disposed = false;
   private resizeHandler: (() => void) | null = null;
   private wheelHandler: ((e: WheelEvent) => void) | null = null;
+  private touchStartHandler: ((e: TouchEvent) => void) | null = null;
+  private touchMoveHandler: ((e: TouchEvent) => void) | null = null;
+  private touchEndHandler: ((e: TouchEvent) => void) | null = null;
+  private touchStartY = 0;
+  private touchLastY = 0;
+  private isTouching = false;
 
   constructor(canvas: HTMLCanvasElement, imagePaths: string[]) {
     this.scene = new THREE.Scene();
@@ -406,6 +412,43 @@ export default class VortexGallery {
       this.scrollY.target += delta;
     };
     window.addEventListener("wheel", this.wheelHandler);
+
+    // --- Touch events for mobile swipe-to-scroll ---
+    const canvas = this.renderer.domElement;
+
+    this.touchStartHandler = (e: TouchEvent) => {
+      if (this.paused) return;
+      this.isTouching = true;
+      this.touchStartY = e.touches[0].clientY;
+      this.touchLastY = e.touches[0].clientY;
+    };
+
+    this.touchMoveHandler = (e: TouchEvent) => {
+      if (this.paused || !this.isTouching) return;
+      e.preventDefault(); // prevent native page scroll while swiping on canvas
+
+      const currentY = e.touches[0].clientY;
+      const deltaY = this.touchLastY - currentY; // positive = swipe up
+      this.touchLastY = currentY;
+
+      const fov = this.camera.fov * (Math.PI / 180);
+      const height = this.camera.position.z * Math.tan(fov / 2) * 2;
+      const dir = Math.sign(deltaY) || this.scrollY.direction;
+      this.scrollY.direction = dir;
+
+      // Scale factor to make touch feel responsive (similar to wheel)
+      const delta = (deltaY * height) / window.innerHeight;
+      this.scrollY.speedTarget += delta;
+      this.scrollY.target += delta;
+    };
+
+    this.touchEndHandler = () => {
+      this.isTouching = false;
+    };
+
+    canvas.addEventListener("touchstart", this.touchStartHandler, { passive: true });
+    canvas.addEventListener("touchmove", this.touchMoveHandler, { passive: false });
+    canvas.addEventListener("touchend", this.touchEndHandler, { passive: true });
   }
 
   addScrollDelta(delta: number) {
@@ -539,6 +582,16 @@ export default class VortexGallery {
     }
     if (this.wheelHandler) {
       window.removeEventListener("wheel", this.wheelHandler);
+    }
+    const canvas = this.renderer.domElement;
+    if (this.touchStartHandler) {
+      canvas.removeEventListener("touchstart", this.touchStartHandler);
+    }
+    if (this.touchMoveHandler) {
+      canvas.removeEventListener("touchmove", this.touchMoveHandler);
+    }
+    if (this.touchEndHandler) {
+      canvas.removeEventListener("touchend", this.touchEndHandler);
     }
     this.renderer.dispose();
     if (this.atlasTexture) this.atlasTexture.dispose();
