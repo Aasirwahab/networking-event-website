@@ -2,9 +2,12 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
+import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { z } from 'zod';
 import { footerLinks, socialLinks } from '@/data/content';
+import { preloadGalleryImages } from '@/data/gallery';
 import { TwitterIcon, InstagramIcon } from '@/components/SocialIcons';
 import { useFooterSticky } from '@/hooks/useFooterSticky';
 
@@ -47,11 +50,11 @@ export function Footer() {
   return (
     <div
       ref={wrapperRef}
-      className={`relative w-full ${isSticky ? 'clip-footer' : ''}`}
+      className="relative w-full"
     >
       <div
         ref={innerRef}
-        className={isSticky ? "fixed bottom-0 left-0 w-full" : "w-full"}
+        className={isSticky ? "fixed bottom-0 left-0 w-full z-0" : "w-full"}
       >
     <footer
       ref={footerRef}
@@ -74,23 +77,25 @@ export function Footer() {
               Stay connected with London&apos;s most welcoming networking community.
             </h3>
             <form onSubmit={handleSubmit} className="relative group max-w-md">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="your@email.com"
-                required
-                aria-label="Email address for newsletter"
-                className="w-full bg-transparent border-b border-white/20 py-6 pr-12 text-white placeholder:text-white/20 focus:outline-none focus:border-white/60 transition-all text-xl font-extralight group-hover:border-white/40"
-              />
-              <button
-                type="submit"
-                className="absolute right-0 top-1/2 -translate-y-1/2 text-white hover:text-blue-200 transition-all transform hover:scale-110"
-                aria-label="Subscribe"
-                title="Subscribe to newsletter"
-              >
-                <ArrowRight className="w-8 h-8" />
-              </button>
+              <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl border border-white/15 hover:border-white/30 focus-within:border-white/60 focus-within:bg-white/15 transition-all duration-300">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="your@email.com"
+                  required
+                  aria-label="Email address for newsletter"
+                  className="w-full bg-transparent py-5 pl-6 pr-16 text-white placeholder:text-white/60 focus:outline-none text-lg font-light"
+                />
+                <button
+                  type="submit"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 w-11 h-11 rounded-xl bg-white text-primary flex items-center justify-center hover:bg-blue-50 hover:scale-105 transition-all"
+                  aria-label="Subscribe"
+                  title="Subscribe to newsletter"
+                >
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+              </div>
             </form>
             <p role="status" aria-live="polite" className="min-h-[1.25rem] mt-3 text-sm font-light">
               {status === 'success' && (
@@ -107,6 +112,15 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 lg:gap-8 pb-12 border-b border-white/[0.05]">
           {/* Branding & Contact */}
           <div className="col-span-2 lg:col-span-1">
+            <Link href="/" aria-label="Networx London — home" className="inline-block mb-7 transition-transform duration-300 hover:scale-[1.03]">
+              <Image
+                src="/images/logo.png"
+                alt="Networx London"
+                width={140}
+                height={70}
+                className="h-14 w-auto object-contain brightness-0 invert"
+              />
+            </Link>
             <p className="text-white/40 text-xs uppercase tracking-widest font-bold mb-6">Connect</p>
             <a href="mailto:hello@networxlondon.com" className="text-white text-md font-medium hover:text-blue-200 transition-colors block mb-2 underline underline-offset-4 decoration-white/20">
               hello@networxlondon.com
@@ -125,9 +139,22 @@ export function Footer() {
           <div>
             <p className="text-white/40 text-xs uppercase tracking-widest font-bold mb-6">Navigation</p>
             <ul className="space-y-4">
-              {footerLinks.column1.map((link) => (
-                <li key={link.label}><a href={link.href} className="text-white/80 text-sm hover:text-white transition-all transform hover:translate-x-1 inline-block font-light">{link.label}</a></li>
-              ))}
+              {footerLinks.column1.map((link) => {
+                const isGallery = link.href === '/gallery';
+                return (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      onMouseEnter={isGallery ? preloadGalleryImages : undefined}
+                      onTouchStart={isGallery ? preloadGalleryImages : undefined}
+                      onFocus={isGallery ? preloadGalleryImages : undefined}
+                      className="text-white/80 text-sm hover:text-white transition-all transform hover:translate-x-1 inline-block font-light"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 

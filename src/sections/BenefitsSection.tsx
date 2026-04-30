@@ -100,18 +100,18 @@ function BenefitCard({ benefit, index, progress, range, targetScale, rangeStep }
           className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition duration-500 group-hover:opacity-100"
           style={{ background: spotlightBackground }}
         />
-        
+
         <div className="flex h-full gap-8 lg:gap-12 flex-col lg:flex-row items-center relative z-10">
           {/* Text Content */}
           <div className="w-full lg:w-2/5 flex flex-col justify-center h-full">
             <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-8 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-500 ease-out">
               <benefit.icon className="w-7 h-7 text-primary" />
             </div>
-            
+
             <h3 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6 transition-colors duration-500">
               {benefit.title}
             </h3>
-            
+
             <p className="text-slate-500 text-lg leading-relaxed transition-colors duration-500">
               {benefit.description}
             </p>
@@ -142,7 +142,7 @@ const SCALE_STEP = 0.05;
 
 export function BenefitsSection() {
   const container = useRef(null);
-  
+
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ['start start', 'end end']
@@ -170,9 +170,9 @@ export function BenefitsSection() {
         {benefits.map((benefit, index) => {
           const targetScale = 1 - ((benefits.length - index) * SCALE_STEP);
           return (
-            <BenefitCard 
-              key={benefit.title} 
-              benefit={benefit} 
+            <BenefitCard
+              key={benefit.title}
+              benefit={benefit}
               index={index}
               progress={scrollYProgress}
               range={[index * rangeStep, 1]}

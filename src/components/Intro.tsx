@@ -12,7 +12,7 @@ export const IMAGES = [
   "/images/networx_hero_event.webp",
 ];
 
-export const INTRO_END_DELAY_SEC = 0.35 + (IMAGES.length - 1) * 0.5 + 1.2 + 1.4 + 0.85;
+export const INTRO_END_DELAY_SEC = 0.2 + (IMAGES.length - 1) * 0.25 + 0.7 + 0.8 + 0.5;
 
 const INITIAL_SCALE = 0.35;
 
@@ -37,12 +37,12 @@ const Intro = () => {
 
       const timeline = gsap.timeline();
 
-      // Phase 1: Slow, premium staggered image reveals inside the centered box
+      // Phase 1: Faster staggered image reveals inside the centered box
       timeline.to(imgs, {
         clipPath: "inset(0% 0% 0% 0%)",
-        duration: 1.2,
-        delay: 0.35,
-        stagger: { each: 0.5, ease: "power2.inOut" },
+        duration: 0.7,
+        delay: 0.2,
+        stagger: { each: 0.25, ease: "power2.inOut" },
       });
 
       // Shading effect via opacity overlay (GPU-accelerated, replaces filter: brightness)
@@ -50,17 +50,17 @@ const Intro = () => {
         overlays,
         {
           opacity: 0,
-          duration: 1.0,
-          stagger: 0.5,
+          duration: 0.6,
+          stagger: 0.25,
           ease: "power2.out",
         },
-        0.35
+        0.2
       );
 
       // Phase 2: Smooth, balanced ZOOM from center (scale transform — GPU accelerated)
       timeline.to(container, {
         scale: 1,
-        duration: 1.4,
+        duration: 0.8,
         ease: "power3.inOut",
       });
 
@@ -69,10 +69,10 @@ const Intro = () => {
         radialRef.current,
         {
           opacity: 1,
-          duration: 0.85,
+          duration: 0.5,
           ease: "power2.out",
         },
-        "-=0.3"
+        "-=0.2"
       );
     }, containerRef);
 

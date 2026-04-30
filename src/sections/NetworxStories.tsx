@@ -115,14 +115,22 @@ const VideoCard = memo(function VideoCard({ story, isActive, showDragHint }: Vid
 
       {/* Play/Pause center indicator */}
       {!showDragHint && (
-        <div className={`absolute inset-0 flex items-center justify-center z-10 pointer-events-none transition-opacity duration-300 ${isPlaying ? 'opacity-0' : 'opacity-100'}`}>
-          <div className={`w-16 h-16 rounded-full ${isActive ? 'bg-white/10 backdrop-blur-md' : 'bg-black/40'} border border-white/20 flex items-center justify-center`}>
+        <div className={`absolute inset-0 flex flex-col items-center justify-center gap-3 z-10 pointer-events-none transition-opacity duration-300 ${isPlaying ? 'opacity-0' : 'opacity-100'}`}>
+          <div className={`relative w-20 h-20 rounded-full ${isActive ? 'bg-white shadow-[0_15px_40px_rgba(0,0,0,0.4)]' : 'bg-white/15 backdrop-blur-md border border-white/20'} flex items-center justify-center transition-all duration-300`}>
+            {isActive && !isPlaying && (
+              <span className="absolute inset-0 rounded-full bg-white/30 animate-ping" />
+            )}
             {isPlaying ? (
-              <Pause className="w-6 h-6 text-white" />
+              <Pause className={`w-7 h-7 ${isActive ? 'text-primary' : 'text-white'}`} />
             ) : (
-              <Play className="w-6 h-6 text-white ml-1" />
+              <Play className={`w-7 h-7 ml-1 ${isActive ? 'text-primary fill-primary' : 'text-white fill-white'}`} />
             )}
           </div>
+          {isActive && (
+            <span className="px-3 py-1.5 bg-white/15 backdrop-blur-md rounded-full text-[10px] font-bold uppercase text-white tracking-[0.2em] border border-white/20">
+              Watch Story
+            </span>
+          )}
         </div>
       )}
 

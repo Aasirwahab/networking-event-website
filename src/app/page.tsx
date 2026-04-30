@@ -10,7 +10,6 @@ import { SectionSkeleton } from "@/components/SectionSkeleton";
 const AboutSection = dynamic(() => import("@/sections/AboutSection").then(m => ({ default: m.AboutSection })), { loading: () => <SectionSkeleton /> });
 const EventsSection = dynamic(() => import("@/sections/EventsSection").then(m => ({ default: m.EventsSection })), { loading: () => <SectionSkeleton /> });
 const NetworxStories = dynamic(() => import("@/sections/NetworxStories").then(m => ({ default: m.NetworxStories })), { loading: () => <SectionSkeleton /> });
-const SpeakersSection = dynamic(() => import("@/sections/SpeakersSection").then(m => ({ default: m.SpeakersSection })), { loading: () => <SectionSkeleton /> });
 
 export const metadata: Metadata = {
   description: 'Join London\'s premier networking community. Connect with directors, startup founders, CEOs, and investors for meaningful relationship building.',
@@ -36,7 +35,6 @@ export default function HomePage() {
         <EventsSection />
         <StatsSection />
         <NetworxStories />
-        <SpeakersSection />
         <CTASection />
       </main>
     </div>

@@ -57,6 +57,11 @@ export default function TransitionProvider({
         pendingHref.current = null;
         coverDone.current = false;
         setRevealReady(false);
+        // Notify pages that the reveal is done so they can safely run heavy
+        // main-thread work (e.g. WebGL atlas builds) without janking the animation.
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new CustomEvent("page-transition-revealed"));
+        }
       },
     });
 

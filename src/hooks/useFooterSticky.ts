@@ -22,6 +22,9 @@ export function useFooterSticky() {
       const sticky = fh > 0 && wh > 0 && fh <= wh;
 
       setIsSticky(sticky);
+      // Reserve real scroll space equal to the footer height so the page
+      // can scroll past it, revealing the fixed footer from underneath.
+      wrapper.style.height = sticky ? `${fh}px` : '';
       wrapper.style.setProperty('--footer-h', sticky ? `${fh}px` : 'auto');
       inner.style.height = sticky ? `${fh}px` : '';
     };

@@ -4,6 +4,7 @@ import React, { useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { navLinks, socialLinks } from "@/data/content";
+import { preloadGalleryImages } from "@/data/gallery";
 import { usePageTransition } from "./TransitionProvider";
 
 interface MenuOverlayProps {
@@ -213,11 +214,21 @@ export const MenuOverlay = ({ isOpen, onLinkClick }: MenuOverlayProps) => {
             <Link href="/" onClick={(e) => handleLinkClick(e, "/")}>
               <span className="nav-link-reveal inline-block">Home</span>
             </Link>
-            {navLinks.map((link) => (
-              <Link key={link.label} href={link.href} onClick={(e) => handleLinkClick(e, link.href)}>
-                <span className="nav-link-reveal inline-block">{link.label}</span>
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isGallery = link.href === "/gallery";
+              return (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  onClick={(e) => handleLinkClick(e, link.href)}
+                  onMouseEnter={isGallery ? preloadGalleryImages : undefined}
+                  onTouchStart={isGallery ? preloadGalleryImages : undefined}
+                  onFocus={isGallery ? preloadGalleryImages : undefined}
+                >
+                  <span className="nav-link-reveal inline-block">{link.label}</span>
+                </Link>
+              );
+            })}
           </div>
 
         </div>

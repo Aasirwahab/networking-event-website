@@ -5,6 +5,19 @@ export interface ImageItem {
   description: string;
 }
 
+let galleryPreloadStarted = false;
+// Warm the browser cache for gallery images so the WebGL atlas build is near-instant
+// when the user reaches /gallery. Idempotent — safe to call from multiple hover handlers.
+export function preloadGalleryImages() {
+  if (galleryPreloadStarted || typeof window === 'undefined') return;
+  galleryPreloadStarted = true;
+  for (const item of vortexGalleryImages) {
+    const img = new window.Image();
+    img.decoding = 'async';
+    img.src = item.src;
+  }
+}
+
 export interface OverlayConfig {
   frameDetailLabel: string;
   fileLabel: string;

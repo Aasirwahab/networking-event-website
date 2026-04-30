@@ -25,52 +25,63 @@ export function TeamSection() {
            </p>
         </ScrollReveal>
 
-        {/* Team Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {communityMembers.map((member, index) => (
-            <motion.div
-              key={member.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.8 }}
-              whileHover={{ y: -8 }}
-              className="group cursor-pointer"
-            >
-              {/* Image */}
-              <div className="overflow-hidden rounded-2xl mb-4 shadow-lg shadow-slate-200/60">
-                <motion.div
-                  className="relative w-full aspect-[3/4]"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <Image 
-                    src={member.image} 
-                    alt={member.name}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="object-cover"
-                  />
-                </motion.div>
-              </div>
+        {/* Team Grid — staggered heights */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          {communityMembers.map((member, index) => {
+            // Staggered aspect ratios for rhythm
+            const aspectClasses = [
+              'aspect-[3/4]',
+              'aspect-[3/4] lg:mt-12',
+              'aspect-[3/4]',
+              'aspect-[3/4] lg:mt-12',
+            ];
+            return (
+              <motion.div
+                key={member.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, duration: 0.8 }}
+                whileHover={{ y: -10 }}
+                className={`group cursor-pointer ${index % 2 === 1 ? 'lg:mt-12' : ''}`}
+              >
+                {/* Image */}
+                <div className="overflow-hidden rounded-2xl mb-4 shadow-lg shadow-slate-200/60 relative">
+                  <motion.div
+                    className={`relative w-full ${aspectClasses[index] || 'aspect-[3/4]'}`}
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-cover"
+                    />
+                    {/* Hover overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/85 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-3 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                      <div className="flex gap-2">
+                        <button aria-label={`${member.name} on LinkedIn`} className="w-9 h-9 rounded-full bg-white/15 backdrop-blur-md border border-white/20 hover:bg-primary hover:border-primary flex items-center justify-center transition-colors">
+                          <Linkedin className="w-4 h-4 text-white" />
+                        </button>
+                        <button aria-label={`${member.name} on Twitter`} className="w-9 h-9 rounded-full bg-white/15 backdrop-blur-md border border-white/20 hover:bg-primary hover:border-primary flex items-center justify-center transition-colors">
+                          <Twitter className="w-4 h-4 text-white" />
+                        </button>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
 
-              {/* Info */}
-              <div className="flex items-start justify-between px-1">
-                <div>
-                  <p className="text-text-muted text-xs font-medium uppercase tracking-wider mb-1">{member.role}</p>
-                  <h4 className="text-slate-900 font-semibold text-lg">{member.name}</h4>
+                {/* Info */}
+                <div className="px-1">
+                  <p className="text-text-muted text-[10px] font-bold uppercase tracking-[0.15em] mb-1.5">{member.role}</p>
+                  <h4 className="text-slate-900 font-semibold text-lg tracking-tight group-hover:text-primary transition-colors">{member.name}</h4>
                 </div>
-                <div className="flex gap-2 mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-8 h-8 rounded-full bg-slate-100 hover:bg-primary/10 flex items-center justify-center transition-colors">
-                    <Linkedin className="w-3.5 h-3.5 text-text-muted hover:text-primary transition-colors" />
-                  </div>
-                  <div className="w-8 h-8 rounded-full bg-slate-100 hover:bg-primary/10 flex items-center justify-center transition-colors">
-                    <Twitter className="w-3.5 h-3.5 text-text-muted hover:text-primary transition-colors" />
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
         
         {/* CTA */}

@@ -15,16 +15,24 @@ export default function GalleryPage() {
   useEffect(() => {
     if (!canvasRef.current || imageSrcs.length === 0) return;
 
-    // Delay WebGL init so the page-transition reveal animation finishes
-    // before the heavy texture-atlas build runs on the main thread.
-    const timer = setTimeout(() => {
-      if (!canvasRef.current) return;
+    let started = false;
+    const start = () => {
+      if (started || !canvasRef.current) return;
+      started = true;
       const vortex = new VortexGallery(canvasRef.current, imageSrcs);
       vortexRef.current = vortex;
-    }, 900);
+    };
+
+    // Prefer waiting for the page-transition reveal to finish — this prevents
+    // the heavy texture-atlas build from janking the curtain animation.
+    // Fall back to a timeout for direct loads (no transition fired).
+    const onRevealed = () => start();
+    window.addEventListener("page-transition-revealed", onRevealed, { once: true });
+    const fallback = setTimeout(start, 1300);
 
     return () => {
-      clearTimeout(timer);
+      clearTimeout(fallback);
+      window.removeEventListener("page-transition-revealed", onRevealed);
       vortexRef.current?.destroy();
       vortexRef.current = null;
     };

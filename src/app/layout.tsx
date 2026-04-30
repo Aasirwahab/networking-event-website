@@ -88,7 +88,7 @@ export default function RootLayout({
         <LenisProvider>
           <TransitionProvider>
             <Navbar />
-            <div id="main-content" className="relative">
+            <div id="main-content" className="relative z-[1] bg-white">
               {children}
             </div>
             <Footer />

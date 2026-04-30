@@ -311,11 +311,14 @@ select option {
   );
 }
 
-/* CTA Section: image-masked text */
+/* CTA Section: image-masked text with dark overlay for legibility */
 .cta-text-mask {
-  background-image: url('/images/hero-bg.webp');
+  background-image:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.55) 0%, rgba(37, 99, 235, 0.55) 100%),
+    url('/images/hero-bg.webp');
   background-size: cover;
   background-position: center;
+  background-blend-mode: multiply;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
