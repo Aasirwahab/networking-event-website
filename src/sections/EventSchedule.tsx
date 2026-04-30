@@ -44,7 +44,7 @@ export function EventSchedule() {
               {/* Glow accents */}
               <div className="absolute -top-32 -right-20 w-96 h-96 bg-primary/30 blur-[120px] rounded-full pointer-events-none" />
               <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-500/15 blur-[120px] rounded-full pointer-events-none" />
-              <div className="absolute inset-0 opacity-[0.04] mix-blend-overlay pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '28px 28px' }} />
+              <div className="absolute inset-0 opacity-[0.04] mix-blend-overlay pointer-events-none bg-dot-pattern-lg" />
 
               <div className="relative z-10 p-8 md:p-12 grid lg:grid-cols-[auto_1fr_auto] gap-10 items-center">
                 {/* Date Block */}

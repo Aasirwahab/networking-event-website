@@ -324,3 +324,13 @@ select option {
   color: transparent;
   -webkit-text-fill-color: transparent;
 }
+
+/* Subtle white dotted texture overlay (used on dark gradient cards) */
+.bg-dot-pattern {
+  background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0);
+  background-size: 24px 24px;
+}
+.bg-dot-pattern-lg {
+  background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0);
+  background-size: 28px 28px;
+}

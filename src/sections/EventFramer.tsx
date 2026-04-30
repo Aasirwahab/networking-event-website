@@ -36,7 +36,7 @@ export function EventFramer() {
             className="md:col-span-3 md:row-span-2 relative rounded-3xl overflow-hidden border border-slate-100 group bg-gradient-to-br from-primary to-blue-700 p-8 lg:p-10 flex flex-col justify-between text-white shadow-[0_20px_50px_rgba(37,99,235,0.18)] min-h-[440px]"
           >
             <div className="absolute -top-24 -right-24 w-72 h-72 bg-white/10 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute inset-0 opacity-[0.06] mix-blend-overlay pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '24px 24px' }} />
+            <div className="absolute inset-0 opacity-[0.06] mix-blend-overlay pointer-events-none bg-dot-pattern" />
 
             <div className="relative z-10 flex items-center justify-between">
               <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
