@@ -48,158 +48,183 @@ export function Footer() {
   };
 
   return (
-    <div
-      ref={wrapperRef}
-      className="relative w-full"
-    >
+    <div ref={wrapperRef} className="relative w-full">
       <div
         ref={innerRef}
-        className={isSticky ? "fixed bottom-0 left-0 w-full z-0" : "w-full"}
+        className={isSticky ? 'fixed bottom-0 left-0 w-full z-0' : 'w-full'}
       >
-    <footer
-      ref={footerRef}
-      className={`bg-primary text-white pt-16 lg:pt-20 pb-8 flex flex-col justify-between relative overflow-hidden ${isSticky ? '' : 'w-full'}`}
-    >
-      {/* Massive Brand Watermark */}
-      <div className="absolute -bottom-10 lg:-bottom-20 left-1/2 -translate-x-1/2 select-none pointer-events-none w-full text-center">
-        <h2 className="text-[25vw] font-black tracking-tighter text-white/[0.08] leading-none uppercase">
-          NETWORX
-        </h2>
-      </div>
+        <footer
+          ref={footerRef}
+          className={`bg-primary text-white rounded-t-[2.5rem] pt-16 lg:pt-24 pb-6 flex flex-col justify-between relative overflow-hidden ${isSticky ? '' : 'w-full'}`}
+        >
+          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 w-full relative z-10">
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-        
-        {/* Top Tier: Newsletter Hero */}
-        <div className="mb-16 lg:mb-20">
-          <div className="max-w-2xl">
-            <span className="text-white/50 text-xs uppercase tracking-[0.3em] font-medium mb-4 block underline underline-offset-8 decoration-white/20">Intelligence</span>
-            <h3 className="text-3xl lg:text-4xl font-extralight italic mb-8 max-w-lg leading-tight text-white">
-              Stay connected with London&apos;s most welcoming networking community.
-            </h3>
-            <form onSubmit={handleSubmit} className="relative group max-w-md">
-              <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl border border-white/15 hover:border-white/30 focus-within:border-white/60 focus-within:bg-white/15 transition-all duration-300">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="your@email.com"
-                  required
-                  aria-label="Email address for newsletter"
-                  className="w-full bg-transparent py-5 pl-6 pr-16 text-white placeholder:text-white/60 focus:outline-none text-lg font-light"
-                />
-                <button
-                  type="submit"
-                  className="absolute right-2 top-1/2 -translate-y-1/2 w-11 h-11 rounded-xl bg-white text-primary flex items-center justify-center hover:bg-blue-50 hover:scale-105 transition-all"
-                  aria-label="Subscribe"
-                  title="Subscribe to newsletter"
-                >
-                  <ArrowRight className="w-5 h-5" />
-                </button>
+            {/* TOP TIER — 4-column compact grid (Astralis-style) */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-12 pb-20 lg:pb-28">
+
+              {/* Col 1 — Brand Statement */}
+              <div className="col-span-2 md:col-span-1">
+                <p className="text-white/50 text-[11px] uppercase tracking-[0.25em] font-semibold mb-5">
+                  Brand Statement
+                </p>
+                <p className="text-white/80 text-sm leading-relaxed font-light mb-6">
+                  London&apos;s premier professional network. Small rooms, sharp people, real conversations — connecting founders, operators, and investors without the pitch-deck theatre.
+                </p>
+                <div className="flex items-center gap-5">
+                  <a
+                    href={socialLinks[0].href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white/50 hover:text-white hover:scale-110 transition-all duration-300"
+                    title={socialLinks[0].label}
+                  >
+                    <TwitterIcon />
+                  </a>
+                  <a
+                    href={socialLinks[2].href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white/50 hover:text-white hover:scale-110 transition-all duration-300"
+                    title={socialLinks[2].label}
+                  >
+                    <InstagramIcon />
+                  </a>
+                </div>
               </div>
-            </form>
-            <p role="status" aria-live="polite" className="min-h-[1.25rem] mt-3 text-sm font-light">
-              {status === 'success' && (
-                <span className="text-green-400">Thank you for subscribing!</span>
-              )}
-              {status === 'error' && (
-                <span className="text-red-400">Please enter a valid email address.</span>
-              )}
-            </p>
-          </div>
-        </div>
 
-        {/* Middle Tier: Expansive Link Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 lg:gap-8 pb-12 border-b border-white/[0.05]">
-          {/* Branding & Contact */}
-          <div className="col-span-2 lg:col-span-1">
-            <Link href="/" aria-label="Networx London — home" className="inline-block mb-7 transition-transform duration-300 hover:scale-[1.03]">
-              <Image
-                src="/images/logo.png"
-                alt="Networx London"
-                width={220}
-                height={110}
-                style={{ width: 'auto', height: 'auto' }}
-                className="h-16 lg:h-20 w-auto object-contain brightness-0 invert"
-              />
-            </Link>
-            <p className="text-white/40 text-xs uppercase tracking-widest font-bold mb-6">Connect</p>
-            <a href="mailto:hello@networxlondon.com" className="text-white text-md font-medium hover:text-blue-200 transition-colors block mb-2 underline underline-offset-4 decoration-white/20">
-              hello@networxlondon.com
-            </a>
-            <p className="text-white/30 text-sm leading-relaxed mb-6 font-light">
-              London SW15 3SR,<br />
-              United Kingdom
-            </p>
-            <div className="flex items-center gap-6">
-              <a href={socialLinks[0].href} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-blue-200 hover:scale-125 transition-all duration-300 inline-block" title={socialLinks[0].label}><TwitterIcon /></a>
-              <a href={socialLinks[2].href} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-blue-200 hover:scale-125 transition-all duration-300 inline-block" title={socialLinks[2].label}><InstagramIcon /></a>
-            </div>
-          </div>
+              {/* Col 2 — Navigation */}
+              <div>
+                <p className="text-white/50 text-[11px] uppercase tracking-[0.25em] font-semibold mb-5">
+                  Navigation
+                </p>
+                <ul className="space-y-3">
+                  {footerLinks.column1.map((link) => {
+                    const isGallery = link.href === '/gallery';
+                    return (
+                      <li key={link.label}>
+                        <a
+                          href={link.href}
+                          onMouseEnter={isGallery ? preloadGalleryImages : undefined}
+                          onTouchStart={isGallery ? preloadGalleryImages : undefined}
+                          onFocus={isGallery ? preloadGalleryImages : undefined}
+                          className="text-white/80 text-sm hover:text-white transition-all hover:translate-x-1 inline-block font-light"
+                        >
+                          {link.label}
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
 
-          {/* Columns */}
-          <div>
-            <p className="text-white/40 text-xs uppercase tracking-widest font-bold mb-6">Navigation</p>
-            <ul className="space-y-4">
-              {footerLinks.column1.map((link) => {
-                const isGallery = link.href === '/gallery';
-                return (
-                  <li key={link.label}>
+              {/* Col 3 — Information */}
+              <div>
+                <p className="text-white/50 text-[11px] uppercase tracking-[0.25em] font-semibold mb-5">
+                  Information
+                </p>
+                <ul className="space-y-3">
+                  {[...footerLinks.column2, ...footerLinks.column3].map((link) => (
+                    <li key={link.label}>
+                      <a
+                        href={link.href}
+                        className="text-white/80 text-sm hover:text-white transition-all hover:translate-x-1 inline-block font-light"
+                      >
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                  <li>
                     <a
-                      href={link.href}
-                      onMouseEnter={isGallery ? preloadGalleryImages : undefined}
-                      onTouchStart={isGallery ? preloadGalleryImages : undefined}
-                      onFocus={isGallery ? preloadGalleryImages : undefined}
-                      className="text-white/80 text-sm hover:text-white transition-all transform hover:translate-x-1 inline-block font-light"
+                      href="mailto:hello@networxlondon.com"
+                      className="text-white/80 text-sm hover:text-white transition-all hover:translate-x-1 inline-block font-light"
                     >
-                      {link.label}
+                      hello@networxlondon.com
                     </a>
                   </li>
-                );
-              })}
-            </ul>
-          </div>
+                </ul>
+              </div>
 
-          <div>
-            <p className="text-white/40 text-xs uppercase tracking-widest font-bold mb-6">Directory</p>
-            <ul className="space-y-4">
-              {footerLinks.column2.map((link) => (
-                <li key={link.label}><a href={link.href} className="text-white/60 text-sm hover:text-white transition-all transform hover:translate-x-1 inline-block font-light">{link.label}</a></li>
-              ))}
-            </ul>
-          </div>
+              {/* Col 4 — Join Networx */}
+              <div className="col-span-2 md:col-span-1">
+                <p className="text-white/50 text-[11px] uppercase tracking-[0.25em] font-semibold mb-5">
+                  Join Networx
+                </p>
+                <form onSubmit={handleSubmit} className="relative group">
+                  <div className="relative bg-white/10 backdrop-blur-sm rounded-full border border-white/15 hover:border-white/30 focus-within:border-white/60 focus-within:bg-white/15 transition-all duration-300">
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="type your email"
+                      required
+                      aria-label="Email address for newsletter"
+                      className="w-full bg-transparent py-3 pl-5 pr-12 text-white placeholder:text-white/50 focus:outline-none text-sm font-light"
+                    />
+                    <button
+                      type="submit"
+                      className="absolute right-1.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white text-primary flex items-center justify-center hover:bg-blue-50 hover:scale-105 transition-all"
+                      aria-label="Subscribe"
+                      title="Subscribe to newsletter"
+                    >
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </form>
+                <p
+                  role="status"
+                  aria-live="polite"
+                  className="min-h-[1.25rem] mt-3 text-xs font-light"
+                >
+                  {status === 'success' && (
+                    <span className="text-green-300">Thank you for subscribing!</span>
+                  )}
+                  {status === 'error' && (
+                    <span className="text-red-300">Please enter a valid email.</span>
+                  )}
+                </p>
+                <p className="text-white/40 text-xs leading-relaxed mt-2 font-light">
+                  London SW15 3SR, United Kingdom
+                </p>
+              </div>
+            </div>
 
-          <div>
-            <p className="text-white/40 text-xs uppercase tracking-widest font-bold mb-6">Information</p>
-            <ul className="space-y-4">
-              {footerLinks.column3.map((link) => (
-                <li key={link.label}><a href={link.href} className="text-white/60 text-sm hover:text-white transition-all transform hover:translate-x-1 inline-block font-light">{link.label}</a></li>
-              ))}
-            </ul>
-          </div>
+            {/* BOTTOM TIER — Logo + Giant Wordmark (side-by-side, Astralis layout) */}
+            <div className="select-none">
+              <Link
+                href="/"
+                aria-label="Networx London — home"
+                className="group flex items-center justify-center gap-4 sm:gap-6 lg:gap-10 w-full"
+              >
+                {/* Brand mark — centered on mobile, sits to the LEFT of the wordmark on desktop */}
+                <Image
+                  src="/images/logo.png"
+                  alt="Networx London"
+                  width={320}
+                  height={160}
+                  style={{ width: 'auto', height: 'auto' }}
+                  className="shrink-0 h-32 sm:h-36 md:h-40 lg:h-44 xl:h-52 w-auto object-contain brightness-0 invert opacity-95 transition-opacity duration-500 group-hover:opacity-100"
+                />
+                {/* Giant wordmark — hidden on mobile, fills the remaining width on desktop */}
+                <h2
+                  aria-hidden="true"
+                  className="hidden lg:block text-white font-black tracking-[-0.05em] leading-[0.85] uppercase whitespace-nowrap text-[clamp(2.5rem,13vw,11rem)] transition-opacity duration-500 group-hover:opacity-90"
+                >
+                  Networx
+                </h2>
+              </Link>
+            </div>
 
-          <div className="hidden lg:block">
-            <p className="text-white/40 text-xs uppercase tracking-widest font-bold mb-6">Experience</p>
-            <div className="group cursor-pointer">
-              <p className="text-white/30 text-xs font-light leading-relaxed group-hover:text-white/50 transition-colors">
-                Making networking human, relaxed, and genuinely enjoyable. Networx London brings people together for impactful connections.
+            {/* MICROCOPY — bottom-most legal line */}
+            <div className="mt-8 lg:mt-10 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-3 text-center md:text-left">
+              <p className="text-white/40 text-[10px] uppercase tracking-[0.25em] font-light">
+                &copy; {CURRENT_YEAR} Networx London Archive. Designed for meaningful connection.
+              </p>
+              <p className="text-white/30 text-[10px] uppercase tracking-[0.25em] font-light">
+                Documenting professionals beyond the pitch.
               </p>
             </div>
           </div>
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="pt-10 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2">
-            <span className="text-3xl font-extralight tracking-tighter text-white">NETWORX</span>
-            <div className="h-4 w-[1px] bg-white/10 mx-1" />
-            <span className="text-[10px] tracking-[0.6em] uppercase text-blue-200 font-bold">LONDON</span>
-          </div>
-          <p className="text-white/20 text-[10px] lg:text-[11px] uppercase tracking-[0.2em] font-light">
-            &copy; {CURRENT_YEAR} Networx London. All Rights Reserved. Human Networking Made Simple.
-          </p>
-        </div>
-      </div>
-    </footer>
+        </footer>
       </div>
     </div>
   );
