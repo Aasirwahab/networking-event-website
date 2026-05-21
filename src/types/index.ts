@@ -7,11 +7,17 @@ export interface Speaker {
 
 export interface Event {
   id: string;
+  slug: string;
   date: string;
   location: string;
   title: string;
   category: string;
   description?: string;
+  longDescription?: string;
+  highlights?: string[];
+  whoFor?: string[];
+  image?: string;
+  schedule?: { time: string; label: string }[];
 }
 
 export interface Stat {

@@ -233,7 +233,7 @@ select option {
   .nav-items {
     flex-direction: column-reverse;
     justify-content: flex-end;
-    padding: 6rem 2rem 2rem 2rem;
+    padding: 10rem 2rem 2rem 2rem;
     gap: 0;
   }
 

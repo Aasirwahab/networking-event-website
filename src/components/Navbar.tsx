@@ -77,11 +77,11 @@ export function Navbar() {
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <nav className="grid grid-cols-3 items-center">
 
-            {/* Left: Text Logo with masked translateY reveal */}
+            {/* Left: Text Logo with masked translateY reveal (hidden until desktop to avoid overlap with center logo) */}
             <Link
               href="/"
               onClick={handleLogoClick}
-              className="group flex items-end gap-1.5 transition-transform duration-300 hover:scale-[1.02] justify-self-start"
+              className="group hidden lg:flex items-end gap-1.5 transition-transform duration-300 hover:scale-[1.02] justify-self-start"
             >
               <span className="overflow-hidden inline-block leading-[0.95] pb-[2px]">
                 <motion.span
@@ -93,7 +93,7 @@ export function Navbar() {
                   Networx
                 </motion.span>
               </span>
-              <span className="hidden sm:inline-block overflow-hidden leading-[0.95] pb-[2px] ml-1">
+              <span className="overflow-hidden inline-block leading-[0.95] pb-[2px] ml-1">
                 <motion.span
                   initial={{ y: '110%' }}
                   animate={{ y: '0%' }}
@@ -104,9 +104,11 @@ export function Navbar() {
                 </motion.span>
               </span>
             </Link>
+            {/* Spacer to preserve 3-col grid layout on mobile/tablet */}
+            <span className="lg:hidden" aria-hidden="true" />
 
-            {/* Center: Logo Image with masked reveal */}
-            <div className="flex justify-center">
+            {/* Center: Logo Image with masked reveal (hidden when mobile menu is open to avoid overlap with menu links) */}
+            <div className={`flex justify-center transition-opacity duration-300 ${mobileMenuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
               <Link href="/" onClick={handleLogoClick} className="transition-transform duration-300 hover:scale-[1.03]">
                 <span className="overflow-hidden inline-block pb-[2px]">
                   <motion.span
@@ -118,9 +120,10 @@ export function Navbar() {
                     <Image
                       src="/images/logo.png"
                       alt="Networx London"
-                      width={160}
-                      height={80}
-                      className={`object-contain h-12 sm:h-16 lg:h-20 w-auto transition-all duration-500 ${isDarkTheme ? 'brightness-0 invert' : 'brightness-0'}`}
+                      width={120}
+                      height={60}
+                      style={{ width: 'auto', height: 'auto' }}
+                      className={`object-contain h-5 sm:h-5 lg:h-6 w-auto transition-all duration-500 ${isDarkTheme ? 'brightness-0 invert' : 'brightness-0'}`}
                       priority
                     />
                   </motion.span>

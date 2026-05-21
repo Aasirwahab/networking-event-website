@@ -14,37 +14,37 @@ if (typeof window !== 'undefined') {
 
 const agenda = [
   {
-    time: 'Phase 01',
-    title: 'Arrival & Welcome Experience',
-    description: 'Step into an immersive environment. Grab your morning coffee, settle in, and begin connecting with fellow professionals.',
+    time: '6:30 PM',
+    title: 'Arrival & Welcome',
+    description: 'Doors open. Grab a drink, settle in, and start meeting the room at your own pace — no awkward icebreakers, just easy introductions.',
     src: '/images/london/1.webp',
     bgClass: 'bg-white/[0.02]'
   },
   {
-    time: 'Phase 02',
-    title: 'Strategic Networking',
-    description: 'A brief, impactful welcome from our founders followed by open networking with London\'s industry leaders and visionaries.',
+    time: '7:00 PM',
+    title: 'Open Networking',
+    description: 'A short welcome from the founders, then the floor is yours. Move freely, find the conversations that matter, and skip the ones that don\'t.',
     src: '/images/london/2.webp',
     bgClass: 'bg-white/[0.04]'
   },
   {
-    time: 'Phase 03',
+    time: '7:45 PM',
     title: 'Roundtable Discussions',
-    description: 'Engage in guided, high-value conversations. Share your expertise, tackle industry challenges, and discover synergistic opportunities.',
+    description: 'Sit down with six to eight others around a shared theme. Trade real problems, candid takes, and the kind of advice you only get face to face.',
     src: '/images/london/3.webp',
     bgClass: 'bg-white/[0.06]'
   },
   {
-    time: 'Phase 04',
-    title: 'Partnerships & Dialogue',
-    description: 'Dedicated time to forge meaningful business partnerships, exchange details, and solidify new professional relationships.',
+    time: '8:45 PM',
+    title: 'Partnerships & Follow-Up',
+    description: 'Dedicated time to swap details, line up coffees, and turn good conversations into something real before the night ends.',
     src: '/images/london/4.webp',
     bgClass: 'bg-white/[0.08]'
   },
   {
-    time: 'Phase 05',
-    title: 'Closing & Next Steps',
-    description: 'Wrap up the session with actionable takeaways, upcoming event calendars, and exclusive community announcements.',
+    time: '9:30 PM',
+    title: 'Wrap & What\'s Next',
+    description: 'A quick close-out — upcoming events, community announcements, and one last round before everyone heads out.',
     src: '/images/london/5.webp',
     bgClass: 'bg-white/10'
   }
@@ -108,7 +108,7 @@ export function AgendaSection() {
                 type="button"
                 key={index}
                 className={`agenda-step ${activeStep === index ? 'active' : ''}`}
-                aria-label={`Jump to Phase ${index + 1}`}
+                aria-label={`Jump to step ${index + 1}`}
                 aria-current={activeStep === index ? 'step' : undefined}
                 onClick={() => {
                   const card = cardRefs.current[index];
@@ -117,8 +117,8 @@ export function AgendaSection() {
                   }
                 }}
               >
-                <p className="agenda-step-label">Phase</p>
-                <p className="agenda-step-index">{index + 1}</p>
+                <p className="agenda-step-label">Step</p>
+                <p className="agenda-step-index">{String(index + 1).padStart(2, '0')}</p>
               </button>
             ))}
           </div>

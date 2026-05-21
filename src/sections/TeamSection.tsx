@@ -21,7 +21,7 @@ export function TeamSection() {
              <span className="text-primary italic">Attends.</span>
            </h2>
            <p className="text-text-secondary text-lg font-light leading-relaxed max-w-2xl mx-auto">
-             A diverse mix of company directors, CEOs, entrepreneurs, founders, startups, small business owners, investors, and working professionals.
+             Founders and CEOs. Investors and operators. Independent consultants and small business owners. The common thread isn&apos;t a title — it&apos;s the way they show up.
            </p>
         </ScrollReveal>
 

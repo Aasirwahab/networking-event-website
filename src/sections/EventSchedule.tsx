@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { events } from '@/data/content';
@@ -18,7 +19,7 @@ export function EventSchedule() {
   const rest = events.slice(1);
 
   return (
-    <section className="py-24 lg:py-32 bg-bg-gray">
+    <section id="events" className="py-24 lg:py-32 bg-bg-gray">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal className="mb-14 md:flex md:items-end md:justify-between gap-10">
           <div>
@@ -36,10 +37,11 @@ export function EventSchedule() {
         {/* Featured next event */}
         {featured && (
           <ScrollReveal>
-            <motion.div
+            <motion.a
+              href={`/events/${featured.slug}`}
               whileHover={{ y: -4 }}
               transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-              className="group relative bg-gradient-to-br from-slate-900 via-slate-900 to-blue-950 rounded-3xl overflow-hidden mb-8 cursor-pointer shadow-[0_25px_60px_rgba(15,23,42,0.18)]"
+              className="group relative block bg-gradient-to-br from-slate-900 via-slate-900 to-blue-950 rounded-3xl overflow-hidden mb-8 cursor-pointer shadow-[0_25px_60px_rgba(15,23,42,0.18)]"
             >
               {/* Glow accents */}
               <div className="absolute -top-32 -right-20 w-96 h-96 bg-primary/30 blur-[120px] rounded-full pointer-events-none" />
@@ -112,13 +114,13 @@ export function EventSchedule() {
                     </p>
                     <p className="text-amber-300 text-[10px] font-bold uppercase tracking-widest mt-1.5">Spots Left</p>
                   </div>
-                  <button className="group/btn inline-flex items-center gap-2 bg-white text-slate-900 px-6 py-3.5 rounded-full font-semibold text-xs tracking-[0.15em] uppercase hover:bg-primary hover:text-white transition-all duration-300">
+                  <span className="group/btn inline-flex items-center gap-2 bg-white text-slate-900 px-6 py-3.5 rounded-full font-semibold text-xs tracking-[0.15em] uppercase group-hover:bg-primary group-hover:text-white transition-all duration-300">
                     Reserve Seat
-                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                  </button>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </span>
                 </div>
               </div>
-            </motion.div>
+            </motion.a>
           </ScrollReveal>
         )}
 
@@ -135,6 +137,9 @@ export function EventSchedule() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.08 }}
+              >
+              <Link
+                href={`/events/${event.slug}`}
                 className="group relative bg-white border border-slate-100 rounded-2xl p-6 md:p-7 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-500 flex flex-col md:flex-row md:items-center justify-between gap-6 cursor-pointer"
               >
                 <div className="flex-1 flex gap-5 items-start">
@@ -180,6 +185,7 @@ export function EventSchedule() {
                     <ArrowRight className="w-5 h-5 text-text-muted group-hover:text-white transition-colors" />
                   </div>
                 </div>
+              </Link>
               </motion.div>
             );
           })}

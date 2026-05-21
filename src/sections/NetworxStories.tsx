@@ -212,7 +212,7 @@ export function NetworxStories() {
   }, [activeIndex, total]);
 
   return (
-    <section className="py-20 bg-primary overflow-hidden contain-strict">
+    <section className="py-20 bg-[#0a0a0a] overflow-hidden contain-strict">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-12 flex items-end justify-between">

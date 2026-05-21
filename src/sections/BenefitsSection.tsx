@@ -10,7 +10,7 @@ const benefits = [
   {
     icon: Users,
     title: 'Diverse Community',
-    description: 'Meet company directors, CEOs, entrepreneurs, founders, startups, small business owners, investors, and working professionals.',
+    description: 'A carefully curated room of operators, builders, and backers — the people actually shaping London\'s next chapter.',
     src: '/images/toWEBP/1775159002011.webp',
     color: '#ffffff'
   },

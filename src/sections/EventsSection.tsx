@@ -86,7 +86,7 @@ export function EventsSection() {
                 {/* Button */}
                  <div className="md:col-span-2 flex justify-start md:justify-end">
                    <a
-                     href={`#event-${event.id}`}
+                     href={`/events/${event.slug}`}
                      className="group/btn inline-flex items-center gap-2 border border-white/20 text-white px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 hover:bg-white hover:text-slate-900 hover:border-white hover:shadow-lg hover:scale-105"
                    >
                      Read More
@@ -101,7 +101,7 @@ export function EventsSection() {
         {/* CTA Button */}
         <ScrollReveal delay={0.4} className="text-center mt-12">
            <a
-             href="#all-events"
+             href="/events"
              className="group inline-flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_30px_rgba(37,99,235,0.3)]"
            >
              View All Events

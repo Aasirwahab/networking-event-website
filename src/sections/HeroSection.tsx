@@ -69,7 +69,7 @@ export function HeroSection() {
               variants={heroItemVariants}
               className="text-left text-[14px] sm:text-[15px] text-white/60 max-w-full sm:max-w-md mb-5 sm:mb-8 font-light leading-[1.6] sm:leading-[1.7]"
             >
-              Bringing together directors, CEOs, entrepreneurs, founders, and investors for relaxed, high-value networking sessions. Scale your business and spark genuine partnerships in London.
+              Small rooms. Sharp people. Real conversations. Networx is where London&apos;s founders, operators, and investors meet without the pitch-deck theatre.
             </motion.p>
 
             {/* CTA Buttons */}

@@ -20,7 +20,7 @@ export function AboutSection() {
             <ScrollReveal delay={0}>
               <div className="space-y-4">
                 <p className="text-text-secondary text-base lg:text-lg leading-relaxed">
-                  Networx London makes networking human, relaxed, and genuinely enjoyable. Founded in 2025, we specialize in high-end events services that bring together a diverse mix of company directors, CEOs, entrepreneurs, startups, investors, and professionals.
+                  Networx London makes networking human, relaxed, and genuinely enjoyable. Founded in 2025, we host intimate events where ambitious people meet on equal footing — no name tags, no pitch decks, no pressure.
                 </p>
                 <p className="text-text-secondary text-sm lg:text-base leading-relaxed opacity-80">
                   Whether you are scaling a business or exploring new ventures, this is a welcoming and dynamic space to connect, share ideas, and build lasting relationships.
@@ -85,7 +85,7 @@ export function AboutSection() {
             
             <ScrollReveal delay={0.25}>
               <a
-                href="#about-more"
+                href="/about"
                 className="group inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-primary/90 hover:scale-[1.02]"
               >
                 Discover More

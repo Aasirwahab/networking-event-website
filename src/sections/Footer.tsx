@@ -116,9 +116,10 @@ export function Footer() {
               <Image
                 src="/images/logo.png"
                 alt="Networx London"
-                width={140}
-                height={70}
-                className="h-14 w-auto object-contain brightness-0 invert"
+                width={220}
+                height={110}
+                style={{ width: 'auto', height: 'auto' }}
+                className="h-16 lg:h-20 w-auto object-contain brightness-0 invert"
               />
             </Link>
             <p className="text-white/40 text-xs uppercase tracking-widest font-bold mb-6">Connect</p>
