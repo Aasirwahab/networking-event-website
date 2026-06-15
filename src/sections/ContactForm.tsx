@@ -90,10 +90,10 @@ export function ContactForm() {
           {/* Left: Info */}
           <ScrollReveal>
             <span className="text-primary text-xs font-bold tracking-[0.4em] uppercase block mb-4">Get In Touch</span>
-            <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-none mb-8">
+            <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-none mb-8">
               LET&apos;S <br />
               <span className="text-white/20">CONNECT.</span>
-            </h1>
+            </h2>
             <p className="text-white/40 text-lg font-light leading-relaxed mb-16 max-w-md">
               Whether you want to attend an event, partner with us, or just learn more — we&apos;d love to hear from you.
             </p>

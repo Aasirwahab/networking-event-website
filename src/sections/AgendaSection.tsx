@@ -95,7 +95,7 @@ export function AgendaSection() {
       <div ref={headerRef} className="agenda-header-col">
         <div className="agenda-header-content">
           <h2 className="text-3xl lg:text-5xl font-light tracking-tight mb-8 text-white">
-            An Experience of <span className="font-medium italic text-primary">Real Connections</span>
+            An Experience of <span className="font-medium italic text-blue-200">Real Connections</span>
           </h2>
           <p className="text-white/60 text-lg leading-relaxed mb-10">
             Every session is designed to be relaxed, engaging, and genuinely valuable for building robust partnerships and growing your professional network.

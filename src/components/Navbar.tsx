@@ -121,7 +121,7 @@ export function Navbar() {
                       src="/images/logo.png"
                       alt="Networx London"
                       width={120}
-                      height={60}
+                      height={120}
                       style={{ width: 'auto', height: 'auto' }}
                       className={`object-contain h-5 sm:h-5 lg:h-6 w-auto transition-all duration-500 ${isDarkTheme ? 'brightness-0 invert' : 'brightness-0'}`}
                       priority

@@ -39,6 +39,12 @@ export function HeroSection() {
         <Intro />
       </div>
 
+      {/* Readability scrim behind the hero copy — sits above the intro image
+          but below the content. Vertical fade on mobile (text is centred),
+          left-anchored fade on desktop (text is left-aligned) so the cinematic
+          intro still reads on the open side. */}
+      <div className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-t from-black/75 via-black/40 to-black/15 sm:bg-gradient-to-r sm:from-black/70 sm:via-black/25 sm:to-transparent" />
+
       {/* Content */}
       <div className="flex-1 flex items-center justify-center sm:items-start sm:justify-start pt-20 sm:pt-[25vh] relative z-10 w-full">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full">
@@ -67,7 +73,7 @@ export function HeroSection() {
             {/* Description */}
             <motion.p
               variants={heroItemVariants}
-              className="text-left text-[14px] sm:text-[15px] text-white/60 max-w-full sm:max-w-md mb-5 sm:mb-8 font-light leading-[1.6] sm:leading-[1.7]"
+              className="text-left text-[14px] sm:text-[15px] text-white/75 sm:text-white/60 max-w-full sm:max-w-md mb-5 sm:mb-8 font-light leading-[1.6] sm:leading-[1.7]"
             >
               Small rooms. Sharp people. Real conversations. Networx is where London&apos;s founders, operators, and investors meet without the pitch-deck theatre.
             </motion.p>
@@ -83,7 +89,7 @@ export function HeroSection() {
               </button>
               <button
                 onClick={() => navigateTo('/about')}
-                className="group inline-flex flex-1 sm:flex-none items-center justify-center gap-2 bg-white/5 backdrop-blur-md border border-white/10 text-white px-4 sm:px-6 py-3 rounded-full font-semibold uppercase tracking-[0.15em] text-[10px] sm:text-[11px] whitespace-nowrap transition-all duration-300 hover:bg-white/10 cursor-pointer"
+                className="group inline-flex flex-1 sm:flex-none items-center justify-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white px-4 sm:px-6 py-3 rounded-full font-semibold uppercase tracking-[0.15em] text-[10px] sm:text-[11px] whitespace-nowrap transition-all duration-300 hover:bg-white/20 hover:border-white/30 cursor-pointer"
               >
                 Our Philosophy
               </button>

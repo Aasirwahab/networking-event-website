@@ -26,6 +26,13 @@ export const LenisProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
+    // Respect users who prefer reduced motion — skip smooth scroll entirely
+    // and fall back to native browser scrolling.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setIsReady(true);
+      return;
+    }
+
     let lenisInstance: Lenis | null = null;
     let tickerCallback: ((time: number) => void) | null = null;
 

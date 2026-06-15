@@ -1,31 +1,21 @@
 'use client';
 
-import { useRef } from 'react';
 import Image from 'next/image';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { events } from '@/data/content';
 import { staggerContainer, fadeSlideUp, viewportOnce } from '@/lib/motion';
 
 export function EventsSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
-
   return (
     <section
       id="events"
-      ref={sectionRef}
       className="relative py-20 lg:py-30 overflow-hidden contain-paint"
     >
-      <motion.div
-        className="absolute inset-[-20%] z-0 will-change-transform"
-        style={{ y }}
-      >
+      {/* Static background — no scroll-driven parallax, so the image stays put
+          while the content scrolls over it (no shake on any device). */}
+      <div className="absolute inset-0 z-0">
         <Image
           src="/images/london/11.webp"
           fill
@@ -38,7 +28,7 @@ export function EventsSection() {
             (where the photo is brightest on mobile's taller crop) while leaving
             the mid-section readable on desktop. */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/85 md:bg-black/70 md:bg-none" />
-      </motion.div>
+      </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}

@@ -58,10 +58,16 @@ export default function GalleryPage() {
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-[#0F172A]">
+      {/* Accessible page heading — visually hidden because the gallery is an
+          interactive WebGL canvas with no DOM text. Gives screen readers and
+          search engines a real <h1> for the page. */}
+      <h1 className="sr-only">Event Gallery — Networx London</h1>
+
       {/* WebGL Canvas — the entire page is the vortex */}
       <canvas
         ref={canvasRef}
         onClick={handleCanvasClick}
+        aria-label="Interactive gallery of Networx London networking event photos"
         className="absolute top-0 left-0 w-full h-full z-[1] cursor-pointer"
       />
 

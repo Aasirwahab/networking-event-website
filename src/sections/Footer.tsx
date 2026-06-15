@@ -200,7 +200,7 @@ export function Footer() {
                   src="/images/logo.png"
                   alt="Networx London"
                   width={320}
-                  height={160}
+                  height={320}
                   style={{ width: 'auto', height: 'auto' }}
                   className="shrink-0 h-32 sm:h-36 md:h-40 lg:h-44 xl:h-52 w-auto object-contain brightness-0 invert opacity-95 transition-opacity duration-500 group-hover:opacity-100"
                 />
