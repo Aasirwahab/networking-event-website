@@ -21,13 +21,13 @@ const StatItem = memo(function StatItem({ value, suffix, label, index }: { value
       <div className="flex items-baseline gap-1 mb-5">
         <span
           ref={countSpanRef}
-          className={`text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tight tabular-nums leading-none transition-colors duration-500 ${
+          className={`text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tight tabular-nums leading-none transition-colors duration-500 ${
             isAccent ? 'text-primary' : 'text-slate-900'
           }`}
         >
           0
         </span>
-        <span className={`text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-none ${
+        <span className={`text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-light tracking-tight leading-none ${
           isAccent ? 'text-primary' : 'text-slate-900'
         }`}>
           {suffix}

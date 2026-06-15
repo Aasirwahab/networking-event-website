@@ -113,7 +113,7 @@
   padding: 10rem 2rem 10rem 0;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1023.98px) {
   .agenda-section {
     flex-direction: column;
     min-height: 0;

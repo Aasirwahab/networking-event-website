@@ -107,9 +107,9 @@ export function Navbar() {
             {/* Spacer to preserve 3-col grid layout on mobile/tablet */}
             <span className="lg:hidden" aria-hidden="true" />
 
-            {/* Center: Logo Image with masked reveal (hidden when mobile menu is open to avoid overlap with menu links) */}
+            {/* Center: Logo Image with masked reveal (logo hidden on mobile/tablet, but the grid cell is kept so the menu toggle stays right-aligned; hidden when menu is open to avoid overlap with menu links) */}
             <div className={`flex justify-center transition-opacity duration-300 ${mobileMenuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-              <Link href="/" onClick={handleLogoClick} className="transition-transform duration-300 hover:scale-[1.03]">
+              <Link href="/" onClick={handleLogoClick} className="hidden lg:block transition-transform duration-300 hover:scale-[1.03]">
                 <span className="overflow-hidden inline-block pb-[2px]">
                   <motion.span
                     initial={{ y: '110%' }}

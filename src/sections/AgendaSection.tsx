@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
@@ -56,40 +56,39 @@ export function AgendaSection() {
   const cardsRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [activeStep, setActiveStep] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const mql = window.matchMedia('(max-width: 1023.98px)');
-    const update = () => setIsMobile(mql.matches);
-    update();
-    mql.addEventListener('change', update);
-    return () => mql.removeEventListener('change', update);
-  }, []);
 
   useGSAP(() => {
-    if (isMobile || !containerRef.current || !headerRef.current || !cardsRef.current) return;
+    if (!containerRef.current || !headerRef.current || !cardsRef.current) return;
 
-    // Pin the header
-    ScrollTrigger.create({
-      trigger: containerRef.current,
-      start: 'top top',
-      end: 'bottom bottom',
-      pin: headerRef.current,
-      pinSpacing: false,
-    });
+    // Pin + step-tracking are desktop-only. gsap.matchMedia scopes the
+    // ScrollTriggers to the breakpoint and reverts them (including the
+    // pin-spacer) automatically, so the pinned header can never leak onto
+    // mobile. Breakpoint matches the CSS (`max-width: 1023.98px` = mobile).
+    const mm = gsap.matchMedia();
 
-    // Track active step
-    const cards = cardRefs.current.filter(Boolean) as HTMLElement[];
-    cards.forEach((card, index) => {
+    mm.add('(min-width: 1024px)', () => {
+      // Pin the header
       ScrollTrigger.create({
-        trigger: card,
-        start: 'top center',
-        end: 'bottom center',
-        onEnter: () => setActiveStep(index),
-        onEnterBack: () => setActiveStep(index),
+        trigger: containerRef.current,
+        start: 'top top',
+        end: 'bottom bottom',
+        pin: headerRef.current,
+        pinSpacing: false,
+      });
+
+      // Track active step
+      const cards = cardRefs.current.filter(Boolean) as HTMLElement[];
+      cards.forEach((card, index) => {
+        ScrollTrigger.create({
+          trigger: card,
+          start: 'top center',
+          end: 'bottom center',
+          onEnter: () => setActiveStep(index),
+          onEnterBack: () => setActiveStep(index),
+        });
       });
     });
-  }, { dependencies: [isMobile], scope: containerRef });
+  }, { scope: containerRef });
 
   return (
     <section ref={containerRef} className="agenda-section">
